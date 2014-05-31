@@ -1,0 +1,35 @@
+{
+    "name": "twomartens/web-platform",
+    "type": "library",
+    "description": "The 2martens Web Platform",
+    "keywords": ["framework"],
+    "homepage": "https://github.com/2martens/web-platform",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jim Martens",
+            "email": "github@2martens.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/common": "~2.2",
+        "twig/twig": "~1.11",
+        "psr/log": "~1.0",
+		"symfony/symfony": "~2.4"
+    },
+    "require-dev": {
+        "doctrine/data-fixtures": "1.0.*",
+        "doctrine/dbal": "~2.2",
+        "doctrine/orm": "~2.2,>=2.2.3"
+    },
+    "autoload": {
+        "psr-0": { "TwoMartens\\": "src/" }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
