@@ -20,11 +20,7 @@ give you a good idea what you can expect.
 - Language system for user-generated content
 - Package system for installing applications/plugins that depend on this platform
 - Project system
-  * each project comes with an own database
-  * you can decide which of the globally installed applications are available
-    for the project
-  * one global database for common things (application meta data, users, 
-    global group rights, etc.)
+  * you can decide which of the globally installed applications are available for the project
 
 This list of features is only a small subset of what is delivered with the
 platform. There are many things coming as simple library functionality
@@ -33,10 +29,7 @@ that is not actively used by the platform.
 Another important difference:
 The Web Platform is an **actual** application with accessible frontend.
 It provides some collection pages for the frontend that allow plugins and
-applications to plug them in and display their stuff. 
-
-The perfect example for that is the Dashboard page which gives you at a
-glance what is going on in the project. 
+applications to plug them in and display their stuff.
 
 ## Requirements
 
@@ -72,8 +65,7 @@ This graphical process provides these features
   process files and the source archive; the latter is unpacked here)
 - using Composer to install the dependencies (no dev requirements)
 - configuration of global database (parameters.yml)
-- creation of necessary tables in that database
-- filling the database with needed contents (user groups, package information, etc.)
+- creating needed contents (user groups, package information, etc.)
 - creation of first user (member of admin group which has access to all ROLE_* controlled
   areas)
 - switching to ACP
@@ -82,17 +74,6 @@ This graphical process provides these features
   is guided through all of them)
   - this configuration process is optional and can be skipped
   - for beginners it is **highly recommended** to use this guided process
-
-This installation process allows the installation of simple webspace while
-avoiding a massive FTP upload duration (uploading the unpacked version to webspace).
-
-### Composer + Symfony2 Standard Edition
-
-There is an alternative installation procedure as well. You can download
-the [Symfony2 Standard Edition][2] and then install this library via Composer.
-
-IMPORTANT: You are not done then. You have to manually call the installation
-process (TODO: how) to install the database contents.
 
 ### Composer all the way
 
