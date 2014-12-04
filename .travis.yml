@@ -20,5 +20,5 @@ before_script:
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
-  - phpcs -p --extensions=php --standard="Symfony2-Standard/" src/
+  - vendor/bin/phpcs -p --extensions=php --standard="Symfony2-Standard/" src/
   - phpunit
