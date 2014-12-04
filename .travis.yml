@@ -15,6 +15,7 @@ before_script:
   # navigate out of module directory to prevent blown stack by recursive module lookup
   #- cd ../..
   - phpenv config-add php_config.ini
+  - composer selfupdate
   - composer install -n
 
 script:
