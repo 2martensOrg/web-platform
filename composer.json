@@ -21,7 +21,10 @@
     "require-dev": {
         "doctrine/data-fixtures": "1.0.*",
         "doctrine/dbal": "~2.2",
-        "doctrine/orm": "~2.2,>=2.2.3"
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "phpunit/phpunit": "~4.3",
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "@stable"
     },
     "autoload": {
         "psr-0": { "TwoMartens\\": "src/" }
