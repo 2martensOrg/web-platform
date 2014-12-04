@@ -16,9 +16,8 @@ before_script:
   #- cd ../..
   - phpenv config-add php_config.ini
   - composer install -n
-  - git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2-Standard
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
-  - vendor/bin/phpcs -p --extensions=php --standard="Symfony2-Standard/" src/
+  - vendor/bin/phpcs -p --extensions=php --standard=PSR2 src/
   - phpunit
