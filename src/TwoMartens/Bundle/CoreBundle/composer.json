@@ -1,0 +1,41 @@
+{
+  "name": "twomartens/CoreBundle",
+  "type": "symfony-bundle",
+  "description": "The 2martens Web Platform Core Bundle",
+  "keywords": [""],
+  "homepage": "https://github.com/2martens/CoreBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jim Martens",
+      "email": "github@2martens.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "symfony/symfony": "~2.6",
+    "twig/twig": "~1.12",
+    "doctrine/common": "~2.2",
+    "psr/log": "~1.0",
+    "friendsofsymfony/user-bundle": "~1.3",
+    "sonata-project/block-bundle": "~2.2",
+    "knplabs/knp-menu-bundle": "~2.0"
+  },
+  "require-dev": {
+    "doctrine/data-fixtures": "~1.0",
+    "doctrine/orm": "~2.4",
+    "doctrine/mongodb-odm": "dev-master",
+    "phpunit/phpunit": "~4.3",
+    "squizlabs/php_codesniffer": "~2.0",
+    "phpmd/phpmd": "~2.1"
+  },
+  "autoload": {
+    "psr-4": { "TwoMartens\\Bundle\\CoreBundle\\": "" }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
