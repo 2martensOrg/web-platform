@@ -11,7 +11,7 @@ matrix:
     - php: hhvm
 
 before_script:
-  #- phpenv config-add php_config.ini
+  - phpenv config-add php_config.ini
   #- composer selfupdate
   - composer install -n --prefer-source --no-progress
 
