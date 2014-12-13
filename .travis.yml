@@ -13,7 +13,7 @@ matrix:
 before_script:
   #- phpenv config-add php_config.ini
   #- composer selfupdate
-  - composer install -n
+  - composer install -n --prefer-source --no-progress
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
