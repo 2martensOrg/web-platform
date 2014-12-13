@@ -1,5 +1,5 @@
 {
-  "name": "twomartens/CoreBundle",
+  "name": "2martens/CoreBundle",
   "type": "symfony-bundle",
   "description": "The 2martens Web Platform Core Bundle",
   "keywords": [""],
@@ -32,6 +32,7 @@
   "autoload": {
     "psr-4": { "TwoMartens\\Bundle\\CoreBundle\\": "" }
   },
+  "target-dir": "TwoMartens/Bundle/CoreBundle",
   "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
