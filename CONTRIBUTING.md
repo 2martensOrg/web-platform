@@ -7,7 +7,7 @@ there are different kinds of contribution needed most.
 Phases:
 
 * [Definition Phase](CONTRIBUTING.md#definition-phase) (right now)
-* [Planning Phase](CONTRIBUTING.md#planning-phase)
+* [Planning Phase](CONTRIBUTING.md#planning-phase) (right now)
 * [Implementation Phase](CONTRIBUTING.md#implementation-phase)
 * [Testing Phase](CONTRIBUTING.md#testing-phase)
 * [Release Phase](CONTRIBUTING.md#release-phase)
