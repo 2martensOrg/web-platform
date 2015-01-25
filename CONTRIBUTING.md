@@ -71,7 +71,7 @@ For detailed information on how to contribute head over to the meta repo.
           finishing all parts
     * what (if any) of the configuration should be on global, per-project,
       both level(s)? (applies only to High-End API and Application bundles)
-* support in writing the contribution part of documentation
+* support in writing the contribution part of documentation (done)
     * this part is necessary for the implementation phase
     * it contains detailed information on how to contribute in that phase
         * issue policy
