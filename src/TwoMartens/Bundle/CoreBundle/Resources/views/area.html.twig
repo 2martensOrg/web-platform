@@ -1,0 +1,23 @@
+{% extends 'TwoMartensCoreBundle::acpLayout.html.twig' %}
+
+{% block mainContent %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 area">
+                {% if area.showBreadcrumbs %}
+                    <ol class="breadcrumb">
+                        {% for breadcrumb in breadcrumbs %}
+                            <li{% if breadcrumb.active %} class="active"{% endif %}>
+                                {% if breadcrumb.active == false %}<a href="{{ path(breadcrumb.path) }}">{% endif %}{{ breadcrumb.title }}{% if breadcrumb.active == false %}</a>{% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+                <h1>{{ area.title }}</h1>
+                <div>
+                    {% block innerContent %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
