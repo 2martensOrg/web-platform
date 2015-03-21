@@ -19,7 +19,10 @@ class WebTestCase extends BaseWebTestCase
 {
     public static function assertRedirect($response, $location)
     {
-        self::assertTrue($response->isRedirect(), 'Response is not a redirect, got status code: '.$response->getStatusCode());
+        self::assertTrue(
+            $response->isRedirect(),
+            'Response is not a redirect, got status code: '.$response->getStatusCode()
+        );
         self::assertEquals('http://localhost'.$location, $response->headers->get('Location'));
     }
 
@@ -51,7 +54,10 @@ class WebTestCase extends BaseWebTestCase
         return new $class(
             $options['test_case'],
             isset($options['root_config']) ? $options['root_config'] : 'config.yml',
-            isset($options['environment']) ? $options['environment'] : 'frameworkbundletest'.strtolower($options['test_case']),
+            isset(
+                $options['environment']) ?
+                $options['environment'] :
+                'frameworkbundletest'.strtolower($options['test_case']),
             isset($options['debug']) ? $options['debug'] : true
         );
     }

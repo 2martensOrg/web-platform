@@ -11,44 +11,45 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 /**
  * Manages the routes for the ACP dashboard.
  *
  * @author Jim Martens <github@2martens.de>
  */
-class ACPDashboardController extends Controller
+class ACPDashboardController extends AbstractACPController
 {
     /**
      * Shows the dashboard/landing site of the ACP.
      */
     public function indexAction()
     {
-        // TODO replace dependencies with proper system
+        $this->assignVariables();
+
         return $this->render(
             'TwoMartensCoreBundle:ACPDashboard:index.html.twig',
-            array(
-                'area' => array(
-                    'showBreadcrumbs' => false, // the proper breadcrumbs system has to be developed first
-                    'title' => $this->get('translator')->trans('acp.dashboard', array(), 'TwoMartensCoreBundle')
-                ),
-                'siteTitle' => $this->get('translator')->trans('acp.siteTitle', array('globalTitle' => 'CoreBundle Test'), 'TwoMartensCoreBundle'),
-                'navigation' => array(
-                    'active' => 'home'
-                ),
-                'dependencies' => array(
-                    'bootstrap' => array(
-                        'version' => '3.3.2'
-                    ),
-                    'jquery' => array(
-                        'version' => '2.1.1'
-                    ),
-                    'fontawesome' => array(
-                        'version' => '4.3.0'
-                    )
-                )
-            )
+            $this->templateVariables
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function assignVariables()
+    {
+        $this->templateVariables = array(
+            'area' => array(
+                'showBreadcrumbs' => false, // the proper breadcrumbs system has to be developed first
+                'title' => $this->get('translator')->trans('acp.dashboard', array(), 'TwoMartensCoreBundle')
+            ),
+            'siteTitle' => $this->get('translator')->trans(
+                'acp.siteTitle',
+                array('globalTitle' => 'CoreBundle Test'),
+                'TwoMartensCoreBundle'
+            ),
+            'navigation' => array(
+                'active' => 'home'
+            ),
+        );
+        parent::assignVariables();
     }
 }
