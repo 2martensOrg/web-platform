@@ -1,1 +1,3 @@
-
+acp.home:
+  path: /acp/
+  defaults: { _controller: TwoMartensCoreBundle:ACPDashboard:index }
