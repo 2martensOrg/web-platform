@@ -1,3 +1,11 @@
 acp.home:
   path: /acp/
   defaults: { _controller: TwoMartensCoreBundle:ACPDashboard:index }
+acp.system:
+  path: /acp/system/
+acp.user:
+  path: /acp/user/
+acp.appearance:
+  path: /acp/appearance/
+acp.content:
+  path: /acp/content/
