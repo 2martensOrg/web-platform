@@ -15,11 +15,11 @@
             <aside class="pull-left bg-success">
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" id="home-link"{% if navigation.active == 'home' %} class="active"{% endif %}><a href="{{ path('acp.home') }}">{% trans %}acp.nav.home{% endtrans %}</a></li>
-                        <li role="presentation" id="system-link"{% if navigation.active == 'system' %} class="active"{% endif %}><a href="{{ path('acp.system') }}">{% trans %}acp.nav.system{% endtrans %}</a></li>
-                        <li role="presentation" id="user-link"{% if navigation.active == 'user' %} class="active"{% endif %}><a href="{{ path('acp.user') }}">{% trans %}acp.nav.user{% endtrans %}</a></li>
-                        <li role="presentation" id="appearance-link"{% if navigation.active == 'appearance' %} class="active"{% endif %}><a href="{{ path('acp.appearance') }}">{% trans %}acp.nav.appearance{% endtrans %}</a></li>
-                        <li role="presentation" id="content-link"{% if navigation.active == 'content' %} class="active"{% endif %}><a href="{{ path('acp.content') }}">{% trans %}acp.nav.content{% endtrans %}</a></li>
+                        <li role="presentation" id="home-link"{% if navigation.active == 'home' %} class="active"{% endif %}><a href="{{ path('acp.home') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.home{% endtrans %}</a></li>
+                        <li role="presentation" id="system-link"{% if navigation.active == 'system' %} class="active"{% endif %}><a href="{{ path('acp.system') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.system{% endtrans %}</a></li>
+                        <li role="presentation" id="user-link"{% if navigation.active == 'user' %} class="active"{% endif %}><a href="{{ path('acp.user') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.user{% endtrans %}</a></li>
+                        <li role="presentation" id="appearance-link"{% if navigation.active == 'appearance' %} class="active"{% endif %}><a href="{{ path('acp.appearance') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.appearance{% endtrans %}</a></li>
+                        <li role="presentation" id="content-link"{% if navigation.active == 'content' %} class="active"{% endif %}><a href="{{ path('acp.content') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.content{% endtrans %}</a></li>
                     </ul>
                 </nav>
             </aside>

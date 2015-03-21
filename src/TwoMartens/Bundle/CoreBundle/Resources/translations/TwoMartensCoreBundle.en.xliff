@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <trans-unit id="acp.dashboard">
+                <source>acp.dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.welcome">
+                <source>acp.dashboard.welcome</source>
+                <target>Welcome on the ACP Dashboard - the place to see it all.</target>
+            </trans-unit>
+            <trans-unit id="acp.nav.home">
+                <source>acp.nav.home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="acp.nav.system">
+                <source>acp.nav.system</source>
+                <target>System</target>
+            </trans-unit>
+            <trans-unit id="acp.nav.user">
+                <source>acp.nav.user</source>
+                <target>User Management</target>
+            </trans-unit>
+            <trans-unit id="acp.nav.appearance">
+                <source>acp.nav.appearance</source>
+                <target>Appearance</target>
+            </trans-unit>
+            <trans-unit id="acp.nav.content">
+                <source>acp.nav.content</source>
+                <target>Content</target>
+            </trans-unit>
+            <trans-unit id="acp.siteTitle">
+                <source>acp.siteTitle</source>
+                <target>globalTitle - ACP</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

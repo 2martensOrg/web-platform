@@ -25,14 +25,15 @@ class ACPDashboardController extends Controller
      */
     public function indexAction()
     {
+        // TODO replace dependencies with proper system
         return $this->render(
             'TwoMartensCoreBundle:ACPDashboard:index.html.twig',
             array(
                 'area' => array(
-                    'showBreadcrumbs' => false,
-                    'title' => 'Dashboard'
+                    'showBreadcrumbs' => false, // the proper breadcrumbs system has to be developed first
+                    'title' => $this->get('translator')->trans('acp.dashboard', array(), 'TwoMartensCoreBundle')
                 ),
-                'siteTitle' => 'CoreBundle Test Site',
+                'siteTitle' => $this->get('translator')->trans('acp.siteTitle', array('globalTitle' => 'CoreBundle Test'), 'TwoMartensCoreBundle'),
                 'navigation' => array(
                     'active' => 'home'
                 ),
