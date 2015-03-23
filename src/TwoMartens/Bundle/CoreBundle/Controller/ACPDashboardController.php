@@ -34,11 +34,19 @@ class ACPDashboardController extends AbstractACPController
     /**
      * {@inheritdoc}
      */
+    protected function setBreadcrumbs()
+    {
+        // no breadcrumbs needed on ACP Dashboard
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function assignVariables()
     {
         $this->templateVariables = array(
             'area' => array(
-                'showBreadcrumbs' => false, // the proper breadcrumbs system has to be developed first
+                'showBreadcrumbs' => false,
                 'title' => $this->get('translator')->trans('acp.dashboard', array(), 'TwoMartensCoreBundle')
             ),
             'siteTitle' => $this->get('translator')->trans(

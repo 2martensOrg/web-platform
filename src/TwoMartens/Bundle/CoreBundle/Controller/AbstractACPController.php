@@ -21,17 +21,34 @@ abstract class AbstractACPController extends Controller
 {
     protected $templateVariables;
 
+    /**
+     * @var \TwoMartens\Bundle\CoreBundle\Model\Breadcrumb[]
+     */
+    protected $breadcrumbs;
+
     public function __construct()
     {
         $this->templateVariables = array();
+        $this->breadcrumbs = array();
     }
+
+    /**
+     * Sets the breadcrumbs.
+     *
+     * @return void
+     */
+    abstract protected function setBreadcrumbs();
 
     /**
      * Assigns variables to $templateVariables.
      */
     protected function assignVariables()
     {
-        $variables = array();
+        $this->setBreadcrumbs();
+
+        $variables = array(
+            'breadcrumbs' => $this->breadcrumbs
+        );
         $this->templateVariables = array_merge($this->templateVariables, $variables);
     }
 }
