@@ -1,0 +1,6 @@
+services:
+    twomartens.core.twig_extension:
+        class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
+        public: false
+        tags:
+            - { name: twig.extension }

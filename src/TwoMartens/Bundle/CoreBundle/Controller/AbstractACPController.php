@@ -31,20 +31,7 @@ abstract class AbstractACPController extends Controller
      */
     protected function assignVariables()
     {
-        // TODO replace dependencies with proper system
-        $variables = array(
-            'dependencies' => array(
-                'bootstrap' => array(
-                    'version' => '3.3.2'
-                ),
-                'jquery' => array(
-                    'version' => '2.1.1'
-                ),
-                'fontawesome' => array(
-                    'version' => '4.3.0'
-                )
-            )
-        );
+        $variables = array();
         $this->templateVariables = array_merge($this->templateVariables, $variables);
     }
 }
