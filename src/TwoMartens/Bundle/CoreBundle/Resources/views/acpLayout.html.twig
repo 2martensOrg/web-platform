@@ -8,11 +8,14 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/{{ dependencies.bootstrap.version }}/css/bootstrap.min.css" />
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/{{ dependencies.fontawesome.version }}/css/font-awesome.min.css" />
+            {% stylesheets 'bundles/twomartenscore/css/*' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
         {% endblock %}
     </head>
     <body>
         {% block header %}
-            <aside class="pull-left bg-success">
+            <aside class="pull-left-mobile bg-success">
                 <nav>
                     <ul class="nav nav-pills nav-stacked">
                         <li role="presentation" id="home-link"{% if navigation.active == 'home' %} class="active"{% endif %}><a href="{{ path('acp.home') }}">{% trans from 'TwoMartensCoreBundle' %}acp.nav.home{% endtrans %}</a></li>
