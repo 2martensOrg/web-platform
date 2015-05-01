@@ -34,6 +34,32 @@
                 <source>acp.siteTitle</source>
                 <target>globalTitle - ACP</target>
             </trans-unit>
+
+            <!-- blocks -->
+            <trans-unit id="acp.dashboard.blocks.systemstats.caption">
+                <source>acp.dashboard.blocks.systemstats.caption</source>
+                <target>System Data</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.blocks.systemstats.key">
+                <source>acp.dashboard.blocks.systemstats.key</source>
+                <target>Key</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.blocks.systemstats.value">
+                <source>acp.dashboard.blocks.systemstats.value</source>
+                <target>Value</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.blocks.systemstats.os">
+                <source>acp.dashboard.blocks.systemstats.os</source>
+                <target>Operating System</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.blocks.systemstats.webserver">
+                <source>acp.dashboard.blocks.systemstats.webserver</source>
+                <target>Webserver</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.blocks.systemstats.php">
+                <source>acp.dashboard.blocks.systemstats.php</source>
+                <target>PHP Version</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
