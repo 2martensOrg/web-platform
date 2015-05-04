@@ -17,5 +17,5 @@ before_script:
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
-  - vendor/bin/phpcs -p --extensions=php --standard=PSR2 src/
+  - vendor/bin/phpcs -p --extensions=php --standard=PSR2 --ignore=*/AppKernel.php src/
   - phpunit

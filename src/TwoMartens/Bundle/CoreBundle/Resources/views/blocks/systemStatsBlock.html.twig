@@ -1,0 +1,17 @@
+<table class="table table-bordered table-striped">
+    <caption>{% trans from 'TwoMartensCoreBundle' %}acp.dashboard.blocks.systemstats.caption{% endtrans %}</caption>
+    <thead>
+        <tr>
+            <th>{% trans from 'TwoMartensCoreBundle' %}acp.dashboard.blocks.systemstats.key{% endtrans %}</th>
+            <th>{% trans from 'TwoMartensCoreBundle' %}acp.dashboard.blocks.systemstats.value{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in systemData %}
+            <tr>
+                <td>{{ entry.key }}</td>
+                <td>{{ entry.value }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

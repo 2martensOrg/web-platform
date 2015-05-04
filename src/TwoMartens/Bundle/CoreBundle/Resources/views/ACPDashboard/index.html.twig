@@ -1,0 +1,7 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+
+{% block innerContent %}
+<p class="alert alert-info" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.dashboard.welcome{% endtrans %}</p>
+
+    {{ sonata_block_render_event('acp.dashboard') }}
+{% endblock %}
