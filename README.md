@@ -1,5 +1,10 @@
 # README
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/2martens/web-platform/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/2martens/web-platform/?branch=master)
+[![Build Status](https://travis-ci.org/2martens/web-platform.svg?branch=master)](https://travis-ci.org/2martens/web-platform)
+[![Total Downloads](https://poser.pugx.org/2martens/web-platform/downloads)](https://packagist.org/packages/2martens/web-platform)
+[![License](https://poser.pugx.org/2martens/web-platform/license)](https://packagist.org/packages/2martens/web-platform)
+
 * TODO: will be changed
 
 ## What is the Web Platform?
