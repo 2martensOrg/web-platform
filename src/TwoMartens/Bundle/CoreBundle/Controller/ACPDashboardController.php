@@ -11,6 +11,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Manages the routes for the ACP dashboard.
  *
@@ -20,6 +22,8 @@ class ACPDashboardController extends AbstractACPController
 {
     /**
      * Shows the dashboard/landing site of the ACP.
+     *
+     * @return Response
      */
     public function indexAction()
     {
