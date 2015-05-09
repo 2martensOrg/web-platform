@@ -38,7 +38,7 @@ class BreadcrumbTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('133 7', $breadcrumb->getPath());
         $this->assertEquals('1337', $breadcrumb->getTitle());
 
-        // the strings should be taken as is (expect for leading/trailing spaces); no operations should be performed
+        // the strings should be taken as is (except for leading/trailing spaces); no operations should be performed
         $breadcrumb = new Breadcrumb('     133+7    ', '    1337       ');
         $this->assertFalse($breadcrumb->isActive());
         $this->assertEquals('133+7', $breadcrumb->getPath());
