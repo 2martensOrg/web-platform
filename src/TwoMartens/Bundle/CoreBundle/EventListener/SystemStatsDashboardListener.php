@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Event;
+namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
