@@ -7,10 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Model\Field;
+namespace TwoMartens\Bundle\CoreBundle\Field;
 
 /**
- * Abstract class for field models.
+ * Abstract class for field classes.
+ *
+ * It is recommended to override the methods getValue and setValue to provide
+ * a specific type for the value in the doc comment.
  *
  * @author    Jim Martens <github@2martens.de>
  * @copyright 2013-2015 Jim Martens

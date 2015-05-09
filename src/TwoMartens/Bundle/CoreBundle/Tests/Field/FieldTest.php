@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Tests\Model\Field;
+namespace TwoMartens\Bundle\CoreBundle\Tests\Field;
 
-use TwoMartens\Bundle\CoreBundle\Model\Field\DefaultField;
+use TwoMartens\Bundle\CoreBundle\Field\DefaultField;
 
 /**
  * Tests the AbstractField class with help of DefaultField class.
@@ -59,7 +59,7 @@ class FieldTest extends \PHPUnit_Framework_TestCase
         }
 
         // test class type
-        $className = '\TwoMartens\Bundle\CoreBundle\Model\Field\AbstractField';
+        $className = '\TwoMartens\Bundle\CoreBundle\Field\AbstractField';
         $classField = new DefaultField($fieldInteger, $className);
         $classValue = $classField->getValue();
         $this->assertEquals(1, $classValue->getValue());

@@ -7,12 +7,11 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Model\Field;
-
+namespace TwoMartens\Bundle\CoreBundle\Field;
 
 /**
  * Represents a generic field.
- * 
+ *
  * @author    Jim Martens <github@2martens.de>
  * @copyright 2013-2015 Jim Martens
  */
