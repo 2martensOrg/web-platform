@@ -1,0 +1,4 @@
+twomartens.core:
+    optionOne: true
+    optionTwo: "Sascha"
+    optionThree: [1,2,3]

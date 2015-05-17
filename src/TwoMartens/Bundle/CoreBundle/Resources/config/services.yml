@@ -1,7 +1,20 @@
 parameters:
-    twomartens.core.optionsfile: 'config.yml'
+    twomartens.core.optionsfile: 'options.yml'
+    twomartens.core.configdir: '%kernel.root_dir%/config/'
+    finder.finder.class: Symfony\Component\Finder\Finder
+    yaml.parser.class: Symfony\Component\Yaml\Parser
+    yaml.dumper.class: Symfony\Component\Yaml\Dumper
+    filesystem.filesystem.class: Symfony\Component\Filesystem\Filesystem
 
 services:
+    twomartens.core.finder:
+        class: %finder.finder.class%
+    twomartens.core.yaml_parser:
+        class: %yaml.parser.class%
+    twomartens.core.yaml_dumper:
+        class: %yaml.dumper.class%
+    twomartens.core.filesystem:
+        class: %filesystem.filesystem.class%
     twomartens.core.twig_extension:
         class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
         public: false
@@ -12,3 +25,10 @@ services:
         arguments: [@templating, @translator]
         tags:
             - { name: kernel.event_listener, event: 'sonata.block.event.acp.dashboard', method: onBlock }
+    twomartens.core.option:
+        class: TwoMartens\Bundle\CoreBundle\Option\OptionService
+        arguments:
+            - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
+            - @twomartens.core.yaml_parser
+            - @twomartens.core.yaml_dumper
+            - @twomartens.core.filesystem
