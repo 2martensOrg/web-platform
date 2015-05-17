@@ -1,3 +1,6 @@
+parameters:
+    twomartens.core.optionsfile: 'config.yml'
+
 services:
     twomartens.core.twig_extension:
         class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension

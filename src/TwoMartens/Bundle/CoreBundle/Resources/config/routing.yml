@@ -9,3 +9,6 @@ acp.appearance:
   path: /acp/appearance/
 acp.content:
   path: /acp/content/
+acp.system.options:
+  path: /acp/system/options/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOption:index }

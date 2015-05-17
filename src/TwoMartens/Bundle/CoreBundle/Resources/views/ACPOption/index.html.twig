@@ -1,0 +1,16 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block innerContent %}
+    <p class="alert alert-info" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.options.info{% endtrans %}</p>
+    {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.options.success{% endtrans %}</p>{% endif %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {% for name, field in form %}
+        {% if name != 'save' %}
+            {{ form_row(field) }}
+        {% endif %}
+    {% endfor %}
+    {{ form_row(form.save, {'attr': {'class': 'btn-primary'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

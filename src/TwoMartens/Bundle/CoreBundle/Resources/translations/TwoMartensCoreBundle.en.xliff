@@ -2,14 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="" >
         <body>
-            <trans-unit id="acp.dashboard">
-                <source>acp.dashboard</source>
-                <target>Dashboard</target>
-            </trans-unit>
-            <trans-unit id="acp.dashboard.welcome">
-                <source>acp.dashboard.welcome</source>
-                <target>Welcome on the ACP Dashboard - the place to see it all.</target>
-            </trans-unit>
+            <!-- acp navigation -->
             <trans-unit id="acp.nav.home">
                 <source>acp.nav.home</source>
                 <target>Home</target>
@@ -33,6 +26,38 @@
             <trans-unit id="acp.siteTitle">
                 <source>acp.siteTitle</source>
                 <target>globalTitle - ACP</target>
+            </trans-unit>
+
+            <!-- breadcrumbs -->
+            <trans-unit id="acp.breadcrumb.system">
+                <source>acp.breadcrumb.system</source>
+                <target>System</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.options">
+                <source>acp.breadcrumb.options</source>
+                <target>Options</target>
+            </trans-unit>
+
+            <!-- acp content -->
+            <trans-unit id="acp.dashboard">
+                <source>acp.dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="acp.dashboard.welcome">
+                <source>acp.dashboard.welcome</source>
+                <target>Welcome on the ACP Dashboard - the place to see it all.</target>
+            </trans-unit>
+            <trans-unit id="acp.options">
+                <source>acp.options</source>
+                <target>Options</target>
+            </trans-unit>
+            <trans-unit id="acp.options.info">
+                <source>acp.options.info</source>
+                <target>In this area you can change the options provided by the bundles.</target>
+            </trans-unit>
+            <trans-unit id="acp.options.success">
+                <source>acp.options.success</source>
+                <target>The changes have been successfully saved.</target>
             </trans-unit>
 
             <!-- blocks -->
