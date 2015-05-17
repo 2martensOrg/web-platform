@@ -1,0 +1,12 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: "@TwoMartensCoreBundle/Resources/config/services.yml" }
+test:
+    jacob: ~
+    hans:
+        - achim
+        - jacob
+        - manfred
+    michael:
+        security: true
