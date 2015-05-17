@@ -24,7 +24,7 @@ use TwoMartens\Bundle\CoreBundle\Util\ConfigUtil;
  * @author    Jim Martens <github@2martens.de>
  * @copyright 2013-2015 Jim Martens
  */
-class OptionService
+class OptionService implements OptionServiceInterface
 {
     /**
      * the finder
@@ -112,17 +112,7 @@ class OptionService
     }
 
     /**
-     * Dumps the given data into the given config file.
-     *
-     * ATTENTION: This method DOES NOT perform any sanitize actions. It
-     * overwrites the given file with the given data entirely.
-     *
-     * @param Dumper     $dumper     A YAML dumper
-     * @param Filesystem $filesystem A Filesystem object
-     * @param string     $configFile Must be a valid path of a YAML file
-     * @param array      $data       The config data for the config file
-     *
-     * @api
+     * {@inheritdoc}
      */
     public function set($optionCategory, $optionName, Option $value)
     {

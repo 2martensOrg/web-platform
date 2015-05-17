@@ -34,6 +34,8 @@ interface OptionServiceInterface
      * @param OptionCategory $options
      *
      * @api
+     *
+     * @return void
      */
     public function setOptions(OptionCategory $options);
 
@@ -55,6 +57,10 @@ interface OptionServiceInterface
      * @param string $optionCategory
      * @param string $optionName
      * @param Option $value
+     *
+     * @api
+     *
+     * @return void
      */
     public function set($optionCategory, $optionName, Option $value);
 }
