@@ -32,3 +32,8 @@ services:
             - @twomartens.core.yaml_parser
             - @twomartens.core.yaml_dumper
             - @twomartens.core.filesystem
+    twomartens.core.form.type.option_configuration:
+        class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
+        arguments: [@event_dispatcher]
+        tags:
+            - { name: form.type, alias: option_configuration }
