@@ -85,7 +85,12 @@ class OptionServiceTest extends \PHPUnit_Framework_TestCase
                 ->with($file->getRealPath(), $file->getContents());
         }
 
-        $this->optionService = new OptionService($finder, $this->dummyParser, $this->dummyDumper, $this->dummyFilesystem);
+        $this->optionService = new OptionService(
+            $finder,
+            $this->dummyParser,
+            $this->dummyDumper,
+            $this->dummyFilesystem
+        );
     }
 
     /**

@@ -152,7 +152,7 @@ class ConfigUtil
                         $option = $subOptions[0];
                         $options[] = $option;
                     // case: value = [a: b, d: e]
-                    } else if (count($subOptions) > 1) {
+                    } elseif (count($subOptions) > 1) {
                         $option = new Option('', 'array');
                         $optionValues = [];
                         foreach ($subOptions as $subOption) {
