@@ -37,3 +37,7 @@ services:
         arguments: [@event_dispatcher]
         tags:
             - { name: form.type, alias: option_configuration }
+    twomartens.core.option.listener:
+        class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
+        tags:
+            - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }
