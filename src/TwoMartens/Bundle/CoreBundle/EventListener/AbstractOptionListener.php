@@ -10,6 +10,7 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use TwoMartens\Bundle\CoreBundle\Event\OptionConfigurationEvent;
 use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
 
@@ -21,6 +22,22 @@ use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
  */
 abstract class AbstractOptionListener
 {
+    /**
+     * the translator
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
+     * Initializes the option listener.
+     *
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @param OptionConfigurationEvent $event
      */
@@ -50,7 +67,11 @@ abstract class AbstractOptionListener
                 $optionName = $option->getName();
                 $fieldType = $fieldMap[$optionName];
                 $settings = [
-                    'label' => 'acp.options.' . $categoryName . '.' . $optionName . '.label',
+                    'label' => $this->translator->trans(
+                        'acp.options.' . $categoryName . '.' . $optionName . '.label',
+                        [],
+                        $this->getDomain()
+                    ),
                     'mapped' => false,
                     'required' => false,
                     'data' => $option->getValue()
@@ -103,4 +124,11 @@ abstract class AbstractOptionListener
      * @return ChoiceListInterface[]
      */
     abstract protected function getChoiceListMap();
+
+    /**
+     * Returns the translation domain.
+     *
+     * @return string
+     */
+    abstract protected function getDomain();
 }

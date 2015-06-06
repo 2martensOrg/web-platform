@@ -10,6 +10,7 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * This listener adds the form fields for the Core bundle options.
@@ -38,10 +39,11 @@ class OptionListener extends AbstractOptionListener
     private $choicesMap;
 
     /**
-     * Initializes the event listener.
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct(TranslatorInterface $translator)
     {
+        parent::__construct($translator);
         // TODO add real options as they are determined
         $this->fieldMap = [
             'testOption' => 'checkbox'
@@ -80,5 +82,13 @@ class OptionListener extends AbstractOptionListener
     protected function getChoiceListMap()
     {
         return $this->choicesMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDomain()
+    {
+        return 'TwoMartensCoreBundle';
     }
 }
