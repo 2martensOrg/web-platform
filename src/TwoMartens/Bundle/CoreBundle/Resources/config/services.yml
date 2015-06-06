@@ -1,4 +1,20 @@
+parameters:
+    twomartens.core.optionsfile: 'options.yml'
+    twomartens.core.configdir: '%kernel.root_dir%/config/'
+    finder.finder.class: Symfony\Component\Finder\Finder
+    yaml.parser.class: Symfony\Component\Yaml\Parser
+    yaml.dumper.class: Symfony\Component\Yaml\Dumper
+    filesystem.filesystem.class: Symfony\Component\Filesystem\Filesystem
+
 services:
+    twomartens.core.finder:
+        class: %finder.finder.class%
+    twomartens.core.yaml_parser:
+        class: %yaml.parser.class%
+    twomartens.core.yaml_dumper:
+        class: %yaml.dumper.class%
+    twomartens.core.filesystem:
+        class: %filesystem.filesystem.class%
     twomartens.core.twig_extension:
         class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
         public: false
@@ -9,3 +25,20 @@ services:
         arguments: [@templating, @translator]
         tags:
             - { name: kernel.event_listener, event: 'sonata.block.event.acp.dashboard', method: onBlock }
+    twomartens.core.option:
+        class: TwoMartens\Bundle\CoreBundle\Option\OptionService
+        arguments:
+            - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
+            - @twomartens.core.yaml_parser
+            - @twomartens.core.yaml_dumper
+            - @twomartens.core.filesystem
+    twomartens.core.form.type.option_configuration:
+        class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
+        arguments: [@event_dispatcher]
+        tags:
+            - { name: form.type, alias: option_configuration }
+    twomartens.core.option.listener:
+        class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
+        arguments: [@translator]
+        tags:
+            - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }

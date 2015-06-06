@@ -8,7 +8,7 @@ Phases:
 
 * [Definition Phase](CONTRIBUTING.md#definition-phase) (right now)
 * [Planning Phase](CONTRIBUTING.md#planning-phase) (right now)
-* [Implementation Phase](CONTRIBUTING.md#implementation-phase)
+* [Implementation Phase](CONTRIBUTING.md#implementation-phase) (right now)
 * [Testing Phase](CONTRIBUTING.md#testing-phase)
 * [Release Phase](CONTRIBUTING.md#release-phase)
 * [All Phases](CONTRIBUTING.md#all-phases)
@@ -81,7 +81,7 @@ This phase implements the previously defined API. For more information take
 a look at the [Symfony2 contribution documentation][1] and the contributing
 section of the documentation.
 
-* support in implementing bundles
+* support in implementing bundles (in progress)
     * implement outstanding issues (managed by issues in this repo)
     * fix bugs that occurred during testing (reference to issue)
     * write documentation for the bundle (head over to web-platform-docs
