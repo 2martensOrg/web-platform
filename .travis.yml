@@ -6,8 +6,8 @@ php:
   - hhvm
 
 branches:
-    only:
-        master
+  only:
+    - master
 
 matrix:
   fast_finish: true
