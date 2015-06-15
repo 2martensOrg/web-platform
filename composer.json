@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.5",
-        "symfony/symfony": "~2.6",
+        "symfony/symfony": "~2.7",
         "twig/twig": "~1.12",
         "twig/extensions": "v1.2.0",
         "doctrine/common": "~2.2",
