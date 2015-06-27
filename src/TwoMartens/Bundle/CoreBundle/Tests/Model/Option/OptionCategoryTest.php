@@ -49,8 +49,8 @@ class OptionCategoryTest extends \PHPUnit_Framework_TestCase
         // set options
         $options = [
             new Option(),
-            new Option('testV', 'string', 'elephant'),
-            new Option('samba', 'array', [1, 2, 3])
+            new Option(0, 'testV', 'string', 'elephant'),
+            new Option(0, 'samba', 'array', [1, 2, 3])
         ];
         $optionCategory->setOptions($options);
         $this->assertEquals($options, $optionCategory->getOptions());

@@ -24,7 +24,7 @@ class OptionTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $option = new Option('test', 'string', 'hallo');
+        $option = new Option(0, 'test', 'string', 'hallo');
         $this->assertEquals('test', $option->getName());
         $this->assertEquals('string', $option->getType());
         $this->assertEquals('hallo', $option->getValue());

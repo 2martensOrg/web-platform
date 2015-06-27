@@ -36,22 +36,22 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
         // imports category
         $importsCategory = new OptionCategory('imports');
         $subOptions = [
-            new Option('resource', 'string', 'parameters.yml'),
-            new Option('resource', 'string', 'security.yml'),
-            new Option('resource', 'string', '@TwoMartensCoreBundle/Resources/config/services.yml')
+            new Option(0, 'resource', 'string', 'parameters.yml'),
+            new Option(0, 'resource', 'string', 'security.yml'),
+            new Option(0, 'resource', 'string', '@TwoMartensCoreBundle/Resources/config/services.yml')
         ];
         $importsCategory->setOptions($subOptions);
 
         // test category
         $testCategory = new OptionCategory('test');
         $subOptions = [
-            new Option('jacob', 'null', null),
-            new Option('hans', 'array', ['achim', 'jacob', 'manfred'])
+            new Option(0, 'jacob', 'null', null),
+            new Option(0, 'hans', 'array', ['achim', 'jacob', 'manfred'])
         ];
         $testCategory->setOptions($subOptions);
         $manfredCategory = new OptionCategory('michael');
         $subOptions = [
-            new Option('security', 'boolean', true)
+            new Option(0, 'security', 'boolean', true)
         ];
         $manfredCategory->setOptions($subOptions);
         $testCategory->setCategories([$manfredCategory]);
@@ -83,9 +83,9 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
         $optionCategory = new OptionCategory();
         $mainCategory = new OptionCategory('twomartens.core');
         $options = [
-            new Option('one', 'string', 'hello'),
-            new Option('two', 'boolean', false),
-            new Option('three', 'array', [1, 2, 3]),
+            new Option(0, 'one', 'string', 'hello'),
+            new Option(0, 'two', 'boolean', false),
+            new Option(0, 'three', 'array', [1, 2, 3]),
         ];
         $mainCategory->setOptions($options);
         $optionCategory->setCategories([$mainCategory]);

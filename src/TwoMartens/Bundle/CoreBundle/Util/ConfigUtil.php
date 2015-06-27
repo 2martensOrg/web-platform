@@ -59,6 +59,7 @@ class ConfigUtil
         $type = str_replace('double', 'float', gettype($value));
         $type = str_replace('NULL', 'null', $type);
         $option = new Option(
+            0,
             $name,
             $type,
             $value
@@ -131,6 +132,7 @@ class ConfigUtil
                     $type = str_replace('double', 'float', gettype($value));
                     $type = str_replace('NULL', 'null', $type);
                     $options[] = new Option(
+                        0,
                         $_key,
                         $type,
                         $value
@@ -153,7 +155,7 @@ class ConfigUtil
                         $options[] = $option;
                     // case: value = [a: b, d: e]
                     } elseif (count($subOptions) > 1) {
-                        $option = new Option('', 'array');
+                        $option = new Option(0, '', 'array');
                         $optionValues = [];
                         foreach ($subOptions as $subOption) {
                             $optionValues[$subOption->getName()] = $subOption->getValue();
@@ -167,7 +169,7 @@ class ConfigUtil
             }
             // case: values = [a, b, c, d]
             if (!empty($_values)) {
-                $options[] = new Option($key, 'array', $_values);
+                $options[] = new Option(0, $key, 'array', $_values);
             }
             $returnCategory->setOptions($options);
         }

@@ -44,13 +44,14 @@ class Option
     /**
      * Initializes the Option.
      *
+     * @param int    $id
      * @param string $name
      * @param string $type
      * @param mixed  $value
      */
-    public function __construct($name = '', $type = '', $value = null)
+    public function __construct($id = 0, $name = '', $type = '', $value = null)
     {
-        $this->id = 0;
+        $this->id = $id;
         $this->name = $name;
         $this->type = $type;
         $this->value = $value;
