@@ -32,5 +32,14 @@ class TwoMartensCoreExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yml');
+
+        // TODO replace with semantic configuration
+        $config = [
+            'db_driver' => 'mongodb'
+        ];
+
+        if ('custom' !== $config['db_driver']) {
+            $loader->load(sprintf('%s.yml', $config['db_driver']));
+        }
     }
 }
