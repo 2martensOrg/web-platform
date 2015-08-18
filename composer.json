@@ -26,6 +26,7 @@
         "doctrine/data-fixtures": "~1.0",
         "doctrine/orm": "~2.4",
         "doctrine/mongodb-odm": "dev-master",
+        "doctrine/mongodb-odm-bundle": "dev-master",
         "phpunit/phpunit": "~4.3",
         "squizlabs/php_codesniffer": "~2.0",
         "phpmd/phpmd": "~2.1"

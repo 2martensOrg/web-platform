@@ -28,6 +28,16 @@
                 <target>globalTitle - ACP</target>
             </trans-unit>
 
+            <!-- acp login -->
+            <trans-unit id="acp.login.title">
+                <source>acp.login.title</source>
+                <target>ACP-Login</target>
+            </trans-unit>
+            <trans-unit id="acp.login.button">
+                <source>acp.login.button</source>
+                <target>Login</target>
+            </trans-unit>
+
             <!-- breadcrumbs -->
             <trans-unit id="acp.breadcrumb.system">
                 <source>acp.breadcrumb.system</source>

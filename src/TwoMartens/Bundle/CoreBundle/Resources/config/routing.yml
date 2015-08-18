@@ -1,6 +1,14 @@
 acp.home:
   path: /acp/
   defaults: { _controller: TwoMartensCoreBundle:ACPDashboard:index }
+acp.login:
+  path: /acp/login
+  defaults: { _controller: TwoMartensCoreBundle:ACPSecurity:login }
+acp.login_check:
+  path: /acp/login_check
+  defaults: { _controller: TwoMartensCoreBundle:ACPSecurity:loginCheck }
+acp.logout:
+  path: /acp/logout
 acp.system:
   path: /acp/system/
 acp.user:
