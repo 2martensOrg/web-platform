@@ -1,5 +1,4 @@
 services:
     twomartens.core.db_manager:
         class: Doctrine\ODM\MongoDB\DocumentManager
-        public: false
         factory: ["@doctrine_mongodb", getManager]

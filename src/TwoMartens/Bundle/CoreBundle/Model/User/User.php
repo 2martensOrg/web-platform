@@ -9,6 +9,7 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Model\User;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as FOSUser;
 
 /**
@@ -35,5 +36,7 @@ class User extends FOSUser
         parent::__construct();
 
         $this->salt = null;
+        // our users are always in groups
+        $this->groups = new ArrayCollection();
     }
 }
