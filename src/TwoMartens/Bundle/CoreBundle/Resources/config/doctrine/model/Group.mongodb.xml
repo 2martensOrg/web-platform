@@ -4,7 +4,7 @@
                         xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
                         http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
-    <document name="TwoMartens\Bundle\CoreBundle\Model\User\Group" collection="twomartens_core_group">
+    <document name="TwoMartens\Bundle\CoreBundle\Model\Group" collection="twomartens_core_group">
 
         <field name="id" fieldName="id" id="true" type="id" />
         <field name="roleName" fieldName="roleName" type="string" />

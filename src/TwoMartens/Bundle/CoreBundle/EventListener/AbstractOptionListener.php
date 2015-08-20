@@ -12,7 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\EventListener;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use TwoMartens\Bundle\CoreBundle\Event\OptionConfigurationEvent;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Abstract class for option listeners.

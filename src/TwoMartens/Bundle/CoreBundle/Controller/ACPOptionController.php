@@ -12,7 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Option\OptionServiceInterface;
 
 /**

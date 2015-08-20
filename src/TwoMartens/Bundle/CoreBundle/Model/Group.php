@@ -7,10 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Model\User;
+namespace TwoMartens\Bundle\CoreBundle\Model;
 
 use FOS\UserBundle\Model\Group as FOSGroup;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
 
 /**
  * Represents a group.

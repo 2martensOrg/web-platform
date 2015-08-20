@@ -9,8 +9,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Util;
 
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Provides utility methods for config-related things.
@@ -28,8 +28,7 @@ class ConfigUtil
      * @return OptionCategory
      */
     public static function convertToOptions($configData)
-    {
-        $returnData = new OptionCategory();
+    {$returnData = new OptionCategory();
         $categories = [];
 
         foreach ($configData as $category => $values) {

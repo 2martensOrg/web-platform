@@ -12,7 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Tests\Option;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Yaml;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Option\OptionService;
 use TwoMartens\Bundle\CoreBundle\Option\OptionServiceInterface;
 use TwoMartens\Bundle\CoreBundle\Util\ConfigUtil;

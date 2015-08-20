@@ -8,8 +8,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Option;
 
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Defines the API of the OptionService.

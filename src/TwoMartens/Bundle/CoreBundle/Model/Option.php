@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Model\Option;
+namespace TwoMartens\Bundle\CoreBundle\Model;
 
 /**
  * Represents an option.

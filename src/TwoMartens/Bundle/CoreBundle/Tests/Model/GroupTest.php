@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Tests\Model\User;
+namespace TwoMartens\Bundle\CoreBundle\Tests\Mode;
 
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
-use TwoMartens\Bundle\CoreBundle\Model\User\Group;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Group;
 
 /**
  * Tests the Group class.

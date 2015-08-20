@@ -9,7 +9,7 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Tests\Model\User;
 
-use TwoMartens\Bundle\CoreBundle\Model\User\User;
+use TwoMartens\Bundle\CoreBundle\Model\User;
 
 /**
  * Tests the User class.

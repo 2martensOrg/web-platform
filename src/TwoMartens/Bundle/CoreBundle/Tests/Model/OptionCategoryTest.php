@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Tests\Model\Option;
+namespace TwoMartens\Bundle\CoreBundle\Tests\Model;
 
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Tests the OptionCategory class.

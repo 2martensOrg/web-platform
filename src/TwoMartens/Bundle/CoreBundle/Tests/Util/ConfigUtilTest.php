@@ -10,8 +10,8 @@
 namespace TwoMartens\Bundle\CoreBundle\Tests\Util;
 
 use Symfony\Component\Yaml\Yaml;
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Util\ConfigUtil;
 
 /**
@@ -31,7 +31,6 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
         $contents = file_get_contents($path);
         $yamlProcessed = Yaml::parse($contents);
         $output = ConfigUtil::convertToOptions($yamlProcessed);
-
         $expectedOutput = new OptionCategory();
         // imports category
         $importsCategory = new OptionCategory('imports');
