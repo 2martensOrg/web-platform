@@ -7,7 +7,7 @@
     <document name="TwoMartens\Bundle\CoreBundle\Model\User" collection="twomartens_core_user">
 
         <field name="id" fieldName="id" id="true" type="id" />
-        <reference-many field="groups" target-document="TwoMartens\Bundle\CoreBundle\Model\User\Group" />
+        <reference-many field="groups" target-document="TwoMartens\Bundle\CoreBundle\Model\Group" />
 
     </document>
 

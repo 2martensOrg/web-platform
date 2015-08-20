@@ -40,7 +40,7 @@ class TwoMartensCoreExtension extends Extension
 
         if ('custom' !== $config['db_driver']) {
             $loader->load(sprintf('%s.yml', $config['db_driver']));
-            $container->setParameter($this->getAlias() . '.backend_type_' . $config['db_driver'], true);
+            $container->setParameter('twomartens.core.backend_type_' . $config['db_driver'], true);
         }
     }
 }

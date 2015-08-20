@@ -35,7 +35,7 @@ class TwoMartensCoreBundle extends Bundle
         $symfonyVersion = class_exists('Symfony\Bridge\Doctrine\DependencyInjection\CompilerPass\RegisterMappingsPass');
 
         $mappings = array(
-            realpath(__DIR__ . '/Resources/config/doctrine/model/') => 'TwoMartens\Bundle\CoreBundle\Model',
+            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'TwoMartens\Bundle\CoreBundle\Model',
         );
 
         if ($symfonyVersion && class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
