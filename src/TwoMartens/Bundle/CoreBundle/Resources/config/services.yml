@@ -1,6 +1,7 @@
 parameters:
   twomartens.core.optionsfile: 'options.yml'
   twomartens.core.configdir: '%kernel.root_dir%/config/'
+  twomartens.core.groupdir: '%kernel.root_dir%/config/group/'
   finder.finder.class: Symfony\Component\Finder\Finder
   yaml.parser.class: Symfony\Component\Yaml\Parser
   yaml.dumper.class: Symfony\Component\Yaml\Dumper
@@ -42,3 +43,11 @@ services:
     arguments: [@translator]
     tags:
       - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }
+  twomartens.core.group:
+    class: TwoMartens\Bundle\CoreBundle\Group\GroupService
+    arguments:
+      - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.groupdir'))"
+      - @twomartens.core.yaml_parser
+      - @twomartens.core.yaml_dumper
+      - @twomartens.core.filesystem
+      - @event_dispatcher
