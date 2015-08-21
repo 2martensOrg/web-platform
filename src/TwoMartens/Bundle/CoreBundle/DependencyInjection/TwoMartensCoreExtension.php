@@ -42,5 +42,25 @@ class TwoMartensCoreExtension extends Extension
             $loader->load(sprintf('%s.yml', $config['db_driver']));
             $container->setParameter('twomartens.core.backend_type_' . $config['db_driver'], true);
         }
+
+        switch ($config['db_driver']) {
+            case 'orm':
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine.event_subscriber');
+                break;
+
+            case 'mongodb':
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_mongodb.odm.event_subscriber');
+                break;
+
+            case 'couchdb':
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_couchdb.event_subscriber');
+                break;
+
+            case 'propel':
+                break;
+
+            default:
+                break;
+        }
     }
 }
