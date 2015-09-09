@@ -8,6 +8,7 @@ use TwoMartens\Bundle\CoreBundle\TwoMartensCoreBundle;
 return array(
     new FrameworkBundle(),
     new TwigBundle(),
+    new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
     new TwoMartensCoreBundle(),
     new TestBundle(),
 );

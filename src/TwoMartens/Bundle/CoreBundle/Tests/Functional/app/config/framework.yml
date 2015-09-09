@@ -12,5 +12,15 @@ framework:
     templating:
         engines: ['twig']
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: "mongodb://%database_host%:%database_port%"
+            options: {}
+    default_database: "%database_name%"
+    document_managers:
+        default:
+            auto_mapping: true
+
 services:
     logger: { class: Psr\Log\NullLogger }
