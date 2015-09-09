@@ -28,7 +28,8 @@ class ConfigUtil
      * @return OptionCategory
      */
     public static function convertToOptions($configData)
-    {$returnData = new OptionCategory();
+    {
+        $returnData = new OptionCategory();
         $categories = [];
 
         foreach ($configData as $category => $values) {
