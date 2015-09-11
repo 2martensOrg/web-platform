@@ -38,6 +38,11 @@ services:
     arguments: [@event_dispatcher]
     tags:
       - { name: form.type, alias: option_configuration }
+  twomartens.core.form.type.group_edit:
+    class: TwoMartens\Bundle\CoreBundle\Form\Type\GroupEditType
+    arguments: [@event_dispatcher]
+    tags:
+      - { name: form.type, alias: group_edit }
   twomartens.core.option.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
     arguments: [@translator]
