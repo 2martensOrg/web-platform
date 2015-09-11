@@ -23,3 +23,9 @@ acp.system.options:
 acp.user.group.list:
   path: /acp/user/group/list/
   defaults: { _controller: TwoMartensCoreBundle:ACPGroup:list }
+acp.user.group.edit:
+  path: /acp/user/group/edit/{rolename}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:edit }
+acp.user.group.delete:
+  path: /acp/user/group/delete/{rolename}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:delete }
