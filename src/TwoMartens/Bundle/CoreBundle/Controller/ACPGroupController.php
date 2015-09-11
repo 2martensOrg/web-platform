@@ -12,6 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
+use TwoMartens\Bundle\CoreBundle\Model\Group;
 
 /**
  * Manages the routes for the group system.
@@ -21,6 +22,32 @@ use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
  */
 class ACPGroupController extends AbstractACPController
 {
+    /**
+     * saves success state
+     * @var boolean
+     */
+    private $success;
+
+    /**
+     * saves error state
+     * @var boolean
+     */
+    private $error;
+
+    /**
+     * saves error message
+     * @var string
+     */
+    private $errorMessage;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->success = false;
+        $this->error = false;
+        $this->errorMessage = '';
+    }
+
     /**
      * Shows a group list.
      *
@@ -40,6 +67,43 @@ class ACPGroupController extends AbstractACPController
             'TwoMartensCoreBundle:ACPGroup:list.html.twig',
             $this->templateVariables
         );
+    }
+
+    /**
+     * Deletes the group identified by the role name.
+     *
+     * @param string $rolename
+     *
+     * @return Response
+     */
+    public function deleteAction($rolename)
+    {
+        /** @var ObjectManager $objectManager */
+        $objectManager = $this->get('twomartens.core.db_manager');
+        $repository = $objectManager->getRepository('TwoMartensCoreBundle:Group');
+        /** @var Group $group */
+        $group = $repository->findOneBy(['roleName' => $rolename]);
+
+        // perform validation - to be sure
+        if ($group->isEssential()) {
+            $this->error = true;
+            $this->errorMessage = $this->get('translator')->trans(
+                'acp.group.delete.error.essential',
+                [
+                    'name' => $group->getPublicName()
+                ],
+                'TwoMartensCoreBundle'
+            );
+        }
+        // TODO add role validation
+
+        if (!$this->error) {
+            $objectManager->remove($group);
+            $objectManager->flush();
+            $this->success = true;
+        }
+
+        return $this->listAction();
     }
 
     /**
@@ -80,7 +144,9 @@ class ACPGroupController extends AbstractACPController
             'navigation' => [
                 'active' => 'user'
             ],
-            'success' => false
+            'success' => $this->success,
+            'error' => $this->error,
+            'errorMessage' => $this->errorMessage
         ];
         parent::assignVariables();
     }

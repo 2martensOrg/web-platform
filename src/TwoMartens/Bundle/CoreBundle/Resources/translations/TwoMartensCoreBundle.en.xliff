@@ -81,6 +81,14 @@
                 <source>acp.group.add</source>
                 <target>Add group</target>
             </trans-unit>
+            <trans-unit id="acp.group.delete.success">
+                <source>acp.group.delete.success</source>
+                <target>The group has been successfully deleted.</target>
+            </trans-unit>
+            <trans-unit id="acp.group.delete.error.essential">
+                <source>acp.group.delete.error.essential</source>
+                <target>The name group is an essential group. It cannot be deleted.</target>
+            </trans-unit>
             <trans-unit id="acp.group.list">
                 <source>acp.group.list</source>
                 <target>Group List</target>

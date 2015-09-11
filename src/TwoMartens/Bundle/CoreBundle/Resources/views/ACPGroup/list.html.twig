@@ -1,8 +1,9 @@
 {% extends 'TwoMartensCoreBundle::area.html.twig' %}
 
 {% block innerContent %}
-    <button class="btn btn-default"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</button>
     {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.group.delete.success{% endtrans %}</p>{% endif %}
+    {% if error %}<p class="alert alert-danger" role="alert">{{ errorMessage }}</p>{% endif %}
+    <button class="btn btn-default"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</button>
     <table class="table table-striped">
         <thead>
             <tr>
