@@ -47,6 +47,14 @@
                 <source>acp.breadcrumb.options</source>
                 <target>Options</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.user">
+                <source>acp.breadcrumb.user</source>
+                <target>User Management</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.list">
+                <source>acp.breadcrumb.user.group.list</source>
+                <target>Group List</target>
+            </trans-unit>
 
             <!-- acp content -->
             <trans-unit id="acp.dashboard">
