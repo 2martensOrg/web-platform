@@ -77,6 +77,26 @@
                 <source>acp.options.success</source>
                 <target>The changes have been successfully saved.</target>
             </trans-unit>
+            <trans-unit id="acp.group.add">
+                <source>acp.group.add</source>
+                <target>Add group</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list">
+                <source>acp.group.list</source>
+                <target>Group List</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.name">
+                <source>acp.group.list.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.rolename">
+                <source>acp.group.list.rolename</source>
+                <target>Role Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.amountUsers">
+                <source>acp.group.list.amountUsers</source>
+                <target># Users</target>
+            </trans-unit>
 
             <!-- blocks -->
             <trans-unit id="acp.dashboard.blocks.systemstats.caption">
