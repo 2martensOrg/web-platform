@@ -51,6 +51,10 @@
                 <source>acp.breadcrumb.user</source>
                 <target>User Management</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.edit">
+                <source>acp.breadcrumb.user.group.edit</source>
+                <target>Edit group</target>
+            </trans-unit>
             <trans-unit id="acp.breadcrumb.user.group.list">
                 <source>acp.breadcrumb.user.group.list</source>
                 <target>Group List</target>
@@ -80,6 +84,14 @@
             <trans-unit id="acp.group.add">
                 <source>acp.group.add</source>
                 <target>Add group</target>
+            </trans-unit>
+            <trans-unit id="acp.group.edit">
+                <source>acp.group.edit</source>
+                <target>Edit group</target>
+            </trans-unit>
+            <trans-unit id="acp.group.edit.warning">
+                <source>acp.group.edit.warning</source>
+                <target>Be careful when editing ACP options. You might exclude yourself and all admins from the ACP.</target>
             </trans-unit>
             <trans-unit id="acp.group.delete.success">
                 <source>acp.group.delete.success</source>

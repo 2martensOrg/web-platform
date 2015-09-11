@@ -10,9 +10,11 @@
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Manages the routes for the group system.
@@ -40,12 +42,19 @@ class ACPGroupController extends AbstractACPController
      */
     private $errorMessage;
 
+    /**
+     * the current action
+     * @var string
+     */
+    private $action;
+
     public function __construct()
     {
         parent::__construct();
         $this->success = false;
         $this->error = false;
         $this->errorMessage = '';
+        $this->action = '';
     }
 
     /**
@@ -55,6 +64,8 @@ class ACPGroupController extends AbstractACPController
      */
     public function listAction()
     {
+        $this->action = 'list';
+
         /** @var ObjectManager $objectManager */
         $objectManager = $this->get('twomartens.core.db_manager');
         $repository = $objectManager->getRepository('TwoMartensCoreBundle:Group');
@@ -62,9 +73,76 @@ class ACPGroupController extends AbstractACPController
 
         $this->assignVariables();
         $this->templateVariables['groups'] = $groups;
+        $this->templateVariables['area']['title'] = $this->get('translator')
+            ->trans('acp.group.list', [], 'TwoMartensCoreBundle');
 
         return $this->render(
             'TwoMartensCoreBundle:ACPGroup:list.html.twig',
+            $this->templateVariables
+        );
+    }
+
+    /**
+     * Shows the group edit form.
+     *
+     * @param Request $request
+     * @param string  $rolename
+     *
+     * @return Response
+     */
+    public function editAction(Request $request, $rolename)
+    {
+        $this->action = 'edit';
+
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_EDIT_GROUP');
+
+        /** @var ObjectManager $objectManager */
+        $objectManager = $this->get('twomartens.core.db_manager');
+        $repository = $objectManager->getRepository('TwoMartensCoreBundle:Group');
+        /** @var Group $group */
+        $group = $repository->findOneBy(['roleName' => $rolename]);
+
+        $form = $this->createForm(
+            'group_edit',
+            $group
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            // save changed options to file
+            $submittedData = $request->request->all();
+            $submittedData = $submittedData['group_edit'];
+
+            // updating core group values
+            $group->setPublicName($submittedData['name']);
+
+            /** @var OptionCategory[] $categories */
+            $categories = [
+                $group->getACPCategory(),
+                $group->getFrontendModCategory(),
+                $group->getFrontendUserCategory()
+            ];
+            $roles = [];
+            foreach ($categories as $category) {
+                $newRoles = $this->updateOptions($category, $submittedData);
+                $roles = array_merge($roles, $newRoles);
+            }
+            // add group role
+            $roles[] = 'ROLE_' . $group->getRoleName();
+            $group->setRoles($roles);
+
+            $objectManager->flush();
+            $this->success = true;
+        }
+
+        $this->assignVariables();
+        $this->templateVariables['form'] = $form->createView();
+        $this->templateVariables['area']['title'] = $this->get('translator')
+            ->trans('acp.group.edit', [], 'TwoMartensCoreBundle');
+
+        return $this->render(
+            'TwoMartensCoreBundle:ACPGroup:edit.html.twig',
             $this->templateVariables
         );
     }
@@ -115,14 +193,18 @@ class ACPGroupController extends AbstractACPController
             'acp.user',
             $this->get('translator')->trans('acp.breadcrumb.user', [], 'TwoMartensCoreBundle')
         );
-        $groupListBreadcrumb = new Breadcrumb(
-            'acp.user.group.list',
-            $this->get('translator')->trans('acp.breadcrumb.user.group.list', [], 'TwoMartensCoreBundle')
+        $activeBreadcrumb = new Breadcrumb(
+            'acp.user.group.'.$this->action,
+            $this->get('translator')->trans(
+                'acp.breadcrumb.user.group.'.$this->action,
+                [],
+                'TwoMartensCoreBundle'
+            )
         );
-        $groupListBreadcrumb->activate();
+        $activeBreadcrumb->activate();
         $this->breadcrumbs = [
             $userBreadcrumb,
-            $groupListBreadcrumb
+            $activeBreadcrumb
         ];
     }
 
@@ -133,8 +215,7 @@ class ACPGroupController extends AbstractACPController
     {
         $this->templateVariables = [
             'area' => [
-                'showBreadcrumbs' => true,
-                'title' => $this->get('translator')->trans('acp.group.list', [], 'TwoMartensCoreBundle')
+                'showBreadcrumbs' => true
             ],
             'siteTitle' => $this->get('translator')->trans(
                 'acp.siteTitle',
@@ -149,5 +230,48 @@ class ACPGroupController extends AbstractACPController
             'errorMessage' => $this->errorMessage
         ];
         parent::assignVariables();
+    }
+
+    /**
+     * Updates the options of the given category and returns the roles.
+     *
+     * @param OptionCategory $category
+     * @param array          $submittedData
+     *
+     * @return string[]
+     */
+    private function updateOptions(OptionCategory $category, $submittedData)
+    {
+        $categories = $category->getCategories();
+        $superCategoryName = $category->getName();
+        $roles = [];
+        foreach ($categories as $category) {
+            $categoryName = $category->getName();
+            $options = $category->getOptions();
+
+            foreach ($options as $option) {
+                $optionName = $option->getName();
+                $optionType = $option->getType();
+                $fieldName = $superCategoryName . '_' .
+                    str_replace('.', '_', $categoryName) .
+                    '_' . $optionName;
+                if (!isset($submittedData[$fieldName])) {
+                    // should be the case only for checkbox
+                    $fieldValue = false;
+                } else {
+                    $fieldValue = $submittedData[$fieldName];
+                }
+                settype($fieldValue, $optionType);
+                if ($optionType == 'boolean' && $fieldValue) {
+                    $roles[] = 'ROLE_' .
+                        strtoupper($superCategoryName) . '_' .
+                        strtoupper($categoryName) . '_' .
+                        strtoupper($optionName);
+                }
+                $option->setValue($fieldValue);
+            }
+        }
+
+        return $roles;
     }
 }
