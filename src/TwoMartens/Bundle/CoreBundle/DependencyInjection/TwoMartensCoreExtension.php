@@ -45,15 +45,21 @@ class TwoMartensCoreExtension extends Extension
 
         switch ($config['db_driver']) {
             case 'orm':
-                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine.event_subscriber');
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine.event_subscriber', [
+                    'priority' => 10
+                ]);
                 break;
 
             case 'mongodb':
-                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_mongodb.odm.event_subscriber');
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_mongodb.odm.event_subscriber', [
+                    'priority' => 10
+                ]);
                 break;
 
             case 'couchdb':
-                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_couchdb.event_subscriber');
+                $container->getDefinition('twomartens.core.group_listener')->addTag('doctrine_couchdb.event_subscriber', [
+                    'priority' => 10
+                ]);
                 break;
 
             case 'propel':
