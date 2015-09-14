@@ -55,7 +55,10 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
         $manfredCategory->setOptions($subOptions);
         $testCategory->setCategories([$manfredCategory]);
 
-        $expectedOutput->setCategories([$importsCategory, $testCategory]);
+        // fail category
+        $failCategory = new OptionCategory('fail');
+
+        $expectedOutput->setCategories([$importsCategory, $testCategory, $failCategory]);
 
         $this->assertEquals($expectedOutput, $output);
     }

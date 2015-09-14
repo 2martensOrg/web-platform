@@ -118,14 +118,18 @@ class ConfigUtil
     /**
      * Converts the given values into options.
      *
-     * @param string $key
-     * @param array  $values
+     * @param string      $key
+     * @param array|null  $values
      *
      * @return OptionCategory
      */
     private static function convertValues($key, $values)
     {
         $returnCategory = new OptionCategory();
+
+        if ($values === null) {
+            return $returnCategory;
+        }
 
         if (self::isAssoc($values)) {
             $options = [];
