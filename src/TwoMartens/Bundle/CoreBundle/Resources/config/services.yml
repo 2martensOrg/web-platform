@@ -45,7 +45,6 @@ services:
       - { name: form.type, alias: group_edit }
   twomartens.core.option.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
-    arguments: [@translator]
     tags:
       - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }
   twomartens.core.group:
