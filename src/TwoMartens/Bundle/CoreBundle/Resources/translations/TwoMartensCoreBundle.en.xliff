@@ -143,6 +143,23 @@
                 <source>acp.group.options.acp</source>
                 <target>ACP options</target>
             </trans-unit>
+            <!-- group options -->
+            <trans-unit id="acp.group.options.acp.twomartens.core.access.label">
+                <source>acp.group.options.acp.twomartens.core.access.label</source>
+                <target>Can access the ACP</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_list.label">
+                <source>acp.group.options.acp.twomartens.core.group_list.label</source>
+                <target>Can access the group list</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_edit.label">
+                <source>acp.group.options.acp.twomartens.core.group_edit.label</source>
+                <target>Can edit groups</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_delete.label">
+                <source>acp.group.options.acp.twomartens.core.group_delete.label</source>
+                <target>Can delete groups</target>
+            </trans-unit>
 
             <!-- blocks -->
             <trans-unit id="acp.dashboard.blocks.systemstats.caption">
