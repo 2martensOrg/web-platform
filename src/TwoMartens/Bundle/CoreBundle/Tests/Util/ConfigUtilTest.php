@@ -79,6 +79,7 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
      */
     public function testConvertToArray()
     {
+        // simple case
         $optionCategory = new OptionCategory();
         $mainCategory = new OptionCategory('twomartens.core');
         $options = [
@@ -95,6 +96,33 @@ class ConfigUtilTest extends \PHPUnit_Framework_TestCase
                 'one' => 'hello',
                 'two' => false,
                 'three' => [1, 2, 3]
+            ]
+        ];
+
+        $this->assertEquals($expectedYamlData, $yamlData);
+
+        // complex case
+        $optionCategory = new OptionCategory();
+        $acpCategory = new OptionCategory('acp');
+        $ourCategory = new OptionCategory('twomartens.core');
+        $acpCategory->setCategories([$ourCategory]);
+        $optionCategory->setCategories([$acpCategory]);
+
+        $options = [
+            new Option(0, 'one', 'boolean', true),
+            new Option(0, 'two', 'string', 'foo'),
+            new Option(0, 'three', 'array', [4, 5, 6])
+        ];
+        $ourCategory->setOptions($options);
+
+        $yamlData = ConfigUtil::convertToArray($optionCategory);
+        $expectedYamlData = [
+            'acp' => [
+                'twomartens.core' => [
+                    'one' => true,
+                    'two' => 'foo',
+                    'three' => [4, 5, 6]
+                ]
             ]
         ];
 

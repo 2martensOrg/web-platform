@@ -81,17 +81,38 @@ class ConfigUtil
         $categories = $optionCategory->getCategories();
 
         foreach ($categories as $category) {
-            $optionsArray = [];
             $options = $category->getOptions();
+            $_categories = $category->getCategories();
 
-            foreach ($options as $option) {
-                $optionsArray[$option->getName()] = $option->getValue();
+            $optionsArray = self::getOptionsArray($options);
+
+            foreach ($_categories as $_category) {
+                $_options = $_category->getOptions();
+                $_optionsArray = self::getOptionsArray($_options);
+                $optionsArray[$_category->getName()] = $_optionsArray;
             }
 
             $result[$category->getName()] = $optionsArray;
         }
 
         return $result;
+    }
+
+    /**
+     * Returns an array of options.
+     *
+     * @param Option[] $options
+     *
+     * @return array
+     */
+    private static function getOptionsArray($options)
+    {
+        $optionsArray = [];
+        foreach ($options as $option) {
+            $optionsArray[$option->getName()] = $option->getValue();
+        }
+
+        return $optionsArray;
     }
 
     /**
