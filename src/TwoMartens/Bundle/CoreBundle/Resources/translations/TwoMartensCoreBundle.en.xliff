@@ -2,6 +2,12 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="" >
         <body>
+            <!-- general stuff -->
+            <trans-unit id="button.save">
+                <source>button.save</source>
+                <target>Save</target>
+            </trans-unit>
+
             <!-- acp navigation -->
             <trans-unit id="acp.nav.home">
                 <source>acp.nav.home</source>
@@ -116,6 +122,26 @@
             <trans-unit id="acp.group.list.amountUsers">
                 <source>acp.group.list.amountUsers</source>
                 <target># Users</target>
+            </trans-unit>
+            <trans-unit id="acp.group.name">
+                <source>acp.group.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.roleName">
+                <source>acp.group.roleName</source>
+                <target>Role name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.user">
+                <source>acp.group.options.user</source>
+                <target>Frontend options</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.mod">
+                <source>acp.group.options.mod</source>
+                <target>Mod options</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp">
+                <source>acp.group.options.acp</source>
+                <target>ACP options</target>
             </trans-unit>
 
             <!-- blocks -->

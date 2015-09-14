@@ -13,6 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
+use TwoMartens\Bundle\CoreBundle\Model\Group;
 
 /**
  * Represents the group edit form.
@@ -30,6 +31,7 @@ class GroupEditType extends AbstractType
 
     /**
      * Initializes the form.
+     *
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(EventDispatcherInterface $dispatcher)
@@ -42,11 +44,66 @@ class GroupEditType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $acpOptionsBuilder = clone $builder;
+        $modOptionsBuilder = clone $builder;
+        $userOptionsBuilder = clone $builder;
+
+        /** @var Group $group */
+        $group = $options['data'];
+        $acpCategory = $group->getACPCategory();
+        $modCategory = $group->getFrontendModCategory();
+        $userCategory = $group->getFrontendUserCategory();
+
+        // events are only responsible for options
         $this->dispatcher->dispatch(
-            'twomartens.core.group_edit.build_form',
-            new FormEvent($builder, $options['data'])
+            'twomartens.core.group_edit.acp_options',
+            new FormEvent($acpOptionsBuilder, $acpCategory)
         );
-        $builder->add('save', 'submit');
+        $this->dispatcher->dispatch(
+            'twomartens.core.group_edit.mod_options',
+            new FormEvent($modOptionsBuilder, $modCategory)
+        );
+        $this->dispatcher->dispatch(
+            'twomartens.core.group_edit.user_options',
+            new FormEvent($userOptionsBuilder, $userCategory)
+        );
+
+        $builder->add(
+            'name',
+            'text',
+            [
+                'label' => 'acp.group.name',
+                'mapped' => false,
+                'required' => true,
+                'data' => $group->getPublicName(),
+                'translation_domain' => 'TwoMartensCoreBundle'
+            ]
+        );
+        $builder->add(
+            'roleName',
+            'text',
+            [
+                'label' => 'acp.group.roleName',
+                'mapped' => false,
+                'required' => true,
+                'read_only' => true,
+                'data' => $group->getRoleName(),
+                'translation_domain' => 'TwoMartensCoreBundle'
+            ]
+        );
+
+        $this->addWithPrefix($acpOptionsBuilder, $builder, 'acp_');
+        $this->addWithPrefix($modOptionsBuilder, $builder, 'mod_');
+        $this->addWithPrefix($userOptionsBuilder, $builder, 'frontend_');
+
+        $builder->add(
+            'save',
+            'submit',
+            [
+                'label' => 'button.save',
+                'translation_domain' => 'TwoMartensCoreBundle'
+            ]
+        );
     }
 
     /**
@@ -57,5 +114,29 @@ class GroupEditType extends AbstractType
     public function getName()
     {
         return 'group_edit';
+    }
+
+    /**
+     * Adds elements of $source to $target with $prefix as prefix for field names.
+     *
+     * @param FormBuilderInterface $source
+     * @param FormBuilderInterface $target
+     * @param string               $prefix
+     */
+    private function addWithPrefix(
+        FormBuilderInterface $source,
+        FormBuilderInterface $target,
+        $prefix
+    )
+    {
+        /** @var FormBuilderInterface $field */
+        foreach ($source as $field) {
+            $newName = $prefix . $field->getName();
+            $target->add(
+                $newName,
+                $field->getType()->getInnerType(),
+                $field->getOptions()
+            );
+        }
     }
 }

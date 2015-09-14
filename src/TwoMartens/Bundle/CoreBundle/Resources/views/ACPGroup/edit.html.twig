@@ -5,11 +5,54 @@
     <p class="alert alert-warning" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.group.edit.warning{% endtrans %}</p>
     {{ form_start(form) }}
     {{ form_errors(form) }}
-    {% for name, field in form %}
-        {% if name != 'save' %}
-            {{ form_row(field) }}
-        {% endif %}
-    {% endfor %}
-    {{ form_row(form.save, {'attr': {'class': 'btn-primary'}}) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.roleName) }}
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user" aria-controls="user" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.user{% endtrans %}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#mod" aria-controls="mod" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.mod{% endtrans %}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#acp" aria-controls="acp" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.acp{% endtrans %}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="user">
+                {% for name, field in form %}
+                    {% if name starts with 'frontend_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mod">
+                {% for name, field in form %}
+                    {% if name starts with 'mod_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="acp">
+                {% for name, field in form %}
+                    {% if name starts with 'acp_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {{ form_row(form.save, {'attr': {'class': 'btn-primary'} }) }}
     {{ form_end(form) }}
 {% endblock %}
