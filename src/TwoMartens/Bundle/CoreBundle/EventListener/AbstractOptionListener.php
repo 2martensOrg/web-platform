@@ -11,6 +11,7 @@ namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 use TwoMartens\Bundle\CoreBundle\Event\OptionConfigurationEvent;
 use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
@@ -39,9 +40,11 @@ abstract class AbstractOptionListener
     }
 
     /**
-     * @param OptionConfigurationEvent $event
+     * Called on the buildForm event.
+     *
+     * @param FormEvent $event
      */
-    public function onBuildForm(OptionConfigurationEvent $event)
+    public function onBuildForm(FormEvent $event)
     {
         $builder = $event->getBuilder();
         /** @var OptionCategory $data */

@@ -12,7 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Form\Type;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use TwoMartens\Bundle\CoreBundle\Event\OptionConfigurationEvent;
+use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 
 /**
  * Represents the option configuration form.
@@ -44,7 +44,7 @@ class OptionConfigurationType extends AbstractType
     {
         $this->dispatcher->dispatch(
             'twomartens.core.option_configuration.build_form',
-            new OptionConfigurationEvent($builder, $options['data'])
+            new FormEvent($builder, $options['data'])
         );
         $builder->add('save', 'submit');
     }
