@@ -254,7 +254,7 @@ class GroupService implements GroupServiceInterface
         foreach ($baseNames as $basename) {
             $category = $this->optionData[strtoupper($basename)];
             $yaml = ConfigUtil::convertToArray($category);
-            $dumpReady = $this->dumper->dump($yaml, 2);
+            $dumpReady = $this->dumper->dump($yaml, 3);
             $writePath = $path . '/' . $basename . '.yml';
             $this->filesystem->dumpFile($writePath, $dumpReady);
         }
