@@ -46,7 +46,14 @@ class OptionConfigurationType extends AbstractType
             'twomartens.core.option_configuration.build_form',
             new FormEvent($builder, $options['data'])
         );
-        $builder->add('save', 'submit');
+        $builder->add(
+            'save',
+            'submit',
+            [
+                'label' => 'button.save',
+                'translation_domain' => 'TwoMartensCoreBundle'
+            ]
+        );
     }
 
     /**
