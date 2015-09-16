@@ -73,6 +73,12 @@ class GroupService implements GroupServiceInterface
     private $filesystem;
 
     /**
+     * list of the filenames which have to be removed
+     * @var string[]
+     */
+    private $toBeRemoved;
+
+    /**
      * Constructor.
      *
      * @param Finder                   $finder
@@ -97,6 +103,7 @@ class GroupService implements GroupServiceInterface
         $this->optionData = [];
         $this->options = [];
         $this->optionTypes = [];
+        $this->toBeRemoved = [];
 
         // fill option types
         $event = new GroupOptionTypeEvent();
@@ -115,6 +122,20 @@ class GroupService implements GroupServiceInterface
     public function __destruct()
     {
         $this->writeConfig();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeOptionsFor($groupRoleName)
+    {
+        if (!isset($this->optionData[$groupRoleName])
+         || !isset($this->options[$groupRoleName])) {
+            throw new \LogicException('The given group role name doesn\'t exist.');
+        }
+        unset($this->options[$groupRoleName]);
+        unset($this->optionData[$groupRoleName]);
+        $this->toBeRemoved[] = $groupRoleName;
     }
 
     /**
@@ -258,5 +279,11 @@ class GroupService implements GroupServiceInterface
             $writePath = $path . '/' . $basename . '.yml';
             $this->filesystem->dumpFile($writePath, $dumpReady);
         }
+        foreach ($this->toBeRemoved as $toRemove) {
+            $basename = strtolower($toRemove). '.yml';
+            $deletePath = $path . '/' . $basename;
+            $this->filesystem->remove($deletePath);
+        }
+        $this->toBeRemoved = [];
     }
 }

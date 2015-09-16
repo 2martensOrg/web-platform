@@ -198,4 +198,23 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
             }
         }
     }
+
+    /**
+     * Tests that options can be removed.
+     */
+    public function testRemoval()
+    {
+        $this->groupService->setOptionsFor('ADMIN', $this->optionData['admin']);
+        $options = $this->groupService->getOptionsFor('ADMIN');
+        $this->assertEquals($this->optionData['admin'], $options);
+
+        $this->groupService->removeOptionsFor('ADMIN');
+        try {
+            $this->groupService->getOptionsFor('ADMIN');
+            $this->fail();
+        }
+        catch (\Exception $e) {
+            $this->assertTrue(true);
+        }
+    }
 }

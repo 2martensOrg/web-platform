@@ -81,4 +81,15 @@ interface GroupServiceInterface
      * @return Option|null null if there is no valid value
      */
     public function getEffective(User $user, $category, $optionName);
+
+    /**
+     * Removes the options for the given group.
+     *
+     * @param string $groupRoleName
+     *
+     * @api
+     *
+     * @return void
+     */
+    public function removeOptionsFor($groupRoleName);
 }
