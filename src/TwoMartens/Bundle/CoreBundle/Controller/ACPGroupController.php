@@ -94,7 +94,7 @@ class ACPGroupController extends AbstractACPController
     {
         $this->action = 'add';
 
-        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_ADD_GROUP');
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_GROUP_ADD');
 
         /** @var GroupServiceInterface $groupService */
         $groupService = $this->get('twomartens.core.group');
@@ -181,7 +181,7 @@ class ACPGroupController extends AbstractACPController
     {
         $this->action = 'edit';
 
-        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_EDIT_GROUP');
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_GROUP_EDIT');
 
         /** @var ObjectManager $objectManager */
         $objectManager = $this->get('twomartens.core.db_manager');

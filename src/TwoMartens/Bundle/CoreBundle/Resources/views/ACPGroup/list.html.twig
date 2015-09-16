@@ -3,7 +3,7 @@
 {% block innerContent %}
     {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.group.delete.success{% endtrans %}</p>{% endif %}
     {% if error %}<p class="alert alert-danger" role="alert">{{ errorMessage }}</p>{% endif %}
-    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_ADD_GROUP') %}
+    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_ADD') %}
         <a class="btn btn-default" href="{{ path('acp.user.group.add') }}"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</a>
     {% endif %}
     <table class="table table-striped">
@@ -19,10 +19,10 @@
             {% for group in groups %}
                 <tr>
                     <td class="iconColumn">
-                        {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_EDIT_GROUP') %}
+                        {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_EDIT') %}
                             <a href="{{ path('acp.user.group.edit', {'rolename': group.getRoleName()}) }}"><span class="fa fa-pencil"></span></a>
                         {% endif %}
-                        {% if group.isEssential() == false and is_granted('ROLE_ACP_TWOMARTENS.CORE_DELETE_GROUP') %}
+                        {% if group.isEssential() == false and is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_DELETE') %}
                             <a href="{{ path('acp.user.group.delete', {'rolename': group.getRoleName()}) }}"><span class="fa fa-times"></span></a>
                         {% endif %}
                     </td>
