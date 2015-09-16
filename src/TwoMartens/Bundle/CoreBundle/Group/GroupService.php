@@ -117,9 +117,9 @@ class GroupService implements GroupServiceInterface
     }
 
     /**
-     * Writes the options to the config files.
+     * {@inheritdoc}
      */
-    public function __destruct()
+    public function commitChanges()
     {
         $this->writeConfig();
     }

@@ -83,6 +83,15 @@ interface GroupServiceInterface
     public function getEffective(User $user, $category, $optionName);
 
     /**
+     * Commits the changes to the file system.
+     *
+     * @api
+     *
+     * @return void
+     */
+    public function commitChanges();
+
+    /**
      * Removes the options for the given group.
      *
      * @param string $groupRoleName

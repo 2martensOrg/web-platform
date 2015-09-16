@@ -162,6 +162,7 @@ class ACPGroupController extends AbstractACPController
             /** @var ObjectManager $objectManager */
             $objectManager = $this->get('twomartens.core.db_manager');
             $objectManager->persist($group);
+            $groupService->commitChanges();
             $objectManager->flush();
 
             return $this->listAction();
@@ -227,6 +228,9 @@ class ACPGroupController extends AbstractACPController
             $group->setRoles($roles);
 
             $objectManager->flush();
+            /** @var GroupServiceInterface $groupService */
+            $groupService = $this->get('twomartens.core.group');
+            $groupService->commitChanges();
             $this->success = true;
         }
 
@@ -270,7 +274,10 @@ class ACPGroupController extends AbstractACPController
         // TODO add role validation
 
         if (!$this->error) {
+            /** @var GroupServiceInterface $groupService */
+            $groupService = $this->get('twomartens.core.group');
             $objectManager->remove($group);
+            $groupService->commitChanges();
             $objectManager->flush();
             $this->success = true;
         }
