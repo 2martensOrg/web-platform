@@ -10,8 +10,10 @@
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use TwoMartens\Bundle\CoreBundle\Form\Type\GroupType;
 use TwoMartens\Bundle\CoreBundle\Group\GroupServiceInterface;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
@@ -119,8 +121,14 @@ class ACPGroupController extends AbstractACPController
             $sortedCategories['acp']
         );
 
+        /** @var EventDispatcherInterface $eventDispatcher */
+        $eventDispatcher = $this->get('event_dispatcher');
+        $groupType = new GroupType(
+            $eventDispatcher,
+            false
+        );
         $form = $this->createForm(
-            'group',
+            $groupType,
             $group
         );
 
@@ -188,9 +196,8 @@ class ACPGroupController extends AbstractACPController
         $repository = $objectManager->getRepository('TwoMartensCoreBundle:Group');
         /** @var Group $group */
         $group = $repository->findOneBy(['roleName' => $rolename]);
-
         $form = $this->createForm(
-            'group_edit',
+            'group',
             $group
         );
 
@@ -199,7 +206,7 @@ class ACPGroupController extends AbstractACPController
         if ($form->isValid()) {
             // save changed options to file
             $submittedData = $request->request->all();
-            $submittedData = $submittedData['group_edit'];
+            $submittedData = $submittedData['group'];
 
             // updating core group values
             $group->setPublicName($submittedData['name']);

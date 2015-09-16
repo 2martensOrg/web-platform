@@ -16,12 +16,12 @@ use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 
 /**
- * Represents the group edit form.
+ * Represents the group add/edit form.
  *
  * @author    Jim Martens <github@2martens.de>
  * @copyright 2013-2015 Jim Martens
  */
-class GroupEditType extends AbstractType
+class GroupType extends AbstractType
 {
     /**
      * the event dispatcher
@@ -30,13 +30,21 @@ class GroupEditType extends AbstractType
     private $dispatcher;
 
     /**
+     * true, if edit form
+     * @var boolean
+     */
+    private $editForm;
+
+    /**
      * Initializes the form.
      *
      * @param EventDispatcherInterface $dispatcher
+     * @param boolean                  $editForm
      */
-    public function __construct(EventDispatcherInterface $dispatcher)
+    public function __construct(EventDispatcherInterface $dispatcher, $editForm = true)
     {
         $this->dispatcher = $dispatcher;
+        $this->editForm = $editForm;
     }
 
     /**
@@ -56,15 +64,15 @@ class GroupEditType extends AbstractType
 
         // events are only responsible for options
         $this->dispatcher->dispatch(
-            'twomartens.core.group_edit.acp_options',
+            'twomartens.core.group_type.acp_options',
             new FormEvent($acpOptionsBuilder, $acpCategory)
         );
         $this->dispatcher->dispatch(
-            'twomartens.core.group_edit.mod_options',
+            'twomartens.core.group_type.mod_options',
             new FormEvent($modOptionsBuilder, $modCategory)
         );
         $this->dispatcher->dispatch(
-            'twomartens.core.group_edit.user_options',
+            'twomartens.core.group_type.user_options',
             new FormEvent($userOptionsBuilder, $userCategory)
         );
 
@@ -86,7 +94,7 @@ class GroupEditType extends AbstractType
                 'label' => 'acp.group.roleName',
                 'mapped' => false,
                 'required' => true,
-                'read_only' => true,
+                'read_only' => $this->editForm,
                 'data' => $group->getRoleName(),
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
@@ -113,7 +121,7 @@ class GroupEditType extends AbstractType
      */
     public function getName()
     {
-        return 'group_edit';
+        return 'group';
     }
 
     /**
