@@ -161,46 +161,64 @@ class GroupService implements GroupServiceInterface
                 $this->options[$groupRoleName][$name] = [];
             }
 
-            $_options = $category->getOptions();
-            foreach ($_options as $_option) {
-                $this->options[$groupRoleName][$name][$_option->getName()] = $_option;
+            $_categories = $category->getCategories();
+            foreach ($_categories as $_category) {
+                $_name = $_category->getName();
+                if (!isset($this->options[$groupRoleName][$name][$_name])) {
+                    $this->options[$groupRoleName][$name][$_name] = [];
+                }
+                $_options = $_category->getOptions();
+                foreach ($_options as $_option) {
+                    $this->options[$groupRoleName][$name][$_name]
+                        [$_option->getName()] = $_option;
+                }
             }
+
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function get($groupRoleName, $category, $optionName)
+    public function get($groupRoleName, $superCategory, $category, $optionName)
     {
-        if (!isset($this->options[$groupRoleName][$category][$optionName])) {
+        if (!isset($this->options[$groupRoleName][$superCategory]
+                   [$category][$optionName])) {
             return null;
         }
 
-        return $this->options[$groupRoleName][$category][$optionName];
+        return $this->options[$groupRoleName][$superCategory]
+               [$category][$optionName];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set($groupRoleName, $category, Option $value)
+    public function set($groupRoleName, $superCategory, $category, Option $value)
     {
-        $this->options[$groupRoleName][$category][$value->getName()] = $value;
+        $this->options[$groupRoleName][$superCategory]
+            [$category][$value->getName()] = $value;
 
         $categories = $this->optionData[$groupRoleName]->getCategories();
         foreach ($categories as $_category) {
-            if ($_category->getName() != $category) {
+            if ($_category->getName() != $superCategory) {
                 continue;
             }
 
-            $_options = $_category->getOptions();
-            foreach ($_options as $option) {
-                if ($option->getName() != $value->getName()) {
+            $_categories = $_category->getCategories();
+            foreach ($_categories as $__category) {
+                if ($__category->getName() != $category) {
                     continue;
                 }
+                $_options = $__category->getOptions();
+                foreach ($_options as $option) {
+                    if ($option->getName() != $value->getName()) {
+                        continue;
+                    }
 
-                $option->setValue($value->getValue());
-                break 2;
+                    $option->setValue($value->getValue());
+                    break 3;
+                }
             }
         }
     }
@@ -208,18 +226,23 @@ class GroupService implements GroupServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getEffective(User $user, $category, $optionName)
+    public function getEffective(User $user, $superCategory, $category, $optionName)
     {
         $groupNames = $user->getGroupNames();
         /** @var Option[] $options */
         $options = [];
         foreach ($groupNames as $name) {
-            $options[$name] = $this->get($name, $category, $optionName);
+            $options[$name] = $this->get(
+                $name,
+                $superCategory,
+                $category,
+                $optionName
+            );
         }
 
         $returnValue = null;
         foreach ($options as $name => $option) {
-            if (!isset($this->optionTypes[$category][$optionName])) {
+            if (!isset($this->optionTypes[$superCategory][$category][$optionName])) {
                 // if this happens, somebody somewhere screwed up
                 // we must return null, as there is no way to simply
                 // ignore this
@@ -227,7 +250,7 @@ class GroupService implements GroupServiceInterface
                 break;
             }
             /** @var OptionTypeInterface $type */
-            $type = $this->optionTypes[$category][$optionName];
+            $type = $this->optionTypes[$superCategory][$category][$optionName];
             $returnValue = $type->getBestValue(
                 $returnValue,
                 $option

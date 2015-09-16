@@ -47,6 +47,7 @@ interface GroupServiceInterface
      * Returns the Option for given group, category and option name.
      *
      * @param string $groupRoleName
+     * @param string $superCategory acp, mod, frontend
      * @param string $category
      * @param string $optionName
      *
@@ -54,12 +55,13 @@ interface GroupServiceInterface
      *
      * @return Option|null null if there is no valid value
      */
-    public function get($groupRoleName, $category, $optionName);
+    public function get($groupRoleName, $superCategory, $category, $optionName);
 
     /**
      * Sets the given option for given group and category.
      * 
      * @param string $groupRoleName
+     * @param string $superCategory acp, mod, frontend
      * @param string $category
      * @param Option $value
      *
@@ -67,12 +69,13 @@ interface GroupServiceInterface
      *
      * @return void
      */
-    public function set($groupRoleName, $category, Option $value);
+    public function set($groupRoleName, $superCategory, $category, Option $value);
 
     /**
      * Returns the effective value of the given option for the given user.
      *
      * @param User   $user
+     * @param string $superCategory acp, mod, frontend
      * @param string $category
      * @param string $optionName
      *
@@ -80,7 +83,7 @@ interface GroupServiceInterface
      *
      * @return Option|null null if there is no valid value
      */
-    public function getEffective(User $user, $category, $optionName);
+    public function getEffective(User $user, $superCategory, $category, $optionName);
 
     /**
      * Commits the changes to the file system.

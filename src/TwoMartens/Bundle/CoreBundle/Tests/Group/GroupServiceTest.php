@@ -85,7 +85,9 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
                 /** @var GroupOptionTypeEvent $event */
                 $optionTypes = [
                     'acp' => [
-                        'access' => new BooleanOptionType()
+                        'twomartens.core' => [
+                            'access' => new BooleanOptionType()
+                        ]
                     ]
                 ];
                 $event->addOptions($optionTypes);
@@ -131,6 +133,7 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
             $this->groupService->get(
                 'ADMIN',
                 'acp',
+                'twomartens.core',
                 'access'
             )->getValue()
         );
@@ -145,21 +148,24 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
         $option = $this->groupService->getEffective(
             $user,
             'acp',
+            'twomartens.core',
             'access'
         );
         $this->assertTrue($option->getValue());
 
         $option->setValue(false);
-        $this->groupService->set('ADMIN', 'acp', $option);
+        $this->groupService->set('ADMIN', 'acp', 'twomartens.core', $option);
         $this->assertFalse($this->groupService->getEffective(
             $user,
             'acp',
+            'twomartens.core',
             'access'
         )->getValue());
 
         $option = $this->groupService->getEffective(
             $user,
             'acp',
+            'twomartens.core',
             'carpot'
         );
         $this->assertNull($option);
@@ -174,11 +180,11 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
         $this->groupService->setOptionsFor('USER', $this->optionData['user']);
 
         // check single get method
-        $option = $this->groupService->get('ADMIN', 'acp', 'access');
+        $option = $this->groupService->get('ADMIN', 'acp', 'twomartens.core', 'access');
         $this->assertTrue($option->getValue());
         // change via single change
         $newOption = new Option(0, 'access', 'boolean', false);
-        $this->groupService->set('ADMIN', 'acp', $newOption);
+        $this->groupService->set('ADMIN', 'acp', 'twomartens.core', $newOption);
         // check complete get
         $options = $this->groupService->getOptionsFor('ADMIN');
         $categories = $options->getCategories();
