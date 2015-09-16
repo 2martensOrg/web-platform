@@ -30,7 +30,8 @@ class GroupModelListener extends AbstractGroupModelListener
     {
         return [
             Events::postLoad,
-            Events::prePersist
+            Events::prePersist,
+            Events::preRemove
         ];
     }
 }

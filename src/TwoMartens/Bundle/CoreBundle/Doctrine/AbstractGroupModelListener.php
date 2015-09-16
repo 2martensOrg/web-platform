@@ -98,4 +98,20 @@ abstract class AbstractGroupModelListener implements EventSubscriber
         $topLevelCategory->setCategories($categories);
         $this->groupService->setOptionsFor($object->getRoleName(), $topLevelCategory);
     }
+
+    /**
+     * Called on the preRemove event.
+     *
+     * @param LifecycleEventArgs $eventArgs
+     */
+    public function preRemove(LifecycleEventArgs $eventArgs)
+    {
+        $object = $eventArgs->getObject();
+        // only handle our model
+        if (!($object instanceof Group)) {
+            return;
+        }
+
+        $this->groupService->removeOptionsFor($object->getRoleName());
+    }
 }
