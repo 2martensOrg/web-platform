@@ -45,7 +45,7 @@ class OptionListener extends AbstractOptionListener
     {
         // TODO add real options as they are determined
         $this->fieldMap = [
-            'testOption' => 'checkbox'
+            'showSystemStats' => 'checkbox'
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];

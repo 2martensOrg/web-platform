@@ -91,6 +91,13 @@
                 <source>acp.options.success</source>
                 <target>The changes have been successfully saved.</target>
             </trans-unit>
+            <!-- acp options -->
+            <trans-unit id="acp.options.twomartens.core.showSystemStats.label">
+                <source>acp.options.twomartens.core.showSystemStats.label</source>
+                <target>Should the system stats block be displayed?</target>
+            </trans-unit>
+
+            <!-- acp group -->
             <trans-unit id="acp.group.add">
                 <source>acp.group.add</source>
                 <target>Add group</target>
