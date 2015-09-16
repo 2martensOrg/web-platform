@@ -45,6 +45,7 @@ class ACPGroupOptionListener extends AbstractGroupOptionListener
         // TODO add real options as they are determined
         $this->fieldMap = [
             'access' => 'checkbox',
+            'group_add' => 'checkbox',
             'group_list' => 'checkbox',
             'group_edit' => 'checkbox',
             'group_delete' => 'checkbox'

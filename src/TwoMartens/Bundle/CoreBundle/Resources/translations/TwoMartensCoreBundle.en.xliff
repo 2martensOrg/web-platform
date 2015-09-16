@@ -57,6 +57,10 @@
                 <source>acp.breadcrumb.user</source>
                 <target>User Management</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.add">
+                <source>acp.breadcrumb.user.group.add</source>
+                <target>Add group</target>
+            </trans-unit>
             <trans-unit id="acp.breadcrumb.user.group.edit">
                 <source>acp.breadcrumb.user.group.edit</source>
                 <target>Edit group</target>
@@ -151,6 +155,10 @@
             <trans-unit id="acp.group.options.acp.twomartens.core.group_list.label">
                 <source>acp.group.options.acp.twomartens.core.group_list.label</source>
                 <target>Can access the group list</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_add.label">
+                <source>acp.group.options.acp.twomartens.core.group_add.label</source>
+                <target>Can add groups</target>
             </trans-unit>
             <trans-unit id="acp.group.options.acp.twomartens.core.group_edit.label">
                 <source>acp.group.options.acp.twomartens.core.group_edit.label</source>

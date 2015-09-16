@@ -12,6 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use TwoMartens\Bundle\CoreBundle\Group\GroupServiceInterface;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
@@ -78,6 +79,92 @@ class ACPGroupController extends AbstractACPController
 
         return $this->render(
             'TwoMartensCoreBundle:ACPGroup:list.html.twig',
+            $this->templateVariables
+        );
+    }
+
+    /**
+     * Shows the group add form.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function addAction(Request $request)
+    {
+        $this->action = 'add';
+
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_ADD_GROUP');
+
+        /** @var GroupServiceInterface $groupService */
+        $groupService = $this->get('twomartens.core.group');
+        // default is no real group but contains the default option values
+        $options = $groupService->getOptionsFor('DEFAULT');
+        $categories = $options->getCategories();
+        $sortedCategories = [];
+
+        foreach ($categories as $category) {
+            $sortedCategories[$category->getName()] = $category;
+        }
+
+        $group = new Group(
+            null, // no id known yet
+            '', // no role name yet
+            '', // no public name yet
+            false, // all new groups created through ACP are non-essential
+            true, // all new groups created through ACP can be empty
+            [], // no known roles yet
+            $sortedCategories['frontend'],
+            $sortedCategories['mod'],
+            $sortedCategories['acp']
+        );
+
+        $form = $this->createForm(
+            'group',
+            $group
+        );
+
+        $form->handleRequest($request);
+        $this->assignVariables();
+
+        if ($form->isValid()) {
+            // save changed options to file
+            $submittedData = $request->request->all();
+            $submittedData = $submittedData['group'];
+
+            // updating core group values
+            $group->setPublicName($submittedData['name']);
+            $group->setRoleName($submittedData['roleName']);
+
+            /** @var OptionCategory[] $categories */
+            $categories = [
+                $group->getACPCategory(),
+                $group->getFrontendModCategory(),
+                $group->getFrontendUserCategory()
+            ];
+            $roles = [];
+            foreach ($categories as $category) {
+                $newRoles = $this->updateOptions($category, $submittedData);
+                $roles = array_merge($roles, $newRoles);
+            }
+            // add group role
+            $roles[] = 'ROLE_' . $group->getRoleName();
+            $group->setRoles($roles);
+
+            /** @var ObjectManager $objectManager */
+            $objectManager = $this->get('twomartens.core.db_manager');
+            $objectManager->persist($group);
+            $objectManager->flush();
+
+            return $this->listAction();
+        }
+
+        $this->templateVariables['form'] = $form->createView();
+        $this->templateVariables['area']['title'] = $this->get('translator')
+            ->trans('acp.group.add', [], 'TwoMartensCoreBundle');
+
+        return $this->render(
+            'TwoMartensCoreBundle:ACPGroup:add.html.twig',
             $this->templateVariables
         );
     }

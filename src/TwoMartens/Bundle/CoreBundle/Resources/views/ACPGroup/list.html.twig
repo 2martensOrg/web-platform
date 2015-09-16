@@ -3,7 +3,9 @@
 {% block innerContent %}
     {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.group.delete.success{% endtrans %}</p>{% endif %}
     {% if error %}<p class="alert alert-danger" role="alert">{{ errorMessage }}</p>{% endif %}
-    <button class="btn btn-default"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</button>
+    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_ADD_GROUP') %}
+        <a class="btn btn-default" href="{{ path('acp.user.group.add') }}"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</a>
+    {% endif %}
     <table class="table table-striped">
         <thead>
             <tr>

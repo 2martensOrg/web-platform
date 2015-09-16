@@ -1,0 +1,57 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block innerContent %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.roleName) }}
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user" aria-controls="user" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.user{% endtrans %}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#mod" aria-controls="mod" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.mod{% endtrans %}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#acp" aria-controls="acp" role="tab" data-toggle="tab">
+                    {% trans from 'TwoMartensCoreBundle' %}acp.group.options.acp{% endtrans %}
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="user">
+                {% for name, field in form %}
+                    {% if name starts with 'frontend_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mod">
+                {% for name, field in form %}
+                    {% if name starts with 'mod_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="acp">
+                {% for name, field in form %}
+                    {% if name starts with 'acp_' %}
+                        {{ form_row(field) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {{ form_row(form.save, {'attr': {'class': 'btn-primary'} }) }}
+    {{ form_end(form) }}
+{% endblock %}
