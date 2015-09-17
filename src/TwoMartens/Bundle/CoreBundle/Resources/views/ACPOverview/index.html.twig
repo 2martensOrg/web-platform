@@ -1,0 +1,18 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+
+{% block innerContent %}
+    {% for category, subEntries in entries %}
+        <div class="overviewCategory">
+            <span class="category">{{ category|trans([], categories[category]) }}</span>
+            <ul>
+            {% for entry in subEntries %}
+                <li>
+                    <a href="{{ path(entry['route']) }}">
+                        {{ entry['entryName']|trans([], entry['translationDomain']) }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -11,12 +11,16 @@ acp.logout:
   path: /acp/logout
 acp.system:
   path: /acp/system/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:system }
 acp.user:
   path: /acp/user/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:user }
 acp.appearance:
   path: /acp/appearance/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:appearance }
 acp.content:
   path: /acp/content/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:content }
 acp.system.options:
   path: /acp/system/options/
   defaults: { _controller: TwoMartensCoreBundle:ACPOption:index }
