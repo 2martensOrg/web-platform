@@ -55,7 +55,7 @@
             </trans-unit>
             <trans-unit id="acp.breadcrumb.user">
                 <source>acp.breadcrumb.user</source>
-                <target>User Management</target>
+                <target>User and Group Management</target>
             </trans-unit>
             <trans-unit id="acp.breadcrumb.user.group.add">
                 <source>acp.breadcrumb.user.group.add</source>
