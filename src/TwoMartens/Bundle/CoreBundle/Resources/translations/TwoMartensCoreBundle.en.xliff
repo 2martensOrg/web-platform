@@ -70,7 +70,7 @@
                 <target>Group List</target>
             </trans-unit>
 
-            <!-- acp content -->
+            <!-- acp dashboard -->
             <trans-unit id="acp.dashboard">
                 <source>acp.dashboard</source>
                 <target>Dashboard</target>
@@ -78,6 +78,15 @@
             <trans-unit id="acp.dashboard.welcome">
                 <source>acp.dashboard.welcome</source>
                 <target>Welcome on the ACP Dashboard - the place to see it all.</target>
+            </trans-unit>
+            <!-- acp system -->
+            <trans-unit id="acp.system">
+                <source>acp.system</source>
+                <target>System Overview</target>
+            </trans-unit>
+            <trans-unit id="acp.system.configuration">
+                <source>acp.system.configuration</source>
+                <target>Configuration</target>
             </trans-unit>
             <trans-unit id="acp.options">
                 <source>acp.options</source>
@@ -95,6 +104,16 @@
             <trans-unit id="acp.options.twomartens.core.showSystemStats.label">
                 <source>acp.options.twomartens.core.showSystemStats.label</source>
                 <target>Should the system stats block be displayed?</target>
+            </trans-unit>
+
+            <!-- acp user -->
+            <trans-unit id="acp.user">
+                <source>acp.user</source>
+                <target>User and Group overview</target>
+            </trans-unit>
+            <trans-unit id="acp.user.group">
+                <source>acp.user.group</source>
+                <target>Group System</target>
             </trans-unit>
 
             <!-- acp group -->

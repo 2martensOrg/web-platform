@@ -59,3 +59,8 @@ services:
       - @twomartens.core.yaml_dumper
       - @twomartens.core.filesystem
       - @event_dispatcher
+  twomartens.core.overview.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\OverviewListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.system_overview', method: onSystem }
+      - { name: kernel.event_listener, event: 'twomartens.core.user_overview', method: onUser }
