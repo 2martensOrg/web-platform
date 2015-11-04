@@ -7,8 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace TwoMartens\Bundle\CoreBundle\Tests\Mode;
+namespace TwoMartens\Bundle\CoreBundle\Tests\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 
@@ -48,6 +49,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($frontendUserCategory, $group->getFrontendUserCategory());
         $this->assertEquals($frontendModCategory, $group->getFrontendModCategory());
         $this->assertEquals($acpCategory, $group->getACPCategory());
+        $this->assertTrue($group->getUsers()->isEmpty());
     }
 
     /**
@@ -75,5 +77,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         // test role name
         $group->setRoleName('SUPER_ADMIN');
         $this->assertEquals('SUPER_ADMIN', $group->getRoleName());
+        // test users
+        $user = $this->getMock('\TwoMartens\Bundle\CoreBundle\Model\User');
+        $users = new ArrayCollection([$user]);
+        $group->setUsers($users);
+        $this->assertEquals($users, $group->getUsers());
     }
 }

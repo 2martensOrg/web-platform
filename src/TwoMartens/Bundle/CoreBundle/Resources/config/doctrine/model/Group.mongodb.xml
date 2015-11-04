@@ -11,6 +11,8 @@
         <field name="isEssential" fieldName="isEssential" type="boolean" />
         <field name="canBeEmpty" fieldName="canBeEmpty" type="boolean" />
 
+        <reference-many field="users" target-document="TwoMartens\Bundle\CoreBundle\Model\User" />
+
         <indexes>
             <index>
                 <key name="roleName" order="asc" />

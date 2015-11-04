@@ -9,6 +9,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\Group as FOSGroup;
 
 /**
@@ -62,6 +64,12 @@ class Group extends FOSGroup
     protected $acpCategory;
 
     /**
+     * the list of users
+     * @var Collection
+     */
+    protected $users;
+
+    /**
      * Initializes the Group object.
      *
      * @param int            $id                   the ID
@@ -84,8 +92,7 @@ class Group extends FOSGroup
         OptionCategory $frontendUserCategory,
         OptionCategory $frontendModCategory,
         OptionCategory $acpCategory
-    )
-    {
+    ) {
         parent::__construct($publicName, $roles);
         $this->id = $id;
         $this->roleName = strtoupper($roleName);
@@ -94,6 +101,7 @@ class Group extends FOSGroup
         $this->frontendUserCategory = $frontendUserCategory;
         $this->frontendModCategory = $frontendModCategory;
         $this->acpCategory = $acpCategory;
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -232,5 +240,45 @@ class Group extends FOSGroup
     public function setACPCategory(OptionCategory $category)
     {
         $this->acpCategory = $category;
+    }
+
+    /**
+     * Returns the users.
+     *
+     * @return Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Sets the users.
+     *
+     * @param Collection $users
+     */
+    public function setUsers(Collection $users)
+    {
+        $this->users = $users;
+    }
+
+    /**
+     * Adds given user to group.
+     *
+     * @param User $user
+     */
+    public function addUser(User $user)
+    {
+        $this->users->add($user);
+    }
+
+    /**
+     * Removes given user from group.
+     *
+     * @param User $user
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
     }
 }

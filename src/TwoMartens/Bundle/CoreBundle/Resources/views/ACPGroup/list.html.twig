@@ -28,7 +28,7 @@
                     </td>
                     <td class="nameColumn">{{ group.getPublicName() }}</td>
                     <td class="roleNameColumn">{{ group.getRoleName() }}</td>
-                    <td class="userAmountColumn">#TODO</td>
+                    <td class="userAmountColumn">{{ group.getUsers().count() }}</td>
                 </tr>
             {% endfor %}
         </tbody>
