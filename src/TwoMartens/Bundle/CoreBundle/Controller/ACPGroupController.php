@@ -13,6 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use TwoMartens\Bundle\CoreBundle\Form\Type\GroupType;
 use TwoMartens\Bundle\CoreBundle\Group\GroupServiceInterface;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
@@ -231,6 +232,11 @@ class ACPGroupController extends AbstractACPController
             /** @var GroupServiceInterface $groupService */
             $groupService = $this->get('twomartens.core.group');
             $groupService->commitChanges();
+
+            // reauthenticate token to update roles
+            /** @var TokenInterface $token */
+            $token = $this->container->get('security.token_storage')->getToken();
+            $token->setAuthenticated(false);
             $this->success = true;
         }
 
@@ -280,6 +286,11 @@ class ACPGroupController extends AbstractACPController
             $objectManager->remove($group);
             $groupService->commitChanges();
             $objectManager->flush();
+
+            // reauthenticate token to update roles
+            /** @var TokenInterface $token */
+            $token = $this->container->get('security.token_storage')->getToken();
+            $token->setAuthenticated(false);
             $this->success = true;
         }
 
