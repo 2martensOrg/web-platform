@@ -254,6 +254,8 @@ class ACPGroupController extends AbstractACPController
      */
     public function deleteAction($rolename)
     {
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_GROUP_DELETE');
+
         /** @var ObjectManager $objectManager */
         $objectManager = $this->get('twomartens.core.db_manager');
         $repository = $objectManager->getRepository('TwoMartensCoreBundle:Group');
@@ -271,7 +273,6 @@ class ACPGroupController extends AbstractACPController
                 'TwoMartensCoreBundle'
             );
         }
-        // TODO add role validation
 
         if (!$this->error) {
             /** @var GroupServiceInterface $groupService */
