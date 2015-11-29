@@ -6,11 +6,13 @@
             <span class="category">{{ category|trans([], categories[category]) }}</span>
             <ul>
             {% for entry in subEntries %}
+                {% if entry.role is empty or is_granted(entry.role) %}
                 <li>
                     <a href="{{ path(entry['route']) }}">
                         {{ entry['entryName']|trans([], entry['translationDomain']) }}
                     </a>
                 </li>
+                {% endif %}
             {% endfor %}
             </ul>
         </div>

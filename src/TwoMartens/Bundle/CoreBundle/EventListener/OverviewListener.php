@@ -31,7 +31,8 @@ class OverviewListener
             'acp.system.configuration',
             'acp.options',
             'TwoMartensCoreBundle',
-            'acp.system.options'
+            'acp.system.options',
+            ''
         );
     }
 
@@ -47,13 +48,15 @@ class OverviewListener
             'acp.user.group',
             'acp.group.add',
             'TwoMartensCoreBundle',
-            'acp.user.group.add'
+            'acp.user.group.add',
+            'ROLE_ACP_TWOMARTENS.CORE_GROUP_ADD'
         );
         $event->addEntry(
             'acp.user.group',
             'acp.group.list',
             'TwoMartensCoreBundle',
-            'acp.user.group.list'
+            'acp.user.group.list',
+            'ROLE_ACP_TWOMARTENS.CORE_GROUP_LIST'
         );
     }
 }

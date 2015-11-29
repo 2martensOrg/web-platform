@@ -43,8 +43,8 @@ class OverviewEvent extends Event
     /**
      * Returns list of entries.
      *
-     * The list contains arrays, each of which has three keys:
-     * 'entryName', 'translationDomain', 'route'
+     * The list contains arrays, each of which has four keys:
+     * 'entryName', 'translationDomain', 'route', 'role'
      *
      * @return array[]
      */
@@ -72,8 +72,9 @@ class OverviewEvent extends Event
      * @param string $entryName
      * @param string $translationDomain
      * @param string $route
+     * @param string $role
      */
-    public function addEntry($categoryName, $entryName, $translationDomain, $route)
+    public function addEntry($categoryName, $entryName, $translationDomain, $route, $role)
     {
         if (!isset($this->entries[$categoryName])) {
             $this->addCategory($categoryName, $translationDomain);
@@ -81,7 +82,8 @@ class OverviewEvent extends Event
         $this->entries[$categoryName][] = [
             'entryName' => $entryName,
             'translationDomain' => $translationDomain,
-            'route' => $route
+            'route' => $route,
+            'role' => $role
         ];
     }
 
