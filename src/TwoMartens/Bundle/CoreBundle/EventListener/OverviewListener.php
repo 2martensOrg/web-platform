@@ -58,5 +58,21 @@ class OverviewListener
             'acp.user.group.list',
             'ROLE_ACP_TWOMARTENS.CORE_GROUP_LIST'
         );
+
+        $event->addCategory('acp.user.user', 'TwoMartensCoreBundle');
+        $event->addEntry(
+            'acp.user.user',
+            'acp.user.add',
+            'TwoMartensCoreBundle',
+            'acp.user.user.add',
+            'ROLE_ACP_TWOMARTENS.CORE_USER_ADD'
+        );
+        $event->addEntry(
+            'acp.user.user',
+            'acp.user.list',
+            'TwoMartensCoreBundle',
+            'acp.user.user.list',
+            'ROLE_ACP_TWOMARTENS.CORE_USER_LIST'
+        );
     }
 }
