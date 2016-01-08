@@ -48,7 +48,11 @@ class ACPGroupOptionListener extends AbstractGroupOptionListener
             'group_add' => 'checkbox',
             'group_list' => 'checkbox',
             'group_edit' => 'checkbox',
-            'group_delete' => 'checkbox'
+            'group_delete' => 'checkbox',
+            'user_add' => 'checkbox',
+            'user_list' => 'checkbox',
+            'user_edit' => 'checkbox',
+            'user_delete' => 'checkbox'
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];
