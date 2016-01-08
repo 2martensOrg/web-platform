@@ -1,0 +1,13 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block innerContent %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.groups) }}
+    {{ form_row(form.save, {'attr': {'class': 'btn-primary'} }) }}
+    {{ form_end(form) }}
+{% endblock %}

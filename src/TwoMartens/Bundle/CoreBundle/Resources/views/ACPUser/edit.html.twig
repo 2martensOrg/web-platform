@@ -1,0 +1,6 @@
+{% extends 'TwoMartensCoreBundle:ACPUser:add.html.twig' %}
+
+{% block innerContent %}
+    <p class="alert alert-warning" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.user.edit.warning{% endtrans %}</p>
+    {{ parent() }}
+{% endblock %}

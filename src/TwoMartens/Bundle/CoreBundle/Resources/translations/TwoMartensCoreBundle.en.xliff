@@ -269,6 +269,10 @@
                 <source>acp.user.password</source>
                 <target>Password</target>
             </trans-unit>
+            <trans-unit id="acp.user.password.error.invalid">
+                <source>acp.user.password.error.invalid</source>
+                <target>The entered passwords don't match.</target>
+            </trans-unit>
             <trans-unit id="acp.user.password_confirm">
                 <source>acp.user.password_confirm</source>
                 <target>Confirm Password</target>
