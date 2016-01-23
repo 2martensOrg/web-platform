@@ -212,6 +212,12 @@ class ACPUserController extends AbstractACPController
         $repository = $objectManager->getRepository('TwoMartensCoreBundle:User');
         /** @var User $user */
         $user = $repository->findOneBy(['usernameCanonical' => $username]);
+        /** @var User $loggedInUser */
+        $loggedInUser = $this->getUser();
+
+        if ($user->getUsernameCanonical() == $loggedInUser->getUsernameCanonical()) {
+            throw $this->createAccessDeniedException('You cannot delete yourself!');
+        }
 
         if (!$this->error) {
             /** @var UserManager $userManager */

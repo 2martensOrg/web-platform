@@ -21,7 +21,7 @@
                     {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_EDIT') %}
                         <a href="{{ path('acp.user.user.edit', {'username': user.getUsernameCanonical()}) }}"><span class="fa fa-pencil"></span></a>
                     {% endif %}
-                    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_DELETE') %}
+                    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_DELETE') and user.getUsernameCanonical() != app.user.getUsernameCanonical() %}
                         <a href="{{ path('acp.user.user.delete', {'username': user.getUsernameCanonical()}) }}"><span class="fa fa-times"></span></a>
                     {% endif %}
                 </td>
