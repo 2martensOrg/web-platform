@@ -16,10 +16,15 @@ matrix:
     - php: hhvm
     - php: 7.0
 
+services:
+  - mongodb
+
 before_script:
   - phpenv config-add php_config.ini
   #- composer selfupdate
   - composer install -n --prefer-source --no-progress
+  - chmod +x setup.sh
+  - ./setup.sh
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
