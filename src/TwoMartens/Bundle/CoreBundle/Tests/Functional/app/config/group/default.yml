@@ -1,0 +1,13 @@
+acp:
+    twomartens.core:
+        access: false
+        group_add: false
+        group_list: false
+        group_edit: false
+        group_delete: false
+        user_add: false
+        user_list: false
+        user_edit: false
+        user_delete: false
+mod: {  }
+frontend: {  }
