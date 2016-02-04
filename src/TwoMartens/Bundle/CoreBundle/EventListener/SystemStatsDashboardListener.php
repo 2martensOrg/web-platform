@@ -47,8 +47,7 @@ class SystemStatsDashboardListener
         EngineInterface $templating,
         TranslatorInterface $translator,
         OptionServiceInterface $optionService
-    )
-    {
+    ) {
         $this->templating = $templating;
         $this->translator = $translator;
         $this->optionService = $optionService;

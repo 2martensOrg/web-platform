@@ -135,8 +135,7 @@ class GroupType extends AbstractType
         FormBuilderInterface $source,
         FormBuilderInterface $target,
         $prefix
-    )
-    {
+    ) {
         /** @var FormBuilderInterface $field */
         foreach ($source as $field) {
             $newName = $prefix . $field->getName();

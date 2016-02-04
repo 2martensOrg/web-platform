@@ -294,8 +294,7 @@ class ACPUserController extends AbstractACPController
             /** @var Group $group */
             if (in_array($group->getRoleName(), $submittedGroups)) {
                 $user->addGroup($group);
-            }
-            else {
+            } else {
                 $user->removeGroup($group);
             }
         }

@@ -218,8 +218,7 @@ class GroupServiceTest extends \PHPUnit_Framework_TestCase
         try {
             $this->groupService->getOptionsFor('ADMIN');
             $this->fail();
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->assertTrue(true);
         }
     }

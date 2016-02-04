@@ -38,7 +38,8 @@ class TwoMartensCoreBundle extends Bundle
             realpath(__DIR__ . '/Resources/config/doctrine/model') => 'TwoMartens\Bundle\CoreBundle\Model',
         );
 
-        if ($symfonyVersion && class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
+        if ($symfonyVersion &&
+            class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
             $container->addCompilerPass(
                 DoctrineOrmMappingsPass::createXmlMappingDriver(
                     $mappings,
@@ -49,7 +50,8 @@ class TwoMartensCoreBundle extends Bundle
             );
         }
 
-        if ($symfonyVersion && class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
+        if ($symfonyVersion &&
+            class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
             $container->addCompilerPass(
                 DoctrineMongoDBMappingsPass::createXmlMappingDriver(
                     $mappings,
@@ -60,7 +62,8 @@ class TwoMartensCoreBundle extends Bundle
             );
         }
 
-        if ($symfonyVersion && class_exists('Doctrine\Bundle\CouchDBBundle\DependencyInjection\Compiler\DoctrineCouchDBMappingsPass')) {
+        if ($symfonyVersion &&
+            class_exists('Doctrine\Bundle\CouchDBBundle\DependencyInjection\Compiler\DoctrineCouchDBMappingsPass')) {
             $container->addCompilerPass(
                 DoctrineCouchDBMappingsPass::createXmlMappingDriver(
                     $mappings,

@@ -59,7 +59,7 @@ interface GroupServiceInterface
 
     /**
      * Sets the given option for given group and category.
-     * 
+     *
      * @param string $groupRoleName
      * @param string $superCategory acp, mod, frontend
      * @param string $category

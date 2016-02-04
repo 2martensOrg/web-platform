@@ -93,8 +93,7 @@ class GroupService implements GroupServiceInterface
         Dumper $dumper,
         Filesystem $filesystem,
         EventDispatcherInterface $dispatcher
-    )
-    {
+    ) {
         $this->finder = $finder;
         $this->parser = $parser;
         $this->dumper = $dumper;
