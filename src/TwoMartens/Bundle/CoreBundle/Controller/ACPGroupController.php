@@ -11,6 +11,7 @@ namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -130,21 +131,14 @@ class ACPGroupController extends AbstractACPController
         );
         $form = $this->createForm(
             $groupType,
-            $group
+            $group,
+            ['validation_groups' => ['Registration', 'NewGroup']]
         );
 
         $form->handleRequest($request);
         $this->assignVariables();
 
         if ($form->isValid()) {
-            // save changed options to file
-            $submittedData = $request->request->all();
-            $submittedData = $submittedData['group'];
-
-            // updating core group values
-            $group->setPublicName($submittedData['name']);
-            $group->setRoleName($submittedData['roleName']);
-
             /** @var OptionCategory[] $categories */
             $categories = [
                 $group->getACPCategory(),
@@ -153,7 +147,7 @@ class ACPGroupController extends AbstractACPController
             ];
             $roles = [];
             foreach ($categories as $category) {
-                $newRoles = $this->updateOptions($category, $submittedData);
+                $newRoles = $this->updateOptions($category, $form);
                 $roles = array_merge($roles, $newRoles);
             }
             // add group role
@@ -206,13 +200,6 @@ class ACPGroupController extends AbstractACPController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // save changed options to file
-            $submittedData = $request->request->all();
-            $submittedData = $submittedData['group'];
-
-            // updating core group values
-            $group->setPublicName($submittedData['name']);
-
             /** @var OptionCategory[] $categories */
             $categories = [
                 $group->getACPCategory(),
@@ -221,7 +208,7 @@ class ACPGroupController extends AbstractACPController
             ];
             $roles = [];
             foreach ($categories as $category) {
-                $newRoles = $this->updateOptions($category, $submittedData);
+                $newRoles = $this->updateOptions($category, $form);
                 $roles = array_merge($roles, $newRoles);
             }
             // add group role
@@ -349,11 +336,11 @@ class ACPGroupController extends AbstractACPController
      * Updates the options of the given category and returns the roles.
      *
      * @param OptionCategory $category
-     * @param array          $submittedData
+     * @param Form           $form
      *
      * @return string[]
      */
-    private function updateOptions(OptionCategory $category, $submittedData)
+    private function updateOptions(OptionCategory $category, Form $form)
     {
         $categories = $category->getCategories();
         $superCategoryName = $category->getName();
@@ -368,11 +355,11 @@ class ACPGroupController extends AbstractACPController
                 $fieldName = $superCategoryName . '_' .
                     str_replace('.', '_', $categoryName) .
                     '_' . $optionName;
-                if (!isset($submittedData[$fieldName])) {
+                if (!$form->has($fieldName)) {
                     // should be the case only for checkbox
                     $fieldValue = false;
                 } else {
-                    $fieldValue = $submittedData[$fieldName];
+                    $fieldValue = $form->get($fieldName);
                 }
                 settype($fieldValue, $optionType);
                 if ($optionType == 'boolean' && $fieldValue) {

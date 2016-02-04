@@ -6,6 +6,7 @@ use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappi
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use TwoMartens\Bundle\CoreBundle\DependencyInjection\Compiler\ValidationPass;
 
 /**
  * Bundle class for 2WP Core Bundle.
@@ -22,6 +23,7 @@ class TwoMartensCoreBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
+        $container->addCompilerPass(new ValidationPass());
 
         $this->addRegisterMappingsPass($container);
     }

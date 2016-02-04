@@ -12,6 +12,7 @@ namespace TwoMartens\Bundle\CoreBundle\Form\Type;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 
@@ -81,7 +82,7 @@ class GroupType extends AbstractType
             'text',
             [
                 'label' => 'acp.group.name',
-                'mapped' => false,
+                'mapped' => true,
                 'required' => true,
                 'data' => $group->getPublicName(),
                 'translation_domain' => 'TwoMartensCoreBundle'
@@ -92,7 +93,7 @@ class GroupType extends AbstractType
             'text',
             [
                 'label' => 'acp.group.roleName',
-                'mapped' => false,
+                'mapped' => true,
                 'required' => true,
                 'read_only' => $this->editForm,
                 'data' => $group->getRoleName(),
@@ -122,6 +123,16 @@ class GroupType extends AbstractType
     public function getName()
     {
         return 'group';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'validation_groups' => ['Registration'],
+        ]);
     }
 
     /**

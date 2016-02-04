@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <!-- user and group system messages -->
+            <trans-unit id="twomartens.core.roleName.already_used">
+                <source>twomartens.core.roleName.already_used</source>
+                <target>The role name is already used</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.roleName.blank">
+                <source>twomartens.core.roleName.blank</source>
+                <target>Please enter a role name</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.roleName.short">
+                <source>twomartens.core.roleName.short</source>
+                <target>"[-Inf,Inf]The role name is too short"</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.roleName.long">
+                <source>twomartens.core.roleName.long</source>
+                <target>"[-Inf,Inf]The role name is too long"</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

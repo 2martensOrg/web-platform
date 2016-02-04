@@ -37,6 +37,7 @@ class TwoMartensCoreExtension extends Extension
         $config = [
             'db_driver' => 'mongodb'
         ];
+        $container->setParameter('twomartens.core.storage', $config['db_driver']);
 
         if ('custom' !== $config['db_driver']) {
             $loader->load(sprintf('%s.yml', $config['db_driver']));

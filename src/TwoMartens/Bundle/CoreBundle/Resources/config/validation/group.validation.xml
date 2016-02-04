@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="TwoMartens\Bundle\CoreBundle\Model\Group">
+        <property name="roleName">
+            <constraint name="NotBlank">
+                <option name="message">twomartens.core.roleName.blank</option>
+                <option name="groups">
+                    <value>NewGroup</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="minMessage">twomartens.core.roleName.short</option>
+                <option name="max">254</option>
+                <option name="maxMessage">twomartens.core.roleName.long</option>
+                <option name="groups">
+                    <value>NewGroup</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

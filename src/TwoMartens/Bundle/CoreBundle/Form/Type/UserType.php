@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 use TwoMartens\Bundle\CoreBundle\Model\User;
 
@@ -134,5 +135,15 @@ class UserType extends AbstractType
     public function getName()
     {
         return 'user';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'validation_groups' => ['Registration'],
+        ]);
     }
 }
