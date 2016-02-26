@@ -51,6 +51,10 @@ services:
     class: TwoMartens\Bundle\CoreBundle\EventListener\ACPGroupOptionListener
     tags:
       - { name: kernel.event_listener, event: 'twomartens.core.group_type.acp_options', method: onBuildForm }
+  twomartens.core.group.option_type.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\GroupOptionTypeListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.group_service.init', method: onGroupServiceInit }
   twomartens.core.group:
     class: TwoMartens\Bundle\CoreBundle\Group\GroupService
     arguments:
