@@ -296,6 +296,11 @@ class ACPUserController extends AbstractACPController
                 $user->addGroup($group);
                 $group->addUser($user);
             } else {
+                // don't remove user from group if he is last user and group
+                // must not be empty
+                if (!$group->canBeEmpty() && $group->getUsers()->count() <= 1) {
+                    continue;
+                }
                 $user->removeGroup($group);
                 $group->removeUser($user);
             }

@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 use TwoMartens\Bundle\CoreBundle\Model\User;
@@ -31,6 +33,8 @@ class UserType extends AbstractType
 {
     private $isAddMode;
     private $groups;
+    private $disabledGroups;
+    private $data;
 
     /**
      * UserType constructor.
@@ -42,6 +46,8 @@ class UserType extends AbstractType
     {
         $this->groups = $groups;
         $this->isAddMode = $isAddMode;
+        $this->disabledGroups = [];
+        $this->data = [];
     }
 
     /**
@@ -91,13 +97,15 @@ class UserType extends AbstractType
         );
 
         $choices = [];
-        $selected = [];
         $userGroups = $user->getGroups();
         foreach ($this->groups as $group) {
             /** @var Group $group */
             $choices[$group->getPublicName()] = $group->getRoleName();
             if ($userGroups->contains($group)) {
-                $selected[] = $group->getRoleName();
+                $this->data[] = $group->getRoleName();
+                if (!$group->canBeEmpty() && $group->getUsers()->count() <= 1) {
+                    $this->disabledGroups[] = $group->getRoleName();
+                }
             }
         }
 
@@ -113,7 +121,7 @@ class UserType extends AbstractType
                 'translation_domain' => 'TwoMartensCoreBundle',
                 'choices_as_values' => true,
                 'choices' => $choices,
-                'data' => $selected
+                'data' => $this->data
             ]
         );
 
@@ -125,6 +133,19 @@ class UserType extends AbstractType
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        foreach ($view->children['groups']->children as $group) {
+            $groupRole = $this->data[$group->vars['value']];
+            if (in_array($groupRole, $this->disabledGroups, true)) {
+                $group->vars['attr']['disabled'] = 'disabled';
+            }
+        }
     }
 
     /**

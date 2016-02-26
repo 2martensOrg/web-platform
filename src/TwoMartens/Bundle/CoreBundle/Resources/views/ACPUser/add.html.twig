@@ -11,3 +11,15 @@
     {{ form_row(form.save, {'attr': {'class': 'btn-primary'} }) }}
     {{ form_end(form) }}
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function() {
+            $('form').submit(function () {
+                $('#user_groups').find('input:disabled').prop('disabled', false);
+            });
+        });
+        //]]>
+    </script>
+{% endblock %}

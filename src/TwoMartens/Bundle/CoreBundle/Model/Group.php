@@ -269,7 +269,9 @@ class Group extends FOSGroup
      */
     public function addUser(User $user)
     {
-        $this->users->add($user);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+        }
     }
 
     /**
@@ -279,6 +281,8 @@ class Group extends FOSGroup
      */
     public function removeUser(User $user)
     {
-        $this->users->removeElement($user);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
     }
 }
