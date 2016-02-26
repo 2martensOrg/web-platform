@@ -1,2 +1,2 @@
-acp.dashboard:
+acp:
     resource: @TwoMartensCoreBundle/Resources/config/routing.yml

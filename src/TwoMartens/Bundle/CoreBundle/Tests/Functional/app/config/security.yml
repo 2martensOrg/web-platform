@@ -1,0 +1,35 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER, ROLE_ACP_TWOMARTENS.CORE_ACCESS
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        acp:
+            pattern: ^/acp/
+            http_basic:
+                provider: in_memory
+            logout:
+                path:   acp.logout
+                target: acp.login
+            anonymous: ~
+        default:
+            anonymous: ~
+    access_control:
+        - { path: ^/acp/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/acp/, roles: ROLE_ACP_TWOMARTENS.CORE_ACCESS }

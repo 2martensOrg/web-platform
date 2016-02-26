@@ -22,7 +22,7 @@ class ACPOptionControllerTest extends WebTestCase
      */
     public function testOptionForm()
     {
-        $client = $this->createClient(array('test_case' => 'ACPOption', 'root_config' => 'config.yml'));
+        $client = $this->createClient(array('test_case' => 'ACPOption'));
         $crawler = $client->request('GET', '/acp/system/options');
         $html = $crawler->html();
 

@@ -13,11 +13,25 @@ namespace TwoMartens\Bundle\CoreBundle\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
 
 class WebTestCase extends BaseWebTestCase
 {
-    public static function assertRedirect($response, $location)
+    protected static function createClient(array $options = array(), array $server = array())
+    {
+        $client = parent::createClient($options, array_merge_recursive(
+            $server,
+            array(
+                'PHP_AUTH_USER' => 'admin',
+                'PHP_AUTH_PW' => 'admin'
+            )
+        ));
+
+        return $client;
+    }
+
+    public static function assertRedirect(Response $response, $location)
     {
         self::assertTrue(
             $response->isRedirect(),
@@ -53,7 +67,7 @@ class WebTestCase extends BaseWebTestCase
 
         return new $class(
             $options['test_case'],
-            isset($options['root_config']) ? $options['root_config'] : 'config.yml',
+            'default.yml',
             isset($options['environment']) ?
                 $options['environment'] :
                 'frameworkbundletest'.strtolower($options['test_case']),
