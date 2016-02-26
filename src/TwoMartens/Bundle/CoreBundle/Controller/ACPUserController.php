@@ -17,6 +17,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 use TwoMartens\Bundle\CoreBundle\Form\Type\UserType;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
@@ -112,9 +113,10 @@ class ACPUserController extends AbstractACPController
         /** @var Collection $groups */
         $groups = new ArrayCollection($repositoryGroup->findAll());
         $isAddMode = true;
-
+        /** @var TranslatorInterface $translator */
+        $translator = $this->get('translator');
         $form = $this->createForm(
-            new UserType($groups, $isAddMode),
+            new UserType($groups, $translator, $isAddMode),
             $user
         );
 
@@ -163,8 +165,10 @@ class ACPUserController extends AbstractACPController
         /** @var Collection $groups */
         $groups = new ArrayCollection($repositoryGroup->findAll());
         $isAddMode = false;
+        /** @var TranslatorInterface $translator */
+        $translator = $this->get('translator');
         $form = $this->createForm(
-            new UserType($groups, $isAddMode),
+            new UserType($groups, $translator, $isAddMode),
             $user,
             [
                 'validation_groups' => ['Profile']

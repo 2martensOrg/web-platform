@@ -20,6 +20,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 use TwoMartens\Bundle\CoreBundle\Model\Group;
 use TwoMartens\Bundle\CoreBundle\Model\User;
 
@@ -37,15 +38,23 @@ class UserType extends AbstractType
     private $data;
 
     /**
+     * the translator
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * UserType constructor.
      *
-     * @param Collection $groups
-     * @param bool       $isAddMode
+     * @param Collection          $groups
+     * @param TranslatorInterface $translator
+     * @param bool                $isAddMode
      */
-    public function __construct(Collection $groups, $isAddMode)
+    public function __construct(Collection $groups, TranslatorInterface $translator, $isAddMode)
     {
         $this->groups = $groups;
         $this->isAddMode = $isAddMode;
+        $this->translator = $translator;
         $this->disabledGroups = [];
         $this->data = [];
     }
@@ -100,7 +109,12 @@ class UserType extends AbstractType
         $userGroups = $user->getGroups();
         foreach ($this->groups as $group) {
             /** @var Group $group */
-            $choices[$group->getPublicName()] = $group->getRoleName();
+            $translatedName = $this->translator->trans(
+                $group->getPublicName(),
+                [],
+                'TwoMartensGroups'
+            );
+            $choices[$translatedName] = $group->getRoleName();
             if ($userGroups->contains($group)) {
                 $this->data[] = $group->getRoleName();
                 if (!$group->canBeEmpty() && $group->getUsers()->count() <= 1) {
