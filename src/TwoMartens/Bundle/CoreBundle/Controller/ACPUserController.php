@@ -165,7 +165,10 @@ class ACPUserController extends AbstractACPController
         $isAddMode = false;
         $form = $this->createForm(
             new UserType($groups, $isAddMode),
-            $user
+            $user,
+            [
+                'validation_groups' => ['Profile']
+            ]
         );
 
         $form->handleRequest($request);
