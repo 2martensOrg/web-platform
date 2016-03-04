@@ -4,5 +4,5 @@ services:
     factory: ["@doctrine_mongodb", getManager]
   twomartens.core.group_listener:
     class: TwoMartens\Bundle\CoreBundle\Doctrine\MongoDB\GroupModelListener
-    arguments: [@twomartens.core.group]
+    arguments: ["@twomartens.core.group"]
     public: false
