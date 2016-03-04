@@ -2,4 +2,3 @@ phpunit.xml
 composer.phar
 autoload.php
 /vendor/
-composer.lock
