@@ -11,6 +11,7 @@ namespace TwoMartens\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 
@@ -48,21 +49,11 @@ class OptionConfigurationType extends AbstractType
         );
         $builder->add(
             'save',
-            'submit',
+            SubmitType::class,
             [
                 'label' => 'button.save',
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
         );
-    }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
-     */
-    public function getName()
-    {
-        return 'option_configuration';
     }
 }

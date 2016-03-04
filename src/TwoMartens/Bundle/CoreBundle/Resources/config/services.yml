@@ -37,12 +37,17 @@ services:
     class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
     arguments: [@event_dispatcher]
     tags:
-      - { name: form.type, alias: option_configuration }
+      - { name: form.type }
   twomartens.core.form.type.group:
     class: TwoMartens\Bundle\CoreBundle\Form\Type\GroupType
     arguments: [@event_dispatcher]
     tags:
-      - { name: form.type, alias: group }
+      - { name: form.type }
+  twomartens.core.form.type.user:
+    class: TwoMartens\Bundle\CoreBundle\Form\Type\UserType
+    arguments: [@translator]
+    tags:
+      - { name: form.type }
   twomartens.core.option.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
     tags:

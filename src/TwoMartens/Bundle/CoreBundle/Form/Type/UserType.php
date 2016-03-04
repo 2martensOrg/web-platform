@@ -9,7 +9,6 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Form\Type;
 
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -32,8 +31,6 @@ use TwoMartens\Bundle\CoreBundle\Model\User;
  */
 class UserType extends AbstractType
 {
-    private $isAddMode;
-    private $groups;
     private $disabledGroups;
     private $data;
 
@@ -46,14 +43,10 @@ class UserType extends AbstractType
     /**
      * UserType constructor.
      *
-     * @param Collection          $groups
      * @param TranslatorInterface $translator
-     * @param bool                $isAddMode
      */
-    public function __construct(Collection $groups, TranslatorInterface $translator, $isAddMode)
+    public function __construct(TranslatorInterface $translator)
     {
-        $this->groups = $groups;
-        $this->isAddMode = $isAddMode;
         $this->translator = $translator;
         $this->disabledGroups = [];
         $this->data = [];
@@ -66,6 +59,8 @@ class UserType extends AbstractType
     {
         /** @var User $user */
         $user = $options['data'];
+        $groups = $options['groups'];
+        $isAddForm = $options['isAddForm'];
 
         $builder->add(
             'username',
@@ -100,14 +95,14 @@ class UserType extends AbstractType
                     'label' => 'acp.user.password_confirm',
                 ],
                 'mapped' => true,
-                'required' => $this->isAddMode,
+                'required' => $isAddForm,
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
         );
 
         $choices = [];
         $userGroups = $user->getGroups();
-        foreach ($this->groups as $group) {
+        foreach ($groups as $group) {
             /** @var Group $group */
             $translatedName = $this->translator->trans(
                 $group->getPublicName(),
@@ -160,16 +155,6 @@ class UserType extends AbstractType
                 $group->vars['attr']['disabled'] = 'disabled';
             }
         }
-    }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
-     */
-    public function getName()
-    {
-        return 'user';
     }
 
     /**

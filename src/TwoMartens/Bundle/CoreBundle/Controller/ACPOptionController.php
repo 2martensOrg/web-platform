@@ -11,6 +11,7 @@ namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
 use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Option\OptionServiceInterface;
@@ -43,7 +44,7 @@ class ACPOptionController extends AbstractACPController
         $this->options = $optionService->getOptions();
 
         $form = $this->createForm(
-            'option_configuration',
+            OptionConfigurationType::class,
             $this->options
         );
 
