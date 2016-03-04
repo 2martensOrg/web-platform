@@ -1,2 +1,2 @@
 acp:
-    resource: @TwoMartensCoreBundle/Resources/config/routing.yml
+    resource: "@TwoMartensCoreBundle/Resources/config/routing.yml"
