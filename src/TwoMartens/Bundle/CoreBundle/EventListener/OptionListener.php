@@ -41,12 +41,11 @@ class OptionListener extends AbstractOptionListener
     /**
      * {@inheritdoc}
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct()
     {
-        parent::__construct($translator);
         // TODO add real options as they are determined
         $this->fieldMap = [
-            'testOption' => 'checkbox'
+            'showSystemStats' => 'checkbox'
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];

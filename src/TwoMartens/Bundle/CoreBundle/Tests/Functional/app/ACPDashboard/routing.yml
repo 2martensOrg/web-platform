@@ -1,2 +1,0 @@
-acp.dashboard:
-    resource: @TwoMartensCoreBundle/Resources/config/routing.yml

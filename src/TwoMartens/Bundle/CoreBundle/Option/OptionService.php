@@ -14,8 +14,8 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\Yaml\Parser;
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 use TwoMartens\Bundle\CoreBundle\Util\ConfigUtil;
 
 /**

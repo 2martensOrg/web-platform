@@ -1,0 +1,36 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+
+{% block innerContent %}
+    {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.group.delete.success{% endtrans %}</p>{% endif %}
+    {% if error %}<p class="alert alert-danger" role="alert">{{ errorMessage }}</p>{% endif %}
+    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_ADD') %}
+        <a class="btn btn-default" href="{{ path('acp.user.group.add') }}"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.group.add{% endtrans %}</a>
+    {% endif %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="iconColumn"></th>
+                <th class="nameColumn">{% trans from 'TwoMartensCoreBundle' %}acp.group.list.name{% endtrans %}</th>
+                <th class="roleNameColumn">{% trans from 'TwoMartensCoreBundle' %}acp.group.list.rolename{% endtrans %}</th>
+                <th class="userAmountColumn">{% trans from 'TwoMartensCoreBundle' %}acp.group.list.amountUsers{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+                <tr>
+                    <td class="iconColumn">
+                        {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_EDIT') %}
+                            <a href="{{ path('acp.user.group.edit', {'rolename': group.getRoleName()}) }}"><span class="fa fa-pencil"></span></a>
+                        {% endif %}
+                        {% if group.isEssential() == false and is_granted('ROLE_ACP_TWOMARTENS.CORE_GROUP_DELETE') %}
+                            <a href="{{ path('acp.user.group.delete', {'rolename': group.getRoleName()}) }}"><span class="fa fa-times"></span></a>
+                        {% endif %}
+                    </td>
+                    <td class="nameColumn">{{ group.getPublicName() }}</td>
+                    <td class="roleNameColumn">{{ group.getRoleName() }}</td>
+                    <td class="userAmountColumn">{{ group.getUsers().count() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

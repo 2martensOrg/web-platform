@@ -9,8 +9,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Util;
 
-use TwoMartens\Bundle\CoreBundle\Model\Option\Option;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Model\Option;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Provides utility methods for config-related things.
@@ -59,6 +59,7 @@ class ConfigUtil
         $type = str_replace('double', 'float', gettype($value));
         $type = str_replace('NULL', 'null', $type);
         $option = new Option(
+            0,
             $name,
             $type,
             $value
@@ -80,11 +81,15 @@ class ConfigUtil
         $categories = $optionCategory->getCategories();
 
         foreach ($categories as $category) {
-            $optionsArray = [];
             $options = $category->getOptions();
+            $_categories = $category->getCategories();
 
-            foreach ($options as $option) {
-                $optionsArray[$option->getName()] = $option->getValue();
+            $optionsArray = self::getOptionsArray($options);
+
+            foreach ($_categories as $_category) {
+                $_options = $_category->getOptions();
+                $_optionsArray = self::getOptionsArray($_options);
+                $optionsArray[$_category->getName()] = $_optionsArray;
             }
 
             $result[$category->getName()] = $optionsArray;
@@ -94,16 +99,37 @@ class ConfigUtil
     }
 
     /**
+     * Returns an array of options.
+     *
+     * @param Option[] $options
+     *
+     * @return array
+     */
+    private static function getOptionsArray($options)
+    {
+        $optionsArray = [];
+        foreach ($options as $option) {
+            $optionsArray[$option->getName()] = $option->getValue();
+        }
+
+        return $optionsArray;
+    }
+
+    /**
      * Converts the given values into options.
      *
-     * @param string $key
-     * @param array  $values
+     * @param string      $key
+     * @param array|null  $values
      *
      * @return OptionCategory
      */
     private static function convertValues($key, $values)
     {
         $returnCategory = new OptionCategory();
+
+        if ($values === null) {
+            return $returnCategory;
+        }
 
         if (self::isAssoc($values)) {
             $options = [];
@@ -131,6 +157,7 @@ class ConfigUtil
                     $type = str_replace('double', 'float', gettype($value));
                     $type = str_replace('NULL', 'null', $type);
                     $options[] = new Option(
+                        0,
                         $_key,
                         $type,
                         $value
@@ -153,7 +180,7 @@ class ConfigUtil
                         $options[] = $option;
                     // case: value = [a: b, d: e]
                     } elseif (count($subOptions) > 1) {
-                        $option = new Option('', 'array');
+                        $option = new Option(0, '', 'array');
                         $optionValues = [];
                         foreach ($subOptions as $subOption) {
                             $optionValues[$subOption->getName()] = $subOption->getValue();
@@ -167,7 +194,7 @@ class ConfigUtil
             }
             // case: values = [a, b, c, d]
             if (!empty($_values)) {
-                $options[] = new Option($key, 'array', $_values);
+                $options[] = new Option(0, $key, 'array', $_values);
             }
             $returnCategory->setOptions($options);
         }

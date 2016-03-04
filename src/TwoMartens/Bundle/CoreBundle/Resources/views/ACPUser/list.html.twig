@@ -1,0 +1,34 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+
+{% block innerContent %}
+    {% if success %}<p class="alert alert-success" role="alert">{% trans from 'TwoMartensCoreBundle' %}acp.user.delete.success{% endtrans %}</p>{% endif %}
+    {% if error %}<p class="alert alert-danger" role="alert">{{ errorMessage }}</p>{% endif %}
+    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_ADD') %}
+        <a class="btn btn-default" href="{{ path('acp.user.user.add') }}"><span class="fa fa-plus"></span> {% trans from 'TwoMartensCoreBundle' %}acp.user.add{% endtrans %}</a>
+    {% endif %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="iconColumn"></th>
+            <th class="usernameColumn">{% trans from 'TwoMartensCoreBundle' %}acp.user.list.username{% endtrans %}</th>
+            <th class="emailColumn">{% trans from 'TwoMartensCoreBundle' %}acp.user.list.email{% endtrans %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="iconColumn">
+                    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_EDIT') %}
+                        <a href="{{ path('acp.user.user.edit', {'username': user.getUsernameCanonical()}) }}"><span class="fa fa-pencil"></span></a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ACP_TWOMARTENS.CORE_USER_DELETE') and user.getUsernameCanonical() != app.user.getUsernameCanonical() %}
+                        <a href="{{ path('acp.user.user.delete', {'username': user.getUsernameCanonical()}) }}"><span class="fa fa-times"></span></a>
+                    {% endif %}
+                </td>
+                <td class="usernameColumn">{{ user.getUsername() }}</td>
+                <td class="emailColumn">{{ user.getEmailCanonical() }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

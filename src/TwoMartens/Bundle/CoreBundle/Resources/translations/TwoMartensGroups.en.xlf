@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <!-- system groups -->
+            <trans-unit id="twomartens.core.group.admin">
+                <source>twomartens.core.group.admin</source>
+                <target>Administrators</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.group.mod">
+                <source>twomartens.core.group.mod</source>
+                <target>Moderators</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.group.user">
+                <source>twomartens.core.group.user</source>
+                <target>Registered Users</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.group.guest">
+                <source>twomartens.core.group.guest</source>
+                <target>Guests</target>
+            </trans-unit>
+            <trans-unit id="twomartens.core.group.everyone">
+                <source>twomartens.core.group.everyone</source>
+                <target>Everyone</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

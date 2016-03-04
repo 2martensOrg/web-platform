@@ -51,13 +51,10 @@ class AppKernel extends Kernel
 
     public function __construct($testCase, $rootConfig, $environment, $debug)
     {
-        if (!is_dir(__DIR__.'/'.$testCase)) {
-            throw new \InvalidArgumentException(sprintf('The test case "%s" does not exist.', $testCase));
-        }
         $this->testCase = $testCase;
 
         $fs = new Filesystem();
-        if (!$fs->isAbsolutePath($rootConfig) && !file_exists($rootConfig = __DIR__.'/'.$testCase.'/'.$rootConfig)) {
+        if (!$fs->isAbsolutePath($rootConfig) && !file_exists($rootConfig = __DIR__.'/config/'.$rootConfig)) {
             throw new \InvalidArgumentException(sprintf('The root config "%s" does not exist.', $rootConfig));
         }
         $this->rootConfig = $rootConfig;
@@ -67,7 +64,7 @@ class AppKernel extends Kernel
 
     public function registerBundles()
     {
-        if (!file_exists($filename = $this->getRootDir().'/'.$this->testCase.'/bundles.php')) {
+        if (!file_exists($filename = $this->getRootDir().'/config/bundles.php')) {
             throw new \RuntimeException(sprintf('The bundles file "%s" does not exist.', $filename));
         }
 

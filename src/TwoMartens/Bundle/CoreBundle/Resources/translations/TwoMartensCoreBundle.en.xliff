@@ -2,6 +2,12 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="" >
         <body>
+            <!-- general stuff -->
+            <trans-unit id="button.save">
+                <source>button.save</source>
+                <target>Save</target>
+            </trans-unit>
+
             <!-- acp navigation -->
             <trans-unit id="acp.nav.home">
                 <source>acp.nav.home</source>
@@ -28,6 +34,16 @@
                 <target>globalTitle - ACP</target>
             </trans-unit>
 
+            <!-- acp login -->
+            <trans-unit id="acp.login.title">
+                <source>acp.login.title</source>
+                <target>ACP-Login</target>
+            </trans-unit>
+            <trans-unit id="acp.login.button">
+                <source>acp.login.button</source>
+                <target>Login</target>
+            </trans-unit>
+
             <!-- breadcrumbs -->
             <trans-unit id="acp.breadcrumb.system">
                 <source>acp.breadcrumb.system</source>
@@ -37,8 +53,36 @@
                 <source>acp.breadcrumb.options</source>
                 <target>Options</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.user">
+                <source>acp.breadcrumb.user</source>
+                <target>User and Group Management</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.add">
+                <source>acp.breadcrumb.user.group.add</source>
+                <target>Add group</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.edit">
+                <source>acp.breadcrumb.user.group.edit</source>
+                <target>Edit group</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.group.list">
+                <source>acp.breadcrumb.user.group.list</source>
+                <target>Group List</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.user.add">
+                <source>acp.breadcrumb.user.user.add</source>
+                <target>Add user</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.user.edit">
+                <source>acp.breadcrumb.user.user.edit</source>
+                <target>Edit user</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.user.user.list">
+                <source>acp.breadcrumb.user.user.list</source>
+                <target>User List</target>
+            </trans-unit>
 
-            <!-- acp content -->
+            <!-- acp dashboard -->
             <trans-unit id="acp.dashboard">
                 <source>acp.dashboard</source>
                 <target>Dashboard</target>
@@ -46,6 +90,15 @@
             <trans-unit id="acp.dashboard.welcome">
                 <source>acp.dashboard.welcome</source>
                 <target>Welcome on the ACP Dashboard - the place to see it all.</target>
+            </trans-unit>
+            <!-- acp system -->
+            <trans-unit id="acp.system">
+                <source>acp.system</source>
+                <target>System Overview</target>
+            </trans-unit>
+            <trans-unit id="acp.system.configuration">
+                <source>acp.system.configuration</source>
+                <target>Configuration</target>
             </trans-unit>
             <trans-unit id="acp.options">
                 <source>acp.options</source>
@@ -58,6 +111,175 @@
             <trans-unit id="acp.options.success">
                 <source>acp.options.success</source>
                 <target>The changes have been successfully saved.</target>
+            </trans-unit>
+            <!-- acp options -->
+            <trans-unit id="acp.options.twomartens.core.showSystemStats.label">
+                <source>acp.options.twomartens.core.showSystemStats.label</source>
+                <target>Should the system stats block be displayed?</target>
+            </trans-unit>
+
+            <!-- acp user -->
+            <trans-unit id="acp.user">
+                <source>acp.user</source>
+                <target>User and Group overview</target>
+            </trans-unit>
+            <trans-unit id="acp.user.group">
+                <source>acp.user.group</source>
+                <target>Group System</target>
+            </trans-unit>
+            <trans-unit id="acp.user.user">
+                <source>acp.user.user</source>
+                <target>User System</target>
+            </trans-unit>
+
+            <!-- acp group -->
+            <trans-unit id="acp.group.add">
+                <source>acp.group.add</source>
+                <target>Add group</target>
+            </trans-unit>
+            <trans-unit id="acp.group.edit">
+                <source>acp.group.edit</source>
+                <target>Edit group</target>
+            </trans-unit>
+            <trans-unit id="acp.group.edit.warning">
+                <source>acp.group.edit.warning</source>
+                <target>Be careful when editing ACP options. You might exclude yourself and all admins from the ACP.</target>
+            </trans-unit>
+            <trans-unit id="acp.group.delete.success">
+                <source>acp.group.delete.success</source>
+                <target>The group has been successfully deleted.</target>
+            </trans-unit>
+            <trans-unit id="acp.group.delete.error.essential">
+                <source>acp.group.delete.error.essential</source>
+                <target>The name group is an essential group. It cannot be deleted.</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list">
+                <source>acp.group.list</source>
+                <target>Group List</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.name">
+                <source>acp.group.list.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.rolename">
+                <source>acp.group.list.rolename</source>
+                <target>Role Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.list.amountUsers">
+                <source>acp.group.list.amountUsers</source>
+                <target># Users</target>
+            </trans-unit>
+            <trans-unit id="acp.group.name">
+                <source>acp.group.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.roleName">
+                <source>acp.group.roleName</source>
+                <target>Role name</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.user">
+                <source>acp.group.options.user</source>
+                <target>Frontend options</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.mod">
+                <source>acp.group.options.mod</source>
+                <target>Mod options</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp">
+                <source>acp.group.options.acp</source>
+                <target>ACP options</target>
+            </trans-unit>
+
+            <!-- group options -->
+            <trans-unit id="acp.group.options.acp.twomartens.core.access.label">
+                <source>acp.group.options.acp.twomartens.core.access.label</source>
+                <target>Can access the ACP</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_list.label">
+                <source>acp.group.options.acp.twomartens.core.group_list.label</source>
+                <target>Can access the group list</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_add.label">
+                <source>acp.group.options.acp.twomartens.core.group_add.label</source>
+                <target>Can add groups</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_edit.label">
+                <source>acp.group.options.acp.twomartens.core.group_edit.label</source>
+                <target>Can edit groups</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.group_delete.label">
+                <source>acp.group.options.acp.twomartens.core.group_delete.label</source>
+                <target>Can delete groups</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.user_list.label">
+                <source>acp.group.options.acp.twomartens.core.user_list.label</source>
+                <target>Can access the user list</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.user_add.label">
+                <source>acp.group.options.acp.twomartens.core.user_add.label</source>
+                <target>Can add users</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.user_edit.label">
+                <source>acp.group.options.acp.twomartens.core.user_edit.label</source>
+                <target>Can edit users</target>
+            </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.user_delete.label">
+                <source>acp.group.options.acp.twomartens.core.user_delete.label</source>
+                <target>Can delete users</target>
+            </trans-unit>
+
+            <!-- acp user -->
+            <trans-unit id="acp.user.add">
+                <source>acp.user.add</source>
+                <target>Add user</target>
+            </trans-unit>
+            <trans-unit id="acp.user.edit">
+                <source>acp.user.edit</source>
+                <target>Edit user</target>
+            </trans-unit>
+            <trans-unit id="acp.user.edit.warning">
+                <source>acp.user.edit.warning</source>
+                <target>Be careful when editing the group associations. You might exclude yourself from the ACP.</target>
+            </trans-unit>
+            <trans-unit id="acp.user.delete.success">
+                <source>acp.user.delete.success</source>
+                <target>The user has been successfully deleted.</target>
+            </trans-unit>
+            <trans-unit id="acp.user.list">
+                <source>acp.user.list</source>
+                <target>User List</target>
+            </trans-unit>
+            <trans-unit id="acp.user.list.username">
+                <source>acp.user.list.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="acp.user.list.email">
+                <source>acp.user.list.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="acp.user.username">
+                <source>acp.user.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="acp.user.email">
+                <source>acp.user.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="acp.user.password">
+                <source>acp.user.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="acp.user.password.error.invalid">
+                <source>acp.user.password.error.invalid</source>
+                <target>The entered passwords don't match.</target>
+            </trans-unit>
+            <trans-unit id="acp.user.password_confirm">
+                <source>acp.user.password_confirm</source>
+                <target>Confirm Password</target>
+            </trans-unit>
+            <trans-unit id="acp.user.groups">
+                <source>acp.user.groups</source>
+                <target>User groups</target>
             </trans-unit>
 
             <!-- blocks -->

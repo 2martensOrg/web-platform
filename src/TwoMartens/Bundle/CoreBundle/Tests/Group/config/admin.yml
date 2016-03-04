@@ -1,0 +1,5 @@
+acp:
+  twomartens.core:
+    access: true
+mod:
+frontend:

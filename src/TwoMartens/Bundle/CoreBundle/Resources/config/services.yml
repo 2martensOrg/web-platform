@@ -1,44 +1,70 @@
 parameters:
-    twomartens.core.optionsfile: 'options.yml'
-    twomartens.core.configdir: '%kernel.root_dir%/config/'
-    finder.finder.class: Symfony\Component\Finder\Finder
-    yaml.parser.class: Symfony\Component\Yaml\Parser
-    yaml.dumper.class: Symfony\Component\Yaml\Dumper
-    filesystem.filesystem.class: Symfony\Component\Filesystem\Filesystem
+  twomartens.core.optionsfile: 'options.yml'
+  twomartens.core.configdir: '%kernel.root_dir%/config/'
+  twomartens.core.groupdir: '%kernel.root_dir%/config/group/'
+  finder.finder.class: Symfony\Component\Finder\Finder
+  yaml.parser.class: Symfony\Component\Yaml\Parser
+  yaml.dumper.class: Symfony\Component\Yaml\Dumper
+  filesystem.filesystem.class: Symfony\Component\Filesystem\Filesystem
 
 services:
-    twomartens.core.finder:
-        class: %finder.finder.class%
-    twomartens.core.yaml_parser:
-        class: %yaml.parser.class%
-    twomartens.core.yaml_dumper:
-        class: %yaml.dumper.class%
-    twomartens.core.filesystem:
-        class: %filesystem.filesystem.class%
-    twomartens.core.twig_extension:
-        class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
-        public: false
-        tags:
-            - { name: twig.extension }
-    twomartens.core.block_systemstats.listener:
-        class: TwoMartens\Bundle\CoreBundle\EventListener\SystemStatsDashboardListener
-        arguments: [@templating, @translator]
-        tags:
-            - { name: kernel.event_listener, event: 'sonata.block.event.acp.dashboard', method: onBlock }
-    twomartens.core.option:
-        class: TwoMartens\Bundle\CoreBundle\Option\OptionService
-        arguments:
-            - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
-            - @twomartens.core.yaml_parser
-            - @twomartens.core.yaml_dumper
-            - @twomartens.core.filesystem
-    twomartens.core.form.type.option_configuration:
-        class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
-        arguments: [@event_dispatcher]
-        tags:
-            - { name: form.type, alias: option_configuration }
-    twomartens.core.option.listener:
-        class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
-        arguments: [@translator]
-        tags:
-            - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }
+  twomartens.core.finder:
+    class: %finder.finder.class%
+  twomartens.core.yaml_parser:
+    class: %yaml.parser.class%
+  twomartens.core.yaml_dumper:
+    class: %yaml.dumper.class%
+  twomartens.core.filesystem:
+    class: %filesystem.filesystem.class%
+  twomartens.core.twig_extension:
+    class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
+    public: false
+    tags:
+      - { name: twig.extension }
+  twomartens.core.block_systemstats.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\SystemStatsDashboardListener
+    arguments: [@templating, @translator, @twomartens.core.option]
+    tags:
+      - { name: kernel.event_listener, event: 'sonata.block.event.acp.dashboard', method: onBlock }
+  twomartens.core.option:
+    class: TwoMartens\Bundle\CoreBundle\Option\OptionService
+    arguments:
+      - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
+      - @twomartens.core.yaml_parser
+      - @twomartens.core.yaml_dumper
+      - @twomartens.core.filesystem
+  twomartens.core.form.type.option_configuration:
+    class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
+    arguments: [@event_dispatcher]
+    tags:
+      - { name: form.type, alias: option_configuration }
+  twomartens.core.form.type.group:
+    class: TwoMartens\Bundle\CoreBundle\Form\Type\GroupType
+    arguments: [@event_dispatcher]
+    tags:
+      - { name: form.type, alias: group }
+  twomartens.core.option.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.option_configuration.build_form', method: onBuildForm }
+  twomartens.core.group.option.acp.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\ACPGroupOptionListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.group_type.acp_options', method: onBuildForm }
+  twomartens.core.group.option_type.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\GroupOptionTypeListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.group_service.init', method: onGroupServiceInit }
+  twomartens.core.group:
+    class: TwoMartens\Bundle\CoreBundle\Group\GroupService
+    arguments:
+      - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.groupdir'))"
+      - @twomartens.core.yaml_parser
+      - @twomartens.core.yaml_dumper
+      - @twomartens.core.filesystem
+      - @event_dispatcher
+  twomartens.core.overview.listener:
+    class: TwoMartens\Bundle\CoreBundle\EventListener\OverviewListener
+    tags:
+      - { name: kernel.event_listener, event: 'twomartens.core.system_overview', method: onSystem }
+      - { name: kernel.event_listener, event: 'twomartens.core.user_overview', method: onUser }

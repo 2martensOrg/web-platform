@@ -1,10 +1,11 @@
 framework:
+    translator: { fallback: "%locale%" }
     secret: test
     csrf_protection:
         enabled: true
-    router: { resource: "%kernel.root_dir%/%kernel.test_case%/routing.yml" }
-    #validation:    { enabled: true, enable_annotations: true }
-    #form: ~
+    router: { resource: "%kernel.root_dir%/config/routing.yml" }
+    validation: { enabled: true, enable_annotations: true }
+    form: ~
     test: ~
     default_locale: en
     session:
@@ -12,5 +13,39 @@ framework:
     templating:
         engines: ['twig']
 
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+#assetic:
+#    debug:          "%kernel.debug%"
+#    use_controller: false
+    #bundles:        [ ]
+    #java: /usr/bin/java
+#    filters:
+#        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: "mongodb://%database_host%:%database_port%"
+            options: {}
+    default_database: "%database_name%"
+    document_managers:
+        default:
+            auto_mapping: true
+
 services:
     logger: { class: Psr\Log\NullLogger }
+
+#swiftmailer:
+#    transport: "%mailer_transport%"
+#    host:      "%mailer_host%"
+#    username:  "%mailer_user%"
+#    password:  "%mailer_password%"
+#    spool:     { type: memory }

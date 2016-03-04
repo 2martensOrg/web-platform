@@ -13,6 +13,7 @@ use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use TwoMartens\Bundle\CoreBundle\Option\OptionServiceInterface;
 
 /**
  * This listener adds a block to the ACP Dashboard which displays system data.
@@ -33,13 +34,23 @@ class SystemStatsDashboardListener
     private $translator;
 
     /**
-     * @param EngineInterface     $templating
-     * @param TranslatorInterface $translator
+     * @var OptionServiceInterface
      */
-    public function __construct(EngineInterface $templating, TranslatorInterface $translator)
-    {
+    private $optionService;
+
+    /**
+     * @param EngineInterface        $templating
+     * @param TranslatorInterface    $translator
+     * @param OptionServiceInterface $optionService
+     */
+    public function __construct(
+        EngineInterface $templating,
+        TranslatorInterface $translator,
+        OptionServiceInterface $optionService
+    ) {
         $this->templating = $templating;
         $this->translator = $translator;
+        $this->optionService = $optionService;
     }
 
     /**
@@ -47,6 +58,9 @@ class SystemStatsDashboardListener
      */
     public function onBlock(BlockEvent $event)
     {
+        if (!$this->optionService->get('twomartens.core', 'showSystemStats')->getValue()) {
+            return;
+        }
         $variables = [
             'systemData' => [
                 [

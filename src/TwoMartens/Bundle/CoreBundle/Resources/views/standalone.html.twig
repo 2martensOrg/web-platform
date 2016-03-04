@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ siteTitle }}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% block metaInformation %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/{{ dependencies.bootstrap.version }}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/{{ dependencies.fontawesome.version }}/css/font-awesome.min.css" />
+        {% stylesheets 'bundles/twomartenscore/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+
+{% endblock %}
+<main>
+    {% block mainContent %}{% endblock %}
+</main>
+<footer>
+    {% block footer %}{% endblock %}
+</footer>
+<!-- JS includes -->
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-{{ dependencies.jquery.version }}.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/{{ dependencies.bootstrap.version }}/js/bootstrap.min.js"></script>
+{% endblock %}
+</body>
+</html>

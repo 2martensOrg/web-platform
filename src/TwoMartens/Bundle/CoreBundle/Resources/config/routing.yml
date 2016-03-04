@@ -1,14 +1,50 @@
 acp.home:
   path: /acp/
   defaults: { _controller: TwoMartensCoreBundle:ACPDashboard:index }
+acp.login:
+  path: /acp/login
+  defaults: { _controller: TwoMartensCoreBundle:ACPSecurity:login }
+acp.login_check:
+  path: /acp/login_check
+  defaults: { _controller: TwoMartensCoreBundle:ACPSecurity:loginCheck }
+acp.logout:
+  path: /acp/logout
 acp.system:
   path: /acp/system/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:system }
 acp.user:
   path: /acp/user/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:user }
 acp.appearance:
   path: /acp/appearance/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:appearance }
 acp.content:
   path: /acp/content/
+  defaults: { _controller: TwoMartensCoreBundle:ACPOverview:content }
 acp.system.options:
   path: /acp/system/options/
   defaults: { _controller: TwoMartensCoreBundle:ACPOption:index }
+acp.user.group.list:
+  path: /acp/user/group/list/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:list }
+acp.user.group.add:
+  path: /acp/user/group/add/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:add }
+acp.user.group.edit:
+  path: /acp/user/group/edit/{rolename}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:edit }
+acp.user.group.delete:
+  path: /acp/user/group/delete/{rolename}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPGroup:delete }
+acp.user.user.list:
+  path: /acp/user/user/list/
+  defaults: { _controller: TwoMartensCoreBundle:ACPUser:list }
+acp.user.user.add:
+  path: /acp/user/user/add/
+  defaults: { _controller: TwoMartensCoreBundle:ACPUser:add }
+acp.user.user.edit:
+  path: /acp/user/user/edit/{username}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPUser:edit }
+acp.user.user.delete:
+  path: /acp/user/user/delete/{username}/
+  defaults: { _controller: TwoMartensCoreBundle:ACPUser:delete }

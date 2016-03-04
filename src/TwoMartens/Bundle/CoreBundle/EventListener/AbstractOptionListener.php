@@ -10,9 +10,8 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
-use Symfony\Component\Translation\TranslatorInterface;
-use TwoMartens\Bundle\CoreBundle\Event\OptionConfigurationEvent;
-use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
+use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
+use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
 /**
  * Abstract class for option listeners.
@@ -23,25 +22,11 @@ use TwoMartens\Bundle\CoreBundle\Model\Option\OptionCategory;
 abstract class AbstractOptionListener
 {
     /**
-     * the translator
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
-     * Initializes the option listener.
+     * Called on the buildForm event.
      *
-     * @param TranslatorInterface $translator
+     * @param FormEvent $event
      */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
-    /**
-     * @param OptionConfigurationEvent $event
-     */
-    public function onBuildForm(OptionConfigurationEvent $event)
+    public function onBuildForm(FormEvent $event)
     {
         $builder = $event->getBuilder();
         /** @var OptionCategory $data */
@@ -67,14 +52,11 @@ abstract class AbstractOptionListener
                 $optionName = $option->getName();
                 $fieldType = $fieldMap[$optionName];
                 $settings = [
-                    'label' => $this->translator->trans(
-                        'acp.options.' . $categoryName . '.' . $optionName . '.label',
-                        [],
-                        $this->getDomain()
-                    ),
+                    'label' => $this->getLabelPrefix() . '.' . $categoryName . '.' . $optionName . '.label',
                     'mapped' => false,
                     'required' => false,
-                    'data' => $option->getValue()
+                    'data' => $option->getValue(),
+                    'translation_domain' => $this->getDomain()
                 ];
                 if ($fieldType == 'choice') {
                     $settings['multiple'] = $multipleMap[$optionName];
@@ -92,6 +74,7 @@ abstract class AbstractOptionListener
 
     /**
      * Returns the name of the category this listener is responsible for.
+     *
      * @return string
      */
     abstract protected function getCategoryName();
@@ -131,4 +114,14 @@ abstract class AbstractOptionListener
      * @return string
      */
     abstract protected function getDomain();
+
+    /**
+     * Returns the label translation prefix.
+     *
+     * @return string
+     */
+    protected function getLabelPrefix()
+    {
+        return 'acp.options';
+    }
 }

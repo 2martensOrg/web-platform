@@ -1,0 +1,8 @@
+services:
+  twomartens.core.db_manager:
+    class: Doctrine\ODM\MongoDB\DocumentManager
+    factory: ["@doctrine_mongodb", getManager]
+  twomartens.core.group_listener:
+    class: TwoMartens\Bundle\CoreBundle\Doctrine\MongoDB\GroupModelListener
+    arguments: [@twomartens.core.group]
+    public: false

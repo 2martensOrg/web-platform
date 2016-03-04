@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                        http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="TwoMartens\Bundle\CoreBundle\Model\Group" collection="twomartens_core_group">
+
+        <field name="id" fieldName="id" id="true" type="id" />
+        <field name="roleName" fieldName="roleName" type="string" />
+        <field name="isEssential" fieldName="isEssential" type="boolean" />
+        <field name="canBeEmpty" fieldName="canBeEmpty" type="boolean" />
+
+        <reference-many field="users" target-document="TwoMartens\Bundle\CoreBundle\Model\User" />
+
+        <indexes>
+            <index>
+                <key name="roleName" order="asc" />
+                <option name="safe" value="true" />
+                <option name="unique" value="true" />
+            </index>
+        </indexes>
+
+    </document>
+
+</doctrine-mongo-mapping>

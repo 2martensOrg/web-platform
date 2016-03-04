@@ -10,3 +10,4 @@ test:
         - manfred
     michael:
         security: true
+fail:

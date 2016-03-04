@@ -32,5 +32,54 @@ class TwoMartensCoreExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yml');
+
+        // TODO replace with semantic configuration
+        $config = [
+            'db_driver' => 'mongodb'
+        ];
+        $container->setParameter('twomartens.core.storage', $config['db_driver']);
+
+        if ('custom' !== $config['db_driver']) {
+            $loader->load(sprintf('%s.yml', $config['db_driver']));
+            $container->setParameter('twomartens.core.backend_type_' . $config['db_driver'], true);
+        }
+
+        switch ($config['db_driver']) {
+            case 'orm':
+                $container->getDefinition('twomartens.core.group_listener')
+                    ->addTag(
+                        'doctrine.event_subscriber',
+                        [
+                            'priority' => 10
+                        ]
+                    );
+                break;
+
+            case 'mongodb':
+                $container->getDefinition('twomartens.core.group_listener')
+                    ->addTag(
+                        'doctrine_mongodb.odm.event_subscriber',
+                        [
+                            'priority' => 10
+                        ]
+                    );
+                break;
+
+            case 'couchdb':
+                $container->getDefinition('twomartens.core.group_listener')
+                    ->addTag(
+                        'doctrine_couchdb.event_subscriber',
+                        [
+                            'priority' => 10
+                        ]
+                    );
+                break;
+
+            case 'propel':
+                break;
+
+            default:
+                break;
+        }
     }
 }
