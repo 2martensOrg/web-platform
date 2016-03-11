@@ -26,12 +26,12 @@ class ACPOptionControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/acp/system/options');
         $html = $crawler->html();
 
-        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== -1);
+        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== false);
         $containsExpected = $containsExpected && (strpos(
             $html,
             '<button type="submit" id="option_configuration_save" name="'.
             'option_configuration[save]" class="btn-primary btn">'
-        ) !== -1);
+        ) !== false);
         $this->assertTrue($containsExpected);
     }
 }

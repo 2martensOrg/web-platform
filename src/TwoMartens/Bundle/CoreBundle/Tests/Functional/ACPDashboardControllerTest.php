@@ -23,7 +23,7 @@ class ACPDashboardControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/acp');
         $html = $crawler->html();
 
-        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== -1);
+        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== false);
         $this->assertTrue($containsExpected);
     }
 }
