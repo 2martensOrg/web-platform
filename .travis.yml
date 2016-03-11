@@ -19,14 +19,21 @@ matrix:
 services:
   - mongodb
 
-before_script:
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - composer selfupdate
   - phpenv config-add php_config.ini
-  #- composer selfupdate
-  - composer install -n --prefer-source --no-progress
+
+install: composer update --prefer-dist --no-interaction
+
+before_script:
   - chmod +x setup.sh
   - ./setup.sh
 
 script:
   - find src/ -type f -name '*.php' |xargs -I file php -l file > /dev/null
   - vendor/bin/phpcs -p --extensions=php --standard=PSR2 --ignore=*/AppKernel.php src/
-  - phpunit
+  - phpunit --coverage-text

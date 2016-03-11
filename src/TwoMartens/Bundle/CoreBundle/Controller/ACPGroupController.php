@@ -10,7 +10,6 @@
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -123,16 +122,13 @@ class ACPGroupController extends AbstractACPController
             $sortedCategories['acp']
         );
 
-        /** @var EventDispatcherInterface $eventDispatcher */
-        $eventDispatcher = $this->get('event_dispatcher');
-        $groupType = new GroupType(
-            $eventDispatcher,
-            false
-        );
         $form = $this->createForm(
-            $groupType,
+            GroupType::class,
             $group,
-            ['validation_groups' => ['Registration', 'NewGroup']]
+            [
+                'validation_groups' => ['Registration', 'NewGroup'],
+                'isEditForm' => false
+            ]
         );
 
         $form->handleRequest($request);
@@ -193,7 +189,7 @@ class ACPGroupController extends AbstractACPController
         /** @var Group $group */
         $group = $repository->findOneBy(['roleName' => $rolename]);
         $form = $this->createForm(
-            'group',
+            GroupType::class,
             $group
         );
 

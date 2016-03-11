@@ -23,26 +23,31 @@ services:
       - { name: twig.extension }
   twomartens.core.block_systemstats.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\SystemStatsDashboardListener
-    arguments: [@templating, @translator, @twomartens.core.option]
+    arguments: ["@templating", "@translator", "@twomartens.core.option"]
     tags:
       - { name: kernel.event_listener, event: 'sonata.block.event.acp.dashboard', method: onBlock }
   twomartens.core.option:
     class: TwoMartens\Bundle\CoreBundle\Option\OptionService
     arguments:
       - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
-      - @twomartens.core.yaml_parser
-      - @twomartens.core.yaml_dumper
-      - @twomartens.core.filesystem
+      - "@twomartens.core.yaml_parser"
+      - "@twomartens.core.yaml_dumper"
+      - "@twomartens.core.filesystem"
   twomartens.core.form.type.option_configuration:
     class: TwoMartens\Bundle\CoreBundle\Form\Type\OptionConfigurationType
-    arguments: [@event_dispatcher]
+    arguments: ["@event_dispatcher"]
     tags:
-      - { name: form.type, alias: option_configuration }
+      - { name: form.type }
   twomartens.core.form.type.group:
     class: TwoMartens\Bundle\CoreBundle\Form\Type\GroupType
-    arguments: [@event_dispatcher]
+    arguments: ["@event_dispatcher"]
     tags:
-      - { name: form.type, alias: group }
+      - { name: form.type }
+  twomartens.core.form.type.user:
+    class: TwoMartens\Bundle\CoreBundle\Form\Type\UserType
+    arguments: ["@translator"]
+    tags:
+      - { name: form.type }
   twomartens.core.option.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\OptionListener
     tags:
@@ -59,10 +64,10 @@ services:
     class: TwoMartens\Bundle\CoreBundle\Group\GroupService
     arguments:
       - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.groupdir'))"
-      - @twomartens.core.yaml_parser
-      - @twomartens.core.yaml_dumper
-      - @twomartens.core.filesystem
-      - @event_dispatcher
+      - "@twomartens.core.yaml_parser"
+      - "@twomartens.core.yaml_dumper"
+      - "@twomartens.core.filesystem"
+      - "@event_dispatcher"
   twomartens.core.overview.listener:
     class: TwoMartens\Bundle\CoreBundle\EventListener\OverviewListener
     tags:

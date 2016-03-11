@@ -11,6 +11,8 @@ namespace TwoMartens\Bundle\CoreBundle\Form\Type;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
@@ -31,21 +33,13 @@ class GroupType extends AbstractType
     private $dispatcher;
 
     /**
-     * true, if edit form
-     * @var boolean
-     */
-    private $editForm;
-
-    /**
      * Initializes the form.
      *
      * @param EventDispatcherInterface $dispatcher
-     * @param boolean                  $editForm
      */
-    public function __construct(EventDispatcherInterface $dispatcher, $editForm = true)
+    public function __construct(EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
-        $this->editForm = $editForm;
     }
 
     /**
@@ -57,6 +51,7 @@ class GroupType extends AbstractType
         $modOptionsBuilder = clone $builder;
         $userOptionsBuilder = clone $builder;
 
+        $isEditForm = $options['isEditForm'];
         /** @var Group $group */
         $group = $options['data'];
         $acpCategory = $group->getACPCategory();
@@ -79,7 +74,7 @@ class GroupType extends AbstractType
 
         $builder->add(
             'name',
-            'text',
+            TextType::class,
             [
                 'label' => 'acp.group.name',
                 'mapped' => true,
@@ -90,12 +85,12 @@ class GroupType extends AbstractType
         );
         $builder->add(
             'roleName',
-            'text',
+            TextType::class,
             [
                 'label' => 'acp.group.roleName',
                 'mapped' => true,
                 'required' => true,
-                'read_only' => $this->editForm,
+                'read_only' => $isEditForm,
                 'data' => $group->getRoleName(),
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
@@ -107,22 +102,12 @@ class GroupType extends AbstractType
 
         $builder->add(
             'save',
-            'submit',
+            SubmitType::class,
             [
                 'label' => 'button.save',
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
         );
-    }
-
-    /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
-     */
-    public function getName()
-    {
-        return 'group';
     }
 
     /**
@@ -132,6 +117,7 @@ class GroupType extends AbstractType
     {
         $resolver->setDefaults([
             'validation_groups' => ['Registration'],
+            'isEditForm' => true
         ]);
     }
 
