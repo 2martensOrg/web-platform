@@ -83,6 +83,10 @@ class GroupType extends AbstractType
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
         );
+        $attr = [];
+        if ($isEditForm) {
+            $attr['readonly'] = 'readonly';
+        }
         $builder->add(
             'roleName',
             TextType::class,
@@ -90,7 +94,7 @@ class GroupType extends AbstractType
                 'label' => 'acp.group.roleName',
                 'mapped' => true,
                 'required' => true,
-                'read_only' => $isEditForm,
+                'attr' => $attr,
                 'data' => $group->getRoleName(),
                 'translation_domain' => 'TwoMartensCoreBundle'
             ]
