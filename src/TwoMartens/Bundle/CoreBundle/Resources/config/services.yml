@@ -1,7 +1,7 @@
 parameters:
   twomartens.core.optionsfile: 'options.yml'
-  twomartens.core.configdir: '%kernel.root_dir%/config/'
-  twomartens.core.groupdir: '%kernel.root_dir%/config/group/'
+  twomartens.core.optionsdir: '%kernel.logs_dir%/../'
+  twomartens.core.groupdir: '%kernel.logs_dir%/../group/'
   finder.finder.class: Symfony\Component\Finder\Finder
   yaml.parser.class: Symfony\Component\Yaml\Parser
   yaml.dumper.class: Symfony\Component\Yaml\Dumper
@@ -29,7 +29,7 @@ services:
   twomartens.core.option:
     class: TwoMartens\Bundle\CoreBundle\Option\OptionService
     arguments:
-      - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.configdir')).name(parameter('twomartens.core.optionsfile'))"
+      - "@=service('twomartens.core.finder').files().in(parameter('twomartens.core.optionsdir')).name(parameter('twomartens.core.optionsfile'))"
       - "@twomartens.core.yaml_parser"
       - "@twomartens.core.yaml_dumper"
       - "@twomartens.core.filesystem"
