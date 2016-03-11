@@ -164,6 +164,8 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'validation_groups' => ['Registration'],
+            'isAddForm' => true
         ]);
+        $resolver->setDefined('groups');
     }
 }
