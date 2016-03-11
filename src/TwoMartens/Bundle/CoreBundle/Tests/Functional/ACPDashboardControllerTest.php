@@ -20,6 +20,7 @@ class ACPDashboardControllerTest extends WebTestCase
     public function testDashboard()
     {
         $client = $this->createClient(array('test_case' => 'ACPDashboard'));
+        $client->followRedirects();
         $crawler = $client->request('GET', '/acp');
         $html = $crawler->html();
 
