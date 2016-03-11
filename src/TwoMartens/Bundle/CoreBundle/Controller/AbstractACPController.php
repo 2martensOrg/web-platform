@@ -10,14 +10,12 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 /**
- * Description
+ * Base class for all ACP controllers.
  *
  * @author Jim Martens <github@2martens.de>
  */
-abstract class AbstractACPController extends Controller
+abstract class AbstractACPController extends AbstractController
 {
     protected $templateVariables;
 
