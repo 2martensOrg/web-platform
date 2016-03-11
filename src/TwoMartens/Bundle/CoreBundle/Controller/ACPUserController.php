@@ -115,8 +115,7 @@ class ACPUserController extends AbstractACPController
             UserType::class,
             $user,
             [
-                'groups' => $groups,
-                'isAddForm' => true
+                'groups' => $groups
             ]
         );
 
