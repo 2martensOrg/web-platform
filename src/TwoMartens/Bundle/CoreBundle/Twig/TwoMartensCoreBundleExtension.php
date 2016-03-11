@@ -15,7 +15,7 @@ namespace TwoMartens\Bundle\CoreBundle\Twig;
  *
  * @author Jim Martens <github@2martens.de>
  */
-class TwoMartensCoreBundleExtension extends \Twig_Extension
+class TwoMartensCoreBundleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
 
     /**
