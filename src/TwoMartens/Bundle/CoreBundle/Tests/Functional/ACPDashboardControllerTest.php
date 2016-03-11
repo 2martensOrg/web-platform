@@ -24,6 +24,6 @@ class ACPDashboardControllerTest extends WebTestCase
         $html = $crawler->html();
 
         $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== false);
-        $this->assertTrue($containsExpected);
+        $this->assertTrue($containsExpected, "Doesn't contain expected alert info bubble.");
     }
 }

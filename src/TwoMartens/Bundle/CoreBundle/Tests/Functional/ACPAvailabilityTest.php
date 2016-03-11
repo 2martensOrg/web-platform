@@ -26,7 +26,11 @@ class ACPAvailabilityTest extends WebTestCase
         $client = $this->createClient(['test_case' => 'ACPAvailability']);
         $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertTrue(
+            $client->getResponse()->isSuccessful(),
+            'The status code for the url "'. $url . '" was '.$client->getResponse()->getStatusCode().
+            '. 200-299 was expected.'
+        );
     }
 
     public function urlProvider()

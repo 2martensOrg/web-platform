@@ -32,6 +32,6 @@ class ACPOptionControllerTest extends WebTestCase
             '<button type="submit" id="option_configuration_save" name="'.
             'option_configuration[save]" class="btn-primary btn">'
         ) !== false);
-        $this->assertTrue($containsExpected);
+        $this->assertTrue($containsExpected, "Doesn't contain expected info bubble and save button.");
     }
 }
