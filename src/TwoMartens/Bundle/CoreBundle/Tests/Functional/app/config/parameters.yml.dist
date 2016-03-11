@@ -11,3 +11,7 @@ parameters:
     mailer_password:   ~
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # overwrite 2WP Core Bundle parameters
+    twomartens.core.optionsdir: '%kernel.root_dir%/config/'
+    twomartens.core.groupdir: '%kernel.root_dir%/config/group/'

@@ -23,15 +23,16 @@ class ACPOptionControllerTest extends WebTestCase
     public function testOptionForm()
     {
         $client = $this->createClient(array('test_case' => 'ACPOption'));
+        $client->followRedirects();
         $crawler = $client->request('GET', '/acp/system/options');
         $html = $crawler->html();
 
-        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== -1);
+        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== false);
         $containsExpected = $containsExpected && (strpos(
             $html,
             '<button type="submit" id="option_configuration_save" name="'.
             'option_configuration[save]" class="btn-primary btn">'
-        ) !== -1);
-        $this->assertTrue($containsExpected);
+        ) !== false);
+        $this->assertTrue($containsExpected, "Doesn't contain expected info bubble and save button.");
     }
 }

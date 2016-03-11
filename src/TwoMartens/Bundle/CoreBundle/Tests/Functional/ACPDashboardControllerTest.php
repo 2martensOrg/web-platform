@@ -20,10 +20,11 @@ class ACPDashboardControllerTest extends WebTestCase
     public function testDashboard()
     {
         $client = $this->createClient(array('test_case' => 'ACPDashboard'));
+        $client->followRedirects();
         $crawler = $client->request('GET', '/acp');
         $html = $crawler->html();
 
-        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== -1);
-        $this->assertTrue($containsExpected);
+        $containsExpected = (strpos($html, '<p class="alert alert-info" role="alert">') !== false);
+        $this->assertTrue($containsExpected, "Doesn't contain expected alert info bubble.");
     }
 }
