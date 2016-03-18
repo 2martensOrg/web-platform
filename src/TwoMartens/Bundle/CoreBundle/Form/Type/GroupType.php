@@ -142,7 +142,7 @@ class GroupType extends AbstractType
             $newName = $prefix . $field->getName();
             $target->add(
                 $newName,
-                $field->getType()->getInnerType(),
+                get_class($field->getType()->getInnerType()),
                 $field->getOptions()
             );
         }

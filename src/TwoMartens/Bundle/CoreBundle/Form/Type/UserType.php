@@ -150,7 +150,7 @@ class UserType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         foreach ($view->children['groups']->children as $group) {
-            $groupRole = $this->data[$group->vars['value']];
+            $groupRole = $group->vars['value'];
             if (in_array($groupRole, $this->disabledGroups, true)) {
                 $group->vars['attr']['disabled'] = 'disabled';
             }
