@@ -172,7 +172,6 @@ class GroupService implements GroupServiceInterface
                         [$_option->getName()] = $_option;
                 }
             }
-
         }
     }
 
