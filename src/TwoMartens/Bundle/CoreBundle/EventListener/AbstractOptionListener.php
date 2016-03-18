@@ -36,6 +36,7 @@ abstract class AbstractOptionListener
         $categories = $data->getCategories();
         $ourCategory = null;
         foreach ($categories as $category) {
+            /** @var OptionCategory $name */
             $name = $category->getName();
             if ($name == $this->getCategoryName()) {
                 $ourCategory = $category;
