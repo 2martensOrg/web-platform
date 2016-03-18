@@ -10,6 +10,7 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use TwoMartens\Bundle\CoreBundle\Event\FormEvent;
 use TwoMartens\Bundle\CoreBundle\Model\OptionCategory;
 
@@ -58,9 +59,9 @@ abstract class AbstractOptionListener
                     'data' => $option->getValue(),
                     'translation_domain' => $this->getDomain()
                 ];
-                if ($fieldType == 'choice') {
+                if ($fieldType == ChoiceType::class) {
                     $settings['multiple'] = $multipleMap[$optionName];
-                    $settings['choice_list'] = $choicesMap[$optionName];
+                    $settings['choices'] = $choicesMap[$optionName];
                     $settings['placeholder'] = false;
                 }
                 $builder->add(
