@@ -120,6 +120,20 @@
                 <source>acp.options.success</source>
                 <target>The changes have been successfully saved.</target>
             </trans-unit>
+            <!-- acp package -->
+            <trans-unit id="acp.system.package">
+                <source>acp.system.package</source>
+                <target>Package System</target>
+            </trans-unit>
+            <trans-unit id="acp.package.list">
+                <source>acp.package.list</source>
+                <target>Package List</target>
+            </trans-unit>
+            <trans-unit id="acp.package.install">
+                <source>acp.package.install</source>
+                <target>Install package</target>
+            </trans-unit>
+
             <!-- acp options -->
             <trans-unit id="acp.options.twomartens.core.showSystemStats.label">
                 <source>acp.options.twomartens.core.showSystemStats.label</source>
