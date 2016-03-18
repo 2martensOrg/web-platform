@@ -10,6 +10,7 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Provides the acp options for the group add and edit forms.
@@ -44,15 +45,15 @@ class ACPGroupOptionListener extends AbstractGroupOptionListener
     {
         // TODO add real options as they are determined
         $this->fieldMap = [
-            'access' => 'checkbox',
-            'group_add' => 'checkbox',
-            'group_list' => 'checkbox',
-            'group_edit' => 'checkbox',
-            'group_delete' => 'checkbox',
-            'user_add' => 'checkbox',
-            'user_list' => 'checkbox',
-            'user_edit' => 'checkbox',
-            'user_delete' => 'checkbox'
+            'access'        => CheckboxType::class,
+            'group_add'     => CheckboxType::class,
+            'group_list'    => CheckboxType::class,
+            'group_edit'    => CheckboxType::class,
+            'group_delete'  => CheckboxType::class,
+            'user_add'      => CheckboxType::class,
+            'user_list'     => CheckboxType::class,
+            'user_edit'     => CheckboxType::class,
+            'user_delete'   => CheckboxType::class
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];
