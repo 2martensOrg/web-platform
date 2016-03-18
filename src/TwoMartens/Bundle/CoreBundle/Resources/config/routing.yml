@@ -24,6 +24,12 @@ acp.content:
 acp.system.options:
   path: /acp/system/options/
   defaults: { _controller: TwoMartensCoreBundle:ACPOption:index }
+acp.system.package.list:
+  path: /acp/system/package/list/
+  defaults: { _controller: TwoMartensCoreBundle:ACPPackage:list }
+acp.system.package.install:
+  path: /acp/system/package/install/
+  defaults: { _controller: TwoMartensCoreBundle:ACPPackage:install }
 acp.user.group.list:
   path: /acp/user/group/list/
   defaults: { _controller: TwoMartensCoreBundle:ACPGroup:list }
