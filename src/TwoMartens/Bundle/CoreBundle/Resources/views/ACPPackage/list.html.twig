@@ -1,0 +1,24 @@
+{% extends 'TwoMartensCoreBundle::area.html.twig' %}
+
+{% block innerContent %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="iconColumn"></th>
+            <th>{% trans from 'TwoMartensCoreBundle' %}acp.package.list.name{% endtrans %}</th>
+            <th>{% trans from 'TwoMartensCoreBundle' %}acp.package.list.author{% endtrans %}</th>
+            <th>{% trans from 'TwoMartensCoreBundle' %}acp.package.list.version{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for package in packages %}
+        <tr>
+            <td class="iconColumn"></td>
+            <td>{{ package.getName() }}</td>
+            <td>{{ package.getAuthor() }}</td>
+            <td>{{ package.getVersion() }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
