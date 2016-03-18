@@ -81,6 +81,14 @@
                 <source>acp.breadcrumb.user.user.list</source>
                 <target>User List</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.appearance">
+                <source>acp.breadcrumb.appearance</source>
+                <target>Appearance</target>
+            </trans-unit>
+            <trans-unit id="acp.breadcrumb.content">
+                <source>acp.breadcrumb.content</source>
+                <target>Content</target>
+            </trans-unit>
 
             <!-- acp dashboard -->
             <trans-unit id="acp.dashboard">
@@ -280,6 +288,18 @@
             <trans-unit id="acp.user.groups">
                 <source>acp.user.groups</source>
                 <target>User groups</target>
+            </trans-unit>
+
+            <!-- acp appearance -->
+            <trans-unit id="acp.appearance">
+                <source>acp.appearance</source>
+                <target>Appearance overview</target>
+            </trans-unit>
+
+            <!-- acp content -->
+            <trans-unit id="acp.content">
+                <source>acp.content</source>
+                <target>Content overview</target>
             </trans-unit>
 
             <!-- blocks -->
