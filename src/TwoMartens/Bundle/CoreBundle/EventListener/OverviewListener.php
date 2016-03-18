@@ -34,6 +34,21 @@ class OverviewListener
             'acp.system.options',
             ''
         );
+        $event->addCategory('acp.system.package', 'TwoMartensCoreBundle');
+        $event->addEntry(
+            'acp.system.package',
+            'acp.package.list',
+            'TwoMartensCoreBundle',
+            'acp.system.package.list',
+            ''
+        );
+        $event->addEntry(
+            'acp.system.package',
+            'acp.package.install',
+            'TwoMartensCoreBundle',
+            'acp.system.package.install',
+            ''
+        );
     }
 
     /**
