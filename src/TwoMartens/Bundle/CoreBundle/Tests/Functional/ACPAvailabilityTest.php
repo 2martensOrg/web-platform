@@ -39,6 +39,8 @@ class ACPAvailabilityTest extends WebTestCase
             ['/acp/'],
             ['/acp/system/'],
             ['/acp/system/options/'],
+            ['/acp/system/package/list/'],
+            ['/acp/system/package/install/'],
             ['/acp/user/'],
             ['/acp/user/group/add/'],
             ['/acp/user/group/list/'],
