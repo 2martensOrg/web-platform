@@ -17,6 +17,8 @@ namespace TwoMartens\Bundle\CoreBundle\Model;
  */
 class Package
 {
+    private $id;
+    
     /**
      * the package name
      *
@@ -62,16 +64,40 @@ class Package
     /**
      * Initializes the Package object.
      *
-     * @param string $composerName
+     * @param mixed  $id            the ID
+     * @param string $name          publicly visible name
+     * @param string $description   package description
+     * @param string $version       semantic versioning compliant string
+     * @param string $author        package author
+     * @param string $website       URL of package website
+     * @param string $composerName  composer name of package
      */
-    public function __construct($composerName)
-    {
-        $this->name         = '';
-        $this->description  = '';
-        $this->version      = '';
-        $this->author       = '';
-        $this->website      = '';
+    public function __construct(
+        $id,
+        $name,
+        $description,
+        $version,
+        $author,
+        $website,
+        $composerName
+    ) {
+        $this->id           = $id;
+        $this->name         = $name;
+        $this->description  = $description;
+        $this->version      = $version;
+        $this->author       = $author;
+        $this->website      = $website;
         $this->composerName = $composerName;
+    }
+
+    /**
+     * Returns the ID of the package.
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

@@ -24,15 +24,55 @@ class PackageTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $package = new Package('2martens/web-platform');
+        $package = new Package(
+            0,
+            '2WP Platform',
+            'One platform to rule them all',
+            '1.0.0',
+            'Jim Martens',
+            '2martens.de',
+            '2martens/web-platform'
+        );
+        $this->assertEquals(0, $package->getId());
+        $this->assertEquals('2WP Platform', $package->getName());
+        $this->assertEquals('One platform to rule them all', $package->getDescription());
+        $this->assertEquals('1.0.0', $package->getVersion());
+        $this->assertEquals('Jim Martens', $package->getAuthor());
+        $this->assertEquals('2martens.de', $package->getWebsite());
         $this->assertEquals('2martens/web-platform', $package->getComposerName());
-        $this->assertEmpty($package->getName());
-        $this->assertEmpty($package->getDescription());
-        $this->assertEmpty($package->getVersion());
-        $this->assertEmpty($package->getWebsite());
-        $this->assertEmpty($package->getAuthor());
 
-        $package = new Package('');
+        $package = new Package(
+            0,
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
+        );
+        $this->assertEquals(0, $package->getId());
+        $this->assertEquals('', $package->getName());
+        $this->assertEquals('', $package->getDescription());
+        $this->assertEquals('', $package->getVersion());
+        $this->assertEquals('', $package->getAuthor());
+        $this->assertEquals('', $package->getWebsite());
+        $this->assertEquals('', $package->getComposerName());
+
+        $package = new Package(
+            '123',
+            '',
+            '',
+            '',
+            '',
+            '',
+            ''
+        );
+        $this->assertEquals('123', $package->getId());
+        $this->assertEquals('', $package->getName());
+        $this->assertEquals('', $package->getDescription());
+        $this->assertEquals('', $package->getVersion());
+        $this->assertEquals('', $package->getAuthor());
+        $this->assertEquals('', $package->getWebsite());
         $this->assertEquals('', $package->getComposerName());
     }
 
@@ -41,7 +81,15 @@ class PackageTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetters()
     {
-        $package = new Package('2martens/web-platform');
+        $package = new Package(
+            0,
+            '2WP Platform',
+            'One platform to rule them all',
+            '1.0.0',
+            'Jim Martens',
+            '2martens.de',
+            '2martens/web-platform'
+        );
         // test name
         $package->setName('');
         $this->assertEquals('', $package->getName());
@@ -67,5 +115,10 @@ class PackageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $package->getAuthor());
         $package->setAuthor('Jim Martens');
         $this->assertEquals('Jim Martens', $package->getAuthor());
+        // test composer name
+        $package->setComposerName('');
+        $this->assertEquals('', $package->getComposerName());
+        $package->setComposerName('symfony/symfony');
+        $this->assertEquals('symfony/symfony', $package->getComposerName());
     }
 }

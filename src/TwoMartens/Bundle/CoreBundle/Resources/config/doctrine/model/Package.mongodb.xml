@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                        http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+    <document name="TwoMartens\Bundle\CoreBundle\Model\Package" collection="twomartens_core_package">
+
+        <field name="id" fieldName="id" id="true" type="id" />
+        <field name="name" fieldName="name" type="string" />
+        <field name="description" fieldName="description" type="string" />
+        <field name="version" fieldName="version" type="string" />
+        <field name="author" fieldName="author" type="string" />
+        <field name="website" fieldName="website" type="string" />
+        <field name="composerName" fieldName="composerName" type="string" />
+
+        <indexes>
+            <index>
+                <key name="composerName" order="asc" />
+                <option name="safe" value="true" />
+                <option name="unique" value="true" />
+            </index>
+        </indexes>
+
+    </document>
+
+</doctrine-mongo-mapping>
