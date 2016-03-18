@@ -10,7 +10,7 @@
 namespace TwoMartens\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * This listener adds the form fields for the Core bundle options.
@@ -45,7 +45,7 @@ class OptionListener extends AbstractOptionListener
     {
         // TODO add real options as they are determined
         $this->fieldMap = [
-            'showSystemStats' => 'checkbox'
+            'showSystemStats' => CheckboxType::class
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];
