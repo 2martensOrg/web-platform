@@ -1,6 +1,7 @@
 acp:
     twomartens.core:
         access: true
+        package_install: true
         group_add: true
         group_list: true
         group_edit: true

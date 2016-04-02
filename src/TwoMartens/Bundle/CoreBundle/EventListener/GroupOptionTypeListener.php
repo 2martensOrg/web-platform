@@ -31,6 +31,7 @@ class GroupOptionTypeListener
             'acp' => [
                 'twomartens.core' => [
                     'access' => new BooleanOptionType(),
+                    'package_install' => new BooleanOptionType(),
                     'group_add' => new BooleanOptionType(),
                     'group_list' => new BooleanOptionType(),
                     'group_edit' => new BooleanOptionType(),

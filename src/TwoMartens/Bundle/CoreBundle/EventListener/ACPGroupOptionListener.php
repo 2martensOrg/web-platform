@@ -45,15 +45,16 @@ class ACPGroupOptionListener extends AbstractGroupOptionListener
     {
         // TODO add real options as they are determined
         $this->fieldMap = [
-            'access'        => CheckboxType::class,
-            'group_add'     => CheckboxType::class,
-            'group_list'    => CheckboxType::class,
-            'group_edit'    => CheckboxType::class,
-            'group_delete'  => CheckboxType::class,
-            'user_add'      => CheckboxType::class,
-            'user_list'     => CheckboxType::class,
-            'user_edit'     => CheckboxType::class,
-            'user_delete'   => CheckboxType::class
+            'access'          => CheckboxType::class,
+            'package_install' => CheckboxType::class,
+            'group_add'       => CheckboxType::class,
+            'group_list'      => CheckboxType::class,
+            'group_edit'      => CheckboxType::class,
+            'group_delete'    => CheckboxType::class,
+            'user_add'        => CheckboxType::class,
+            'user_list'       => CheckboxType::class,
+            'user_edit'       => CheckboxType::class,
+            'user_delete'     => CheckboxType::class
         ];
         $this->multipleMap = [];
         $this->choicesMap = [];

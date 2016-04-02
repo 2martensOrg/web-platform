@@ -3,6 +3,7 @@ mod: {  }
 acp:
     twomartens.core:
         access: false
+        package_install: false
         group_add: false
         group_list: false
         group_edit: false

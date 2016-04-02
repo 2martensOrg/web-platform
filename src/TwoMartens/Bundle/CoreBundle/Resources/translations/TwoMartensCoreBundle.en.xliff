@@ -233,6 +233,10 @@
                 <source>acp.group.options.acp.twomartens.core.access.label</source>
                 <target>Can access the ACP</target>
             </trans-unit>
+            <trans-unit id="acp.group.options.acp.twomartens.core.package_install.label">
+                <source>acp.group.options.acp.twomartens.core.package_install.label</source>
+                <target>Can install packages</target>
+            </trans-unit>
             <trans-unit id="acp.group.options.acp.twomartens.core.group_list.label">
                 <source>acp.group.options.acp.twomartens.core.group_list.label</source>
                 <target>Can access the group list</target>
