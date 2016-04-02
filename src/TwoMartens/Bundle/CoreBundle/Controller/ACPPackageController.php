@@ -10,8 +10,12 @@
 namespace TwoMartens\Bundle\CoreBundle\Controller;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use TwoMartens\Bundle\CoreBundle\Form\Type\PackageInstallType;
 use TwoMartens\Bundle\CoreBundle\Model\Breadcrumb;
+use TwoMartens\Bundle\CoreBundle\Model\Package;
+use TwoMartens\Bundle\CoreBundle\Package\PackageServiceInterface;
 
 /**
  * Manages the routes for the package system.
@@ -32,6 +36,57 @@ class ACPPackageController extends AbstractACPController
     {
         parent::__construct();
         $this->action = '';
+    }
+
+    /**
+     * Shows the install package form.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function installAction(Request $request)
+    {
+        $this->action = 'install';
+
+        $this->denyAccessUnlessGranted('ROLE_ACP_TWOMARTENS.CORE_PACKAGE_INSTALL');
+
+        $package = new Package(
+            null, // no id known yet
+            '', // no name yet
+            '', // no description yet
+            '', // no version yet
+            '', // no author yet
+            '', // no website yet
+            ''  // no composer name yet
+        );
+        
+        $form = $this->createForm(
+            PackageInstallType::class,
+            $package
+        );
+        
+        $form->handleRequest($request);
+        $this->assignVariables();
+        $this->templateVariables['form'] = $form->createView();
+        $this->templateVariables['area']['title'] = $this->get('translator')
+            ->trans('acp.package.install', [], 'TwoMartensCoreBundle');
+
+        if ($form->isValid()) {
+            /** @var PackageServiceInterface $packageService */
+            $packageService = $this->get('twomartens.core.package');
+            $packageService->installPackage($package->getComposerName(), $package->getVersion());
+            /** @var ObjectManager $objectManager */
+            $objectManager = $this->get('twomartens.core.db_manager');
+            $objectManager->persist($package);
+            $objectManager->flush();
+            return $this->listAction();
+        }
+
+        return $this->render(
+            'TwoMartensCoreBundle:ACPPackage:install.html.twig',
+            $this->templateVariables
+        );
     }
 
     /**

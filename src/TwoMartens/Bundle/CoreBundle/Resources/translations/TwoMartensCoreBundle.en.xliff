@@ -57,6 +57,10 @@
                 <source>acp.breadcrumb.package.list</source>
                 <target>Package List</target>
             </trans-unit>
+            <trans-unit id="acp.breadcrumb.package.install">
+                <source>acp.breadcrumb.package.install</source>
+                <target>Install Package</target>
+            </trans-unit>
             <trans-unit id="acp.breadcrumb.options">
                 <source>acp.breadcrumb.options</source>
                 <target>Options</target>
