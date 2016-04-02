@@ -7,6 +7,10 @@
                 <source>button.save</source>
                 <target>Save</target>
             </trans-unit>
+            <trans-unit id="button.install">
+                <source>button.install</source>
+                <target>Install</target>
+            </trans-unit>
 
             <!-- acp navigation -->
             <trans-unit id="acp.nav.home">
@@ -148,6 +152,14 @@
             <trans-unit id="acp.package.install">
                 <source>acp.package.install</source>
                 <target>Install package</target>
+            </trans-unit>
+            <trans-unit id="acp.package.composerName">
+                <source>acp.package.composerName</source>
+                <target>Name used by Composer</target>
+            </trans-unit>
+            <trans-unit id="acp.package.version">
+                <source>acp.package.version</source>
+                <target>Version condition</target>
             </trans-unit>
 
             <!-- acp options -->
