@@ -6,6 +6,7 @@ parameters:
   yaml.parser.class: Symfony\Component\Yaml\Parser
   yaml.dumper.class: Symfony\Component\Yaml\Dumper
   filesystem.filesystem.class: Symfony\Component\Filesystem\Filesystem
+  process.builder.class: Symfony\Component\Process\ProcessBuilder
 
 services:
   twomartens.core.finder:
@@ -16,6 +17,8 @@ services:
     class: %yaml.dumper.class%
   twomartens.core.filesystem:
     class: %filesystem.filesystem.class%
+  twomartens.core.process_builder:
+    class: %process.builder.class%
   twomartens.core.twig_extension:
     class: TwoMartens\Bundle\CoreBundle\Twig\TwoMartensCoreBundleExtension
     public: false
@@ -73,3 +76,8 @@ services:
     tags:
       - { name: kernel.event_listener, event: 'twomartens.core.system_overview', method: onSystem }
       - { name: kernel.event_listener, event: 'twomartens.core.user_overview', method: onUser }
+  twomartens.core.package:
+    class: TwoMartens\Bundle\CoreBundle\Package\PackageService
+    arguments:
+      - "@twomartens.core.process_builder"
+      - "%kernel.root_dir%/../"
