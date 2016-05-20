@@ -132,7 +132,7 @@ class ComposerJSON
         $this->license = $decodedJSON['license'] ?: '';
         $this->website = $decodedJSON['homepage'] ?: '';
         foreach ($decodedJSON['authors'] as $author) {
-            $this->authors[] = $author['name'].' <'.$author['email'].'>';
+            $this->authors[] = $author['name'];
         }
     }
 }

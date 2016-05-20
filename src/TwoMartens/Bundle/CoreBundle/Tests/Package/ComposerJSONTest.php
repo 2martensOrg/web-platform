@@ -43,6 +43,6 @@ class ComposerJSONTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('The 2martens Web Platform', $this->composerJSON->getDescription());
         $this->assertEquals('https://github.com/2martens/web-platform', $this->composerJSON->getWebsite());
         $this->assertEquals('MIT', $this->composerJSON->getLicense());
-        $this->assertEquals('Jim Martens <github@2martens.de>', $this->composerJSON->getPrimaryAuthor());
+        $this->assertEquals('Jim Martens', $this->composerJSON->getPrimaryAuthor());
     }
 }
