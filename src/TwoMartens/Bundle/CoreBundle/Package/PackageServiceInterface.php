@@ -8,6 +8,8 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Package;
 
+use TwoMartens\Bundle\CoreBundle\Model\Package;
+
 /**
  * Defines the API of the Package Service.
  *
@@ -19,12 +21,15 @@ interface PackageServiceInterface
     /**
      * Installs a package by using Composer.
      *
-     * @param string $composerName
-     * @param string $versionCondition
+     * The package object is modified in the process
+     * and the name, description, author and website
+     * are filled if such data is available.
+     *
+     * @param Package $package
      *
      * @api
      *
      * @return void
      */
-    public function installPackage($composerName, $versionCondition);
+    public function installPackage(Package $package);
 }

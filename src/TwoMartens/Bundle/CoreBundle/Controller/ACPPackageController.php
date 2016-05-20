@@ -75,7 +75,7 @@ class ACPPackageController extends AbstractACPController
         if ($form->isValid()) {
             /** @var PackageServiceInterface $packageService */
             $packageService = $this->get('twomartens.core.package');
-            $packageService->installPackage($package->getComposerName(), $package->getVersion());
+            $packageService->installPackage($package);
             /** @var ObjectManager $objectManager */
             $objectManager = $this->get('twomartens.core.db_manager');
             $objectManager->persist($package);
