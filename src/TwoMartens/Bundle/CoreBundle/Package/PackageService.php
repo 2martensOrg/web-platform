@@ -9,6 +9,9 @@
 
 namespace TwoMartens\Bundle\CoreBundle\Package;
 
+use Symfony\Component\Process\ProcessBuilder;
+use TwoMartens\Bundle\CoreBundle\Model\Package;
+
 /**
  * Implementation for the PackageServiceInterface.
  *
@@ -18,10 +21,51 @@ namespace TwoMartens\Bundle\CoreBundle\Package;
 class PackageService implements PackageServiceInterface
 {
     /**
+     * the process builder
+     *
+     * @var ProcessBuilder
+     */
+    private $processBuilder;
+
+    /**
+     * the vendor directory
+     *
+     * @var string
+     */
+    private $vendorDirectory;
+
+    /**
+     * Initializes this service.
+     *
+     * @param ProcessBuilder $processBuilder
+     * @param string         $directory      The directory of the composer.json
+     */
+    public function __construct(ProcessBuilder $processBuilder, $directory)
+    {
+        $this->processBuilder = $processBuilder;
+        $this->processBuilder->setPrefix('composer');
+        $this->processBuilder->setWorkingDirectory(realpath($directory));
+        $this->processBuilder->setTimeout(null);
+        $this->vendorDirectory = realpath($directory).'/vendor/';
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function installPackage($composerName, $versionCondition)
+    public function installPackage(Package $package)
     {
-        // TODO: Implement installPackage() method.
+        $this->processBuilder->setArguments([
+            'require',
+            $package->getComposerName().':'.$package->getVersion()
+        ]);
+
+        $process = $this->processBuilder->getProcess();
+        $process->mustRun();
+
+        $package->setName($package->getComposerName());
+        $composerJSON = new ComposerJSON($this->vendorDirectory.$package->getComposerName().'/');
+        $package->setAuthor($composerJSON->getPrimaryAuthor());
+        $package->setDescription($composerJSON->getDescription());
+        $package->setWebsite($composerJSON->getWebsite());
     }
 }
