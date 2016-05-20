@@ -6,6 +6,17 @@
     {{ form_errors(form) }}
     {{ form_row(form.composerName) }}
     {{ form_row(form.version) }}
-    {{ form_row(form.install, {'attr': {'class': 'btn-primary'} }) }}
+    {{ form_row(form.install, {'attr': {'class': 'btn-primary', 'data-installing-text': 'button.installing'|trans({}, 'TwoMartensCoreBundle')} }) }}
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#package_install_install').click(function() {
+            $(this).prop('disabled', true);
+            $(this).parent().addClass('not-allowed-cursor');
+            $(this).text($(this).data('installingText'));
+        });
+    </script>
 {% endblock %}
