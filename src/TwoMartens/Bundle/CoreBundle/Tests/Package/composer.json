@@ -1,0 +1,14 @@
+{
+  "name": "2martens/web-platform",
+  "type": "library",
+  "description": "The 2martens Web Platform",
+  "keywords": ["framework"],
+  "homepage": "https://github.com/2martens/web-platform",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jim Martens",
+      "email": "github@2martens.de"
+    }
+  ]
+}
