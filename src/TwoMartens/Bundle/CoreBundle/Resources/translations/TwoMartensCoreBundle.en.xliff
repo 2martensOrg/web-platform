@@ -11,6 +11,10 @@
                 <source>button.install</source>
                 <target>Install</target>
             </trans-unit>
+            <trans-unit id="button.installing">
+                <source>button.installing</source>
+                <target>Installing...</target>
+            </trans-unit>
 
             <!-- acp navigation -->
             <trans-unit id="acp.nav.home">
