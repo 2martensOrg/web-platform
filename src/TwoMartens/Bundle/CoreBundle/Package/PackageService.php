@@ -56,6 +56,7 @@ class PackageService implements PackageServiceInterface
     {
         $this->processBuilder->setArguments([
             'require',
+            '--prefer-dist',
             $package->getComposerName().':'.$package->getVersion()
         ]);
 
